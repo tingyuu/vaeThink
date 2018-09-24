@@ -12,7 +12,7 @@ class Article extends Validate
         'thumb'          => 'require',
         'content'          => 'require',
         'id'              => 'require',
-        'article_cate_id'              => 'require'
+        'article_cate_id'              => 'require',
         'status'              => 'require'
     ];
 

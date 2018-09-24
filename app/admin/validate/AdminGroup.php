@@ -9,7 +9,7 @@ class AdminGroup extends Validate
 {
     protected $rule = [
         'title'       => 'require|unique:admin_group',
-        'id'          => 'require'
+        'id'          => 'require',
         'status'          => 'require'
     ];
 

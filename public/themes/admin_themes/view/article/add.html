@@ -107,8 +107,8 @@ layui.config({
       data:data.field,
       success:function(e){
         if(e.code==1){
-          layer.confirm('添加成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
-            vae.closeThisTab(this);
+          layer.confirm('保存成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
+            vae.closeThisTab();
             layer.close(index);
           });
         }else{

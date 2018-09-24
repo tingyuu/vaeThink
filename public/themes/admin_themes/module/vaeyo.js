@@ -8,11 +8,11 @@
 // | Author: 听雨 < 389625819@qq.com >
 // +----------------------------------------------------------------------
 layui.define(['layer','element','form'], function(exports){ 
-	var layer = layui.layer,$ = layui.$,element = layui.element,form = layui.form;
+	var layer = layui.layer,$ = layui.$,element = layui.element,form = layui.form,MOD_NAME = 'element', THIS = 'layui-this', SHOW = 'layui-show';
 
   	var obj = {
     	addTab: function(e){
-            var self = this;
+        var self = this;
     		var elem = $(".vaeyo-tab .layui-tab-title li[lay-id="+e.id+"]");
     		if(elem.length>0){
     			element.tabChange(e.elem, e.id);
@@ -88,10 +88,8 @@ layui.define(['layer','element','form'], function(exports){
              var r = window.location.search.substr(1).match(reg);
              if(r!=null)return  unescape(r[2]); return null;
         },
-        closeThisTab: function(key){
-            if(key==this){
-                
-            }
+        closeThisTab: function(){
+            $('.vaeyo-tab .layui-tab-title .layui-this i',parent.document).click();
         }
   	};
   

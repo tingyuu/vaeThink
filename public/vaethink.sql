@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-09-24 17:33:05
+Date: 2018-09-24 23:04:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,7 +41,7 @@ CREATE TABLE `vae_admin` (
 -- ----------------------------
 -- Records of vae_admin
 -- ----------------------------
-INSERT INTO `vae_admin` VALUES ('1', 'admin', '5da00c0d878be19af623a76655e79bfb', 'sldNmboaSpIvBJxH9qMz', '1', '0', '0', '1537748421', '3', '127.0.0.1', '13000000000', '听雨', '', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png');
+INSERT INTO `vae_admin` VALUES ('1', 'admin', '5da00c0d878be19af623a76655e79bfb', 'sldNmboaSpIvBJxH9qMz', '1', '0', '0', '1537791310', '5', '127.0.0.1', '13000000000', '听雨', '', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png');
 INSERT INTO `vae_admin` VALUES ('2', 'vae', '771b246a5fb4014746012e5b50d2fe99', 'CLOPngU50eAwlvTpXjzb', '1', '0', '0', '1537778399', '2', '127.0.0.1', '13000000000', 'vaeThink', '', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png');
 
 -- ----------------------------
@@ -64,7 +64,7 @@ CREATE TABLE `vae_admin_group` (
 -- Records of vae_admin_group
 -- ----------------------------
 INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50', '系统所有者，系统自动分配所有可操作权限。', '0', '1537755947');
-INSERT INTO `vae_admin_group` VALUES ('2', '游客', '1', '1,2,3,7,8,9,13,14,15,20,21,22,27,28,29,33,34,35,37,40,41', '游客，仅有浏览权限，无数据的增、删、改等权限。', '0', '0');
+INSERT INTO `vae_admin_group` VALUES ('2', '游客', '1', '1,2,3,7,8,9,13,14,15,20,21,22,27,28,29,33,34,35,37,40,41,44,45,46,48', '游客，仅有浏览权限，无数据的增、删、改等权限。', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -209,7 +209,7 @@ CREATE TABLE `vae_article` (
 -- ----------------------------
 -- Records of vae_article
 -- ----------------------------
-INSERT INTO `vae_article` VALUES ('1', '小米8青春版今日正式上市', '小米,小米手机', '小米8青春版今日正式上市', '1', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png', '<p>小米8青春版今日正式上市</p>', '1', '0', '0', null);
+INSERT INTO `vae_article` VALUES ('1', '小米8青春版今日正式上市', '小米,小米手机', '小米8青春版今日正式上市', '1', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png', '<p>小米8青春版今日正式上市啦</p>', '1', '0', '0', null);
 
 -- ----------------------------
 -- Table structure for `vae_article_cate`

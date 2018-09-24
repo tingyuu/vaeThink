@@ -14,7 +14,7 @@ class Admin extends Validate
         'nickname'       => 'require',
         'thumb'          => 'require',
         'group_id'          => 'require',
-        'id'              => 'require'
+        'id'              => 'require',
         'status'              => 'require'
     ];
 

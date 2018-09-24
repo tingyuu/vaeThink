@@ -201,3 +201,13 @@ function vae_upload($module,$use){
 function vae_set_password($pwd, $salt){
     return md5(md5($pwd.$salt).$salt);
 }
+
+//判断vaeThink是否完成安装
+function vae_is_installed()
+{
+    static $vaeIsInstalled;
+    if (empty($vaeIsInstalled)) {
+        $vaeIsInstalled = file_exists(VAE_ROOT . 'public/install.vae');
+    }
+    return $vaeIsInstalled;
+}

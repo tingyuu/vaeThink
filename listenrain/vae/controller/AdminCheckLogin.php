@@ -1,5 +1,4 @@
 <?php
-
 namespace vae\controller;
 use vae\controller\ControllerBase;
 use think\Session;
