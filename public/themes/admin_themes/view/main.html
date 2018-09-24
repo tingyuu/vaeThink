@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vaeThink</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../lib/layui/css/layui.css"  media="all">
+  <style type="text/css">
+    .vaeyo-main-header{
+      width:100%;
+      height: 200px;
+      background:#fff;
+      opacity: .8;
+    }
+    .site-doc-bgcolor li{
+      padding:3px 5px;
+    }
+    .layui-progress{
+      margin: 18px 0;
+    }
+    .vaeyo-main-icon div{
+      height:98px;
+      line-height: 98px;
+      text-align: center;
+      margin: 3.5px 0px;
+      background-color: #F2F2F2;
+      border:3px solid #fff;
+    }
+    .vaeyo-main-icon .layui-icon{
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body class="vae-body">
+
+  <div style="padding: 6px; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">轮播组件</div>
+          <div class="layui-card-body">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div style="line-height: 200px;text-align: center;background-color: #009688;color: #fff">遇见 vaeyoAdmin</div>
+                <div style="line-height: 200px;text-align: center;background-color: #5FB878;color: #fff">遇见 vaeyoAdmin</div>
+                <div style="line-height: 200px;text-align: center;background-color: #1E9FFF;color: #fff">遇见 vaeyoAdmin</div>
+                <div style="line-height: 200px;text-align: center;background-color: #FFB800;color: #fff">遇见 vaeyoAdmin</div>
+                <div style="line-height: 200px;text-align: center;background-color: #FF5722;color: #fff">遇见 vaeyoAdmin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3">
+        <div class="layui-card">
+          <div class="layui-card-header">图标</div>
+          <div class="layui-card-body">
+            <div class="layui-row layui-col-space10 vaeyo-main-icon">
+              <div class="layui-col-md6">
+                <i class="layui-icon layui-icon-user"></i>  
+              </div>
+              <div class="layui-col-md6">
+                <i class="layui-icon layui-icon-component"></i>  
+              </div>
+              <div class="layui-col-md4">
+                <i class="layui-icon layui-icon-edit"></i>  
+              </div>
+              <div class="layui-col-md4">
+                <i class="layui-icon layui-icon-find-fill"></i>  
+              </div>
+              <div class="layui-col-md4">
+                <i class="layui-icon layui-icon-set-fill"></i>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3">
+        <div class="layui-card">
+          <div class="layui-card-header">了解vaeyoAdmin</div>
+          <div class="layui-card-body">
+            <div class="layui-btn-container" style="padding:3px 0">
+              <div><a class="layui-btn layui-btn-fluid " href="https://jq.qq.com/?_wv=1027&k=5bmwTll" target="_blank">官方交流群</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-danger" href="https://gitee.com/pengweimy/vaeyoAdmin" target="_blank">免费下载</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-normal" href="javascript:layer.tips('双擎版正在紧张开发中,请持续关注!','#two');" id="two">了解双擎版</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-warm" href="http://pengyichen.cn" target="_blank">作者博客</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">内置线性图</div>
+          <div class="layui-card-body">
+            <div class="vaeyo-main-header" id="vaeyo-main-header"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">内置进度条</div>
+          <div class="layui-card-body">
+            <div class="layui-progress" lay-showPercent="true">
+              <div class="layui-progress-bar layui-bg-red" lay-percent="1/3"></div>
+            </div>
+                   
+            <div class="layui-progress" lay-showPercent="yes">
+              <div class="layui-progress-bar layui-bg-red" lay-percent="30%"></div>
+            </div>
+             
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+              <div class="layui-progress-bar layui-bg-green" lay-percent="50%"></div>
+            </div>
+
+            <div class="layui-progress layui-progress-big">
+              <div class="layui-progress-bar" lay-percent="20%"></div>
+            </div>
+             
+            <div class="layui-progress layui-progress-big">
+              <div class="layui-progress-bar layui-bg-orange" lay-percent="50%"></div>
+            </div>
+             
+            <div class="layui-progress layui-progress-big" lay-showPercent="true">
+              <div class="layui-progress-bar layui-bg-blue" lay-percent="80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">内置的背景色CSS类</div>
+          <div class="layui-card-body">
+            <ul class="site-doc-bgcolor">
+              <li class="layui-bg-red">
+                赤色：class="layui-bg-red"
+              </li>
+              <li class="layui-bg-orange">
+                橙色：class="layui-bg-orange"
+              </li>
+              <li class="layui-bg-green">
+                墨绿：class="layui-bg-green"
+              </li>
+              <li class="layui-bg-cyan">
+                藏青：class="layui-bg-cyan"
+              </li>
+              <li class="layui-bg-blue">
+                蓝色：class="layui-bg-blue"
+              </li>
+              <li class="layui-bg-black">
+                雅黑：class="layui-bg-black"
+              </li>
+              <li class="layui-bg-gray">
+                银灰：class="layui-bg-gray"
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  
+
+  <script src="../lib/layui/layui.js" charset="utf-8"></script>
+  <script>
+    layui.config({
+        base: '../module/'
+    }).define(['carousel','echarts','layer','element'], function(exports){
+      var $ = layui.jquery,layer = layui.layer,element = layui.element,carousel = layui.carousel;
+
+      carousel.render({
+          elem: '#test1'
+          ,width: '100%' //设置容器宽度
+          ,height: '200px'
+          ,arrow: 'hover'
+          //,anim: 'updown' //切换动画方式
+      });
+
+      var myChart = echarts.init(document.getElementById('vaeyo-main-header'));
+        var pv = [];
+        var uv = [];
+        for (var i = 23; i >= 0; i--) {
+          pv[i] = Math.floor(Math.random()*i*50); 
+          uv[i] = Math.floor(Math.random()*i*100);
+        }
+        var data = {
+          "time":['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'],
+          "pv":pv,
+          "uv":uv
+        }
+      option = {
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            data:['','']
+          },
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            data:['','']
+          },
+          grid: {
+              top:'5%',
+              left: '1%',
+              right: '1%',
+              bottom: '10%',
+              containLabel: true
+          },
+          xAxis : [{
+            type : 'category',
+            boundaryGap : false,
+            data: data.time
+          }],
+          yAxis : [{
+            type : 'value'
+          }],
+          series : [{
+            name:'UV',
+            type:'line',
+            smooth: true,
+            itemStyle: {normal: {color:'#009688'}},
+            lineStyle:{normal:{color:'#009688',width:1}},
+            areaStyle: {normal:{color:'#009688'}},
+            data: data.uv
+          },{
+            name:'PV',
+            type:'line',
+            smooth: true,
+            itemStyle: {normal: {color:'#01AAED'}},
+            lineStyle:{normal:{color:'#01AAED',width:1}},
+            areaStyle: {normal:{color:'#01AAED'}},
+            data: data.pv
+          }]
+      };
+      myChart.setOption(option);
+    
+      exports('main', {});
+  });  
+  </script> 
+
+</body>
+</html>

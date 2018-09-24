@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vaeThink</title>
+	<link rel="stylesheet" type="text/css" href="__ADMIN__/lib/layui/css/layui.css">
+</head>
+<body class="vae-body">
+
+	<form class="layui-form vae-content">
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色名称</label>
+			<div class="layui-input-block" style="max-width: 500px;">
+				<input class="layui-input" type="text" name="title" lay-verify="required" placeholder="请输入角色名称" autocomplete="off" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">选择权限</label>
+			<div class="layui-input-block">
+				<div id="vaeTree"></div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">状态</label>
+		    <div class="layui-input-block">
+		      <input type="radio" name="status" value="1" title="正常" checked>
+		      <input type="radio" name="status" value="-1" title="禁用">
+		    </div>
+		 </div>
+		<div class="layui-form-item layui-form-text">
+		    <label class="layui-form-label">备注</label>
+		    <div class="layui-input-block" style="max-width: 600px;">
+		      <textarea name="desc" placeholder="请输入备注" class="layui-textarea"></textarea>
+		    </div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" type="submit" lay-submit lay-filter="vaeform">提交</button>
+				<button class="layui-btn layui-btn-primary" type="reset">重置</button>
+			</div>
+		</div>
+	</form>
+
+</body>
+<script type="text/javascript" src="__ADMIN__/lib/layui/layui.js"></script>
+<script type="text/javascript">
+layui.config({
+	base: '/themes/admin_themes/module/',
+}).extend({
+	authtree: 'authtree',
+}).use(['jquery', 'authtree', 'form', 'layer', 'vaeyo'], function(){
+	var $ = layui.jquery;
+	var authtree = layui.authtree;
+	var form = layui.form;
+	var layer = layui.layer;
+	var vae = layui.vaeyo;
+
+	// 初始化
+	$.ajax({
+		url: '/admin/api/getRuleTree',
+		dataType: 'json',
+		success: function(data){
+			authtree.render('#vaeTree', data.data.trees, {inputname: 'rules[]', layfilter: 'lay-check-auth', openall: false});
+		}
+	});
+
+	//监听提交
+	form.on('submit(vaeform)', function(obj){
+		// var rules = authtree.getChecked('#vaeTree');
+		// obj.field.rules = rules;
+		$.ajax({
+			url: '/admin/group/addSubmit',
+			data: obj.field,
+			type: 'post',
+			success: function(res){
+				if(res.code==1){
+		          layer.confirm('添加成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
+		            vae.closeThisTab(this);
+		            layer.close(index);
+		          });
+		        }else{
+		          layer.msg(res.msg);
+		        }
+			}
+		});
+		return false;
+	});
+
+});
+</script>
+</html>
