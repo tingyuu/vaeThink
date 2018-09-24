@@ -14,15 +14,4 @@ return [
 	    // 模板后缀
 	    'view_suffix'  => 'html',
 	],
-
-	'cache'  => [
-		//缓存类型
-	    'type'   => 'File',
-	    //缓存目录
-	    'path'   => VAE_ROOT . 'runtime/cache',
-	    //前缀
-	    'prefix' => '',
-	    //有效期0表示永久缓存
-	    'expire' => 3600,
-	],
 ];

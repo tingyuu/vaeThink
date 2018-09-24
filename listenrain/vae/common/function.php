@@ -172,18 +172,7 @@ function vae_set_admin_menu(){
                 }
             }
         }
-        $options = [
-            // 缓存类型为File
-            'type'  =>  'File', 
-            // 缓存有效期为永久有效
-            'expire'=>  3600, 
-            //缓存前缀
-            'prefix'=>  '',
-             // 指定缓存目录
-            'path'  =>  VAE_ROOT .'runtime/cache/',
-        ];
-        \think\Cache::connect($options);
-        \think\Cache::set('admin_menu',$list,3600);
+        \think\Cache::set('admin_menu',$list);
     }
     return $list;
 }
