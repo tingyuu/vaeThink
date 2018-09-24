@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vaeThink</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css"  media="all">
+</head>
+<body class="vae-body">
+
+<form class="layui-form vae-content">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">原始url</label>
+    <div class="layui-input-block">
+      <input type="text" name="full_url" lay-verify="required" autocomplete="off" placeholder="请输入完整的原始url" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">设置url</label>
+    <div class="layui-input-block">
+      <input type="text" name="url" lay-verify="required" placeholder="请输入想要显示的url" autocomplete="off" class="layui-input">
+      <div class="layui-form-mid layui-word-aux">url格式一般为list/:param1/:param2</div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">状态</label>
+    <div class="layui-input-block">
+      <input type="radio" name="status" value="1" title="启用" checked>
+      <input type="radio" name="status" value="-1" title="禁用">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="vaeform">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+          
+<script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.config({
+    base: '/themes/admin_themes/module/'
+}).use(['form','vaeyo'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,$ = layui.$
+  ,vae = layui.vaeyo;
+  
+  //监听提交
+  form.on('submit(vaeform)', function(data){
+    $.ajax({
+      url:"/admin/route/addSubmit",
+      type:'post',
+      data:data.field,
+      success:function(e){
+        if(e.code==1){
+          layer.confirm('添加成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
+            vae.closeThisTab(this);
+            layer.close(index);
+          });
+        }else{
+          layer.msg(e.msg);
+        }
+      }
+    })
+    return false;
+  });
+  
+});
+</script>
+
+</body>
+</html>
