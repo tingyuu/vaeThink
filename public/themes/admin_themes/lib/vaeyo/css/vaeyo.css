@@ -43,7 +43,7 @@
 }
 .layui-layout-admin .layui-header{
 	height: 50px;
-	background-color: #100903;
+	background-color: #303643;
 }
 .layui-layout-admin .layui-logo{
 	line-height: 50px;
@@ -82,7 +82,7 @@
 .vaeyo-tab .layui-tab-title{
 	border:0;
 	max-width: calc(100% - 200px);
-	background-color: #100903;
+	background-color: #303643;
 }
 .vaeyo-tab li{
 	color:#fff;
