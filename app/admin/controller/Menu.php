@@ -5,7 +5,7 @@ use vae\controller\AdminCheckAuth;
 class Menu extends AdminCheckAuth
 {
     public function index()
-    {
+    { 
         return view();
     }
 

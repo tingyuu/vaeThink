@@ -81,7 +81,7 @@ class Article extends AdminCheckAuth
     {
         $id    = vae_get_param("id");
         if (ArticleModel::destroy($id) !== false) {
-            return vae_assign(1,"删除文章成功！");
+            return vae_assign(1,"成功放入回收站！");
         } else {
             return vae_assign(0,"删除失败！");
         }

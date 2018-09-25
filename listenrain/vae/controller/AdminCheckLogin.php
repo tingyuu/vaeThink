@@ -16,6 +16,7 @@ class AdminCheckLogin extends ControllerBase
     private function checkLogin()
     {
         if(!Session::has('vae_admin')) {
+            dump('123');
             $this->redirect('admin/publicer/login');
             die;
         }

@@ -15,7 +15,7 @@ class Admin extends Validate
         'thumb'          => 'require',
         'group_id'          => 'require',
         'id'              => 'require',
-        'status'              => 'require'
+        'status'              => 'require|checkStatus:-1,1'
     ];
 
     protected $message = [
@@ -29,10 +29,20 @@ class Admin extends Validate
         'group_id.require'      => '至少要选择一个分组',
         'id.require'      => '缺少更新条件',
         'status.require'      => '状态为必选',
+        'status.checkStatus'      => '系统所有者不能被禁用!',
     ];
 
     protected $scene = [
         'add' => ['phone', 'nickname', 'thumb', 'group_id', 'password', 'username', 'status'],
         'edit' => ['phone', 'nickname', 'thumb', 'group_id', 'id', 'username.unique', 'status'],
     ];
+
+    // 自定义验证规则
+    protected function checkStatus($value,$rule,$data)
+    {
+        if($value == -1 and $data['id'] == 1) {
+            return $rule == false;
+        }
+        return $rule == true;
+    }
 }

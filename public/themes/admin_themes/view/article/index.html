@@ -68,7 +68,7 @@ layui.config({
     var data = obj.data;
     //console.log(obj)
     if(obj.event === 'del'){
-      layer.confirm('真的删除行么', {icon: 3, title:'提示'}, function(index){
+      layer.confirm('确定放入回收站吗?', {icon: 3, title:'提示'}, function(index){
         $.ajax({
           url:"/admin/article/delete",
           data:{id:data.id},
