@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>vaeThink</title>
+        <title>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</title>
         <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css"  media="all">
         <style type="text/css">
             /*body{
@@ -24,13 +24,13 @@
     </head>
     <body>
     	<div class="vaeyo-login-body">
-            <h2>vaeThink</h2>
+            <h2>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</h2>
 	        <form class="layui-form" id="vaeyo-login">
 			  <div class="layui-form-item">
-			      <input type="text" name="username" lay-verify="required" placeholder="账户" autocomplete="off" class="layui-input">
+			      <input type="text" name="username" lay-verify="required" placeholder="账户" autocomplete="off" class="layui-input" value="vae">
 			  </div>
 			  <div class="layui-form-item">
-			      <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+			      <input type="password" name="password" lay-verify="required" placeholder="密码:vaethink" autocomplete="off" class="layui-input">
 			  </div>
 			  <div class="layui-form-item">
 			      <div class="layui-input-inline">

@@ -109,7 +109,7 @@
 .vaeyo-tab>.layui-tab-title .layui-this{
 	color:#fff;
 	background-color: #2C3E50;
-    border-radius: 50px 0px;
+    /*border-radius: 50px 0px;*/
 }
 .vaeyo-tab>.layui-tab-title .layui-this i{
 	display: inline-block;
@@ -134,10 +134,10 @@
 	border:0;
 }
 .layui-nav-img{
-	width: 28px;
-    height: 28px;
+	width: 25px;
+    height: 25px;
     margin-right: 0;
-    border: 1px solid rgba(255,255,255,.7);
+    border: 2px solid rgba(255,255,255,.7);
 }
 .layui-layout-admin .layui-footer{
 	left:220px;

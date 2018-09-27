@@ -18,7 +18,7 @@ class Group extends AdminCheckAuth
         if(!empty($param['keywords'])) {
             $where['id|title|desc'] = ['like', '%' . $param['keywords'] . '%'];
         }
-        $rows = empty($param['rows']) ? \think\Config::get('paginate.list_rows') : $param['rows'];
+        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
         $group = \think\loader::model('AdminGroup')
     			->order('create_time asc')
                 ->where($where)

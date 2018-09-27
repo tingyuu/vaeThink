@@ -2,6 +2,7 @@
 namespace vae\controller;
 use vae\controller\ControllerBase;
 use think\Session;
+use think\Hook;
 
 class AdminCheckLogin extends ControllerBase
 {
@@ -15,8 +16,7 @@ class AdminCheckLogin extends ControllerBase
     //验证后台模块登录
     private function checkLogin()
     {
-        if(!Session::has('vae_admin')) {
-            dump('123');
+        if(!vae_get_login_admin()) {
             $this->redirect('admin/publicer/login');
             die;
         }

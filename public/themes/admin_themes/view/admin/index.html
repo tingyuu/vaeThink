@@ -49,12 +49,10 @@ layui.config({
   var tableIns = table.render({
     elem: '#test'
     ,toolbar: '#toolbarDemo'
-    ,title: '用户数据表'
     ,url: '/admin/admin/getAdminList' //数据接口
     ,page: true //开启分页
     ,cols: [[ //表头
-      {type: 'checkbox', fixed: 'left'}
-      ,{field: 'id', title: 'ID', sort: true, fixed: 'left', align:'center', width:80}
+      {field: 'id', title: 'ID', sort: true, fixed: 'left', align:'center', width:80}
       ,{field: 'groupName', title: '分组', align:'center'}
       ,{field: 'thumb', title:'头像', toolbar: '#thumb', align:'center', width:80}
       ,{field: 'username', title: '用户名', align:'center'}

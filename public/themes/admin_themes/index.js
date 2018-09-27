@@ -77,7 +77,9 @@ layui.config({
 				$("[vaeyo-refresh]").attr("class","refreshThis");
 			},1000)
 		}else{
-			layer.msg("每秒只可刷新一次");
+			layer.tips("每秒只可刷新一次",this, {
+			  tips: 1
+			});
 		}
 		return false;
 	})

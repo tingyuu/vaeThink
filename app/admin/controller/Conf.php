@@ -1,0 +1,71 @@
+<?php
+namespace app\admin\controller;
+use vae\controller\AdminCheckAuth;
+use think\Config;
+
+class Conf extends AdminCheckAuth
+{
+    //网站信息
+    public function webConf()
+    {
+        $conf = Config::get('webconfig');
+        $webConf = [
+            'title' => empty($conf['title']) ? '' : $conf['title'],
+            'keywords' => empty($conf['keywords']) ? '' : $conf['keywords'],
+            'desc' => empty($conf['desc']) ? '' : $conf['desc'],
+            'logo' => empty($conf['logo']) ? '' : $conf['logo'],
+            'admin_title' => empty($conf['admin_title']) ? '' : $conf['admin_title'],
+            'icp' => empty($conf['icp']) ? '' : $conf['icp'],
+            'code' => empty($conf['code']) ? '' : $conf['code'],
+        ];
+        return view('',['webConf'=>$webConf]);
+    }
+
+    //提交网站信息
+    public function webConfSubmit()
+    {
+    	if($this->request->isPost()){
+            $param = vae_get_param();
+    		$result = $this->validate($param, 'app\admin\validate\Conf.webConf');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                $conf = "<?php return ['admin_title'=>'{$param["admin_title"]}','title'=>'{$param["title"]}','keywords'=>'{$param["keywords"]}','logo'=>'{$param["logo"]}','desc'=>'{$param["desc"]}','icp'=>'{$param["icp"]}','code'=>'{$param["code"]}'];";
+                file_put_contents(VAE_ROOT . "data/conf/extra/webconfig.php",$conf);
+                return vae_assign();
+            }
+    	}
+    }
+
+    //邮箱配置
+    public function emailConf()
+    {
+        $conf = Config::get('emailconfig');
+        $emailConf = [
+            'smtp' => empty($conf['smtp']) ? '' : $conf['smtp'],
+            'username' => empty($conf['username']) ? '' : $conf['username'],
+            'password' => empty($conf['password']) ? '' : $conf['password'],
+            'port' => empty($conf['port']) ? '' : $conf['port'],
+            'email' => empty($conf['email']) ? '' : $conf['email'],
+            'from' => empty($conf['from']) ? '' : $conf['from'],
+            'template' => empty($conf['template']) ? '' : $conf['template'],
+        ];
+        return view('',['emailConf'=>$emailConf]);
+    }
+
+    //提交邮箱配置
+    public function emailConfSubmit()
+    {
+        if($this->request->isPost()){
+            $param = vae_get_param();
+            $result = $this->validate($param, 'app\admin\validate\Conf.emailConf');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                $conf = "<?php return ['smtp'=>'{$param["smtp"]}','username'=>'{$param["username"]}','password'=>'{$param["password"]}','port'=>'{$param["port"]}','email'=>'{$param["email"]}','from'=>'{$param["from"]}','template'=>'{$param["template"]}'];";
+                file_put_contents(VAE_ROOT . "data/conf/extra/emailconfig.php",$conf);
+                return vae_assign();
+            }
+        }
+    }
+}

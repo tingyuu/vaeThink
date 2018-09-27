@@ -22,7 +22,7 @@ class Recycle extends AdminCheckAuth
         if(!empty($param['article_cate_id'])) {
             $where['a.article_cate_id'] = $param['article_cate_id'];
         }
-        $rows = empty($param['rows']) ? \think\Config::get('paginate.list_rows') : $param['rows'];
+        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
         $recycle = Article::onlyTrashed()
                 ->field('*,w.id as cate_id,a.id as id,w.title as cate_title,a.title as title')
                 ->alias('a')

@@ -18,7 +18,7 @@ class Admin extends AdminCheckAuth
         if(!empty($param['keywords'])) {
             $where['id|username|nickname|desc|phone'] = ['like', '%' . $param['keywords'] . '%'];
         }
-        $rows = empty($param['rows']) ? \think\Config::get('paginate.list_rows') : $param['rows'];
+        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
         $admin = \think\loader::model('Admin')
     			->order('create_time asc')
                 ->where($where)

@@ -17,7 +17,7 @@ class Route extends AdminCheckAuth
         if(!empty($param['keywords'])) {
             $where['id|full_url|url'] = ['like', '%' . $param['keywords'] . '%'];
         }
-        $rows = empty($param['rows']) ? \think\Config::get('paginate.list_rows') : $param['rows'];
+        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
         $route = \think\Db::name('route')->order('create_time asc')->paginate($rows,false,['query'=>$param]);
     	return vae_assign_table(0,'',$route);
     }

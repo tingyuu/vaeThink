@@ -51,9 +51,9 @@ layui.config({
     ,toolbar: '#toolbarDemo'
     ,url: '/admin/article/getContentList' //数据接口
     ,page: true //开启分页
+    ,limit: 15
     ,cols: [[ //表头
-      {type: 'checkbox', fixed: 'left'}
-      ,{field: 'id', title: 'ID', sort: true, fixed: 'left', align:'center', width:80}
+      {field: 'id', title: 'ID', sort: true, fixed: 'left', align:'center', width:80}
       ,{field: 'thumb', title:'封面', toolbar: '#thumb', align:'center', width:80}
       ,{field: 'title', title: '标题', align:'center'}
       ,{field: 'cate_title', title: '分类', align:'center'}

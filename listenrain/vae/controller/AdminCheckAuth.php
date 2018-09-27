@@ -1,24 +1,20 @@
 <?php
 namespace vae\controller;
 use vae\controller\AdminCheckLogin;
+use think\Hook;
 
 class AdminCheckAuth extends AdminCheckLogin
 {
     protected function _initialize()
     {
         parent::_initialize();
+
+        $params = [
+            'controller' => strtolower($this->request->controller()),
+            'action'  => strtolower($this->request->action()),
+            'admin_id' => vae_get_login_admin('id')
+        ];
         
-        $this->checkAuth();
-    }
-
-    private function checkAuth()
-    {
-        $controller = strtolower($this->request->controller());
-        $action = strtolower($this->request->action());
-
-        $auth = new \vae\lib\Auth();
-        if(false == $auth->check($controller.'/'.$action,vae_get_login_admin('id'))){
-            return vae_assign(0,'您没有权限,请联系系统所有者');
-        }
+        Hook::listen('admin_init',$params);
     }
 }

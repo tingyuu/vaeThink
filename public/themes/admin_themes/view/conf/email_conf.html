@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vaeThink</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css"  media="all">
+</head>
+<body class="vae-body">
+
+<form class="layui-form vae-content">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">SMTP</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="smtp" lay-verify="required" autocomplete="off" placeholder="请输入SMTP服务器地址" class="layui-input" value="{$emailConf.smtp}">
+      <div class="layui-form-mid layui-word-aux">如qq邮箱的SMTP服务器地址是smtp.qq.com</div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">账户</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="username" lay-verify="required" autocomplete="off" placeholder="请输入邮箱用户名" class="layui-input" value="{$emailConf.username}">
+    </div>
+  </div> 
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="password" name="password" lay-verify="required" autocomplete="off" placeholder="请输入邮箱密码" class="layui-input" value="{$emailConf.password}">
+      <div class="layui-form-mid layui-word-aux">不一定是登录密码,如qq的第三方授权登录码,要自己去开启,在邮箱的设置->账户->POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务</div>
+    </div>
+  </div> 
+  <div class="layui-form-item">
+    <label class="layui-form-label">端口</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="port" lay-verify="required" autocomplete="off" placeholder="请输入端口" class="layui-input" value="{$emailConf.port}">
+      <div class="layui-form-mid layui-word-aux">如qq邮箱的ssl协议方式端口号是465/587</div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="email" lay-verify="required" autocomplete="off" placeholder="请输入要显示的发送者邮箱" class="layui-input" value="{$emailConf.email}">
+      <div class="layui-form-mid layui-word-aux">可以不同于上面的账户，用于显示发送方的邮箱</div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发送者</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="from" lay-verify="required" autocomplete="off" placeholder="请输入要显示的发送者" class="layui-input" value="{$emailConf.from}">
+      <div class="layui-form-mid layui-word-aux">如：vaeThink</div>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">邮件模板</label>
+    <div class="layui-input-block" style="max-width: 800px;">
+      <textarea name="template" placeholder="" class="layui-textarea" id="container" style="border:0;padding:0">{$emailConf.template}</textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="vaeform">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <a class="layui-btn layui-bg-blue" href="javascript:;" id="emailto">发送测试</a>
+    </div>
+  </div>
+</form>
+          
+<script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.config({
+    base: '/themes/admin_themes/module/'
+}).use(['upload','form','vaeyo'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,$ = layui.$
+  ,vae = layui.vaeyo;
+  
+  //监听提交
+  form.on('submit(vaeform)', function(data){
+    $.ajax({
+      url:"/admin/conf/emailConfSubmit",
+      type:'post',
+      data:data.field,
+      success:function(e){
+        if(e.code==1){
+          layer.confirm('保存成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
+            vae.closeThisTab();
+            layer.close(index);
+          });
+        }else{
+          layer.msg(e.msg);
+        }
+      }
+    })
+    return false;
+  });
+
+  $('#emailto').click(function(){
+    layer.prompt({
+      formType: 0,
+      value: '',
+      title: '输入接收测试邮件的邮箱',
+      id: 'email_to'
+    }, function(value, index, elem){
+      var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+      if(value.length<6 || !(isEmail.test(value))){
+        layer.tips('请正确输入邮箱',elem);
+        return false;
+      }
+      $.ajax({
+        url:"/admin/api/emailto",
+        data:{email:value},
+        type:"post",
+        beforeSend: function () {
+            // 禁用按钮防止重复提交
+            $("#email_to input").val('');
+        },
+        success:function(e){
+          layer.msg(e.msg);
+          if(e.code==1){
+            layer.close(index);
+          }
+        }
+      })
+    });
+  })
+  
+});
+</script>
+<script id="container" name="template" type="text/plain"></script>
+<script type="text/javascript" src="__ADMIN__/lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__ADMIN__/lib/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var ue = UE.getEditor('container',{
+      //初始化高度
+      initialFrameHeight:100,
+    });
+</script>
+</body>
+</html>

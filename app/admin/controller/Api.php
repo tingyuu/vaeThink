@@ -77,4 +77,13 @@ class Api extends AdminCheckLogin
         \think\Cache::clear();
         return vae_assign(1,'系统缓存已清空');
     }
+
+    //发送测试邮件
+    public function emailto($email)
+    {
+        if(vae_send_email($email,'一封来自vaeThink的测试邮件。')){
+            return vae_assign(1,'发送成功，请注意查收');
+        }
+        return vae_assign(0,'发送失败');
+    }
 }

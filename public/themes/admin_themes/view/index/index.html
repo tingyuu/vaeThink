@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>vaeThink</title>
+  <title>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</title>
   <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css">
   <link rel="stylesheet" href="__ADMIN__/lib/vaeyo/css/vaeyo.css">
   <script>
@@ -14,7 +14,7 @@
 
 	<div class="layui-layout layui-layout-admin">
 	  	<div class="layui-header">
-		    <div class="layui-logo" vaeyo-home>vaeThink</div>
+		    <div class="layui-logo" vaeyo-home>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</div>
 		    <div class="vaeyo-loading" vaeyo-loading><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i></div>
 		    <ul class="layui-nav layui-layout-right">
 		      <li class="layui-nav-item" lay-unselect>
@@ -74,11 +74,11 @@
 	    <div class="layui-body">
 		    <div class="layui-tab layui-tab-brief vaeyo-tab" lay-filter="vaeyo-tab" lay-allowClose="true" style="height: 100%;">
 			  <ul class="layui-tab-title">
-			    <li class="layui-this" lay-id="0" style="display: none">首页</li>
+			    <li class="layui-this" lay-id="0" style="display: none"></li>
 			  </ul>
 			  <div class="layui-tab-content" style="height: 100%;" vaeyo-tab-content>
 			    <div class="layui-tab-item layui-show">
-			    	<iframe id="0" name="myiframe" src="__ADMIN__/view/main.html" frameborder="0" align="left" width="100%" height="100%" scrolling="yes"></iframe>
+			    	<iframe id="0" name="myiframe" src="/admin/main/index" frameborder="0" align="left" width="100%" height="100%" scrolling="yes"></iframe>
 			    </div>
 			  </div>
 			</div>   
