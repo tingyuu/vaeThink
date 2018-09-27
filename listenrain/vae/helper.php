@@ -281,3 +281,21 @@ function vae_get_system_info($key)
         return $system[$key];
     }
 }
+
+//获取插件类的类名
+function vae_get_plugin_class($name)
+{
+    $name      = ucwords($name);
+    $pluginDir = vae_parse_name($name);
+    $class     = "plugin\\{$pluginDir}\\{$name}Plugin";
+    return $class;
+}
+
+/**
+ * 字符串命名风格转换
+ * type 0 将Java风格转换为C的风格 1 将C风格转换为Java的风格
+ */
+function vae_parse_name($name, $type = 0, $ucfirst = true)
+{
+    return \think\Loader::parseName($name, $type, $ucfirst);
+}
