@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="../lib/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/themes/admin_themes/lib/layui/css/layui.css"  media="all">
   <style type="text/css">
     .vaeyo-main-header{
       width:100%;
@@ -33,7 +33,7 @@
     }
   </style>
 </head>
-<body>
+<body class="vae-body">
 
   <div style="padding: 10px; background-color: #F2F2F2;">
     <div class="layui-row layui-col-space15">
@@ -163,10 +163,10 @@
 
   
 
-  <script src="../lib/layui/layui.js" charset="utf-8"></script>
+  <script src="/themes/admin_themes/lib/layui/layui.js" charset="utf-8"></script>
   <script>
     layui.config({
-        base: '../module/'
+        base: '/themes/admin_themes/module/'
     }).define(['carousel','echarts','layer','element'], function(exports){
       var $ = layui.jquery,layer = layui.layer,element = layui.element,carousel = layui.carousel;
 

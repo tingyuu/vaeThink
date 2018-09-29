@@ -6,9 +6,10 @@ class Main extends AdminCheckLogin
 {
     public function index()
     {
-
-        vae_set_hook('admin_main');
-
+        $adminMainHook = vae_set_hook_one('admin_main');
+        if(!empty($adminMainHook)) {
+        	return $adminMainHook;
+        }
         return $this->fetch();
     }
 }

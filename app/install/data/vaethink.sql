@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 本地服务器
-Source Server Version : 50547
+Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : vaethink
+Source Database       : vaethinkdemo
 
 Target Server Type    : MYSQL
-Target Server Version : 50547
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-09-29 17:28:46
+Date: 2018-09-29 22:43:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,14 +36,11 @@ CREATE TABLE `vae_admin` (
   `thumb` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`id`,`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='管理员';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员';
 
 -- ----------------------------
 -- Records of vae_admin
 -- ----------------------------
-INSERT INTO `vae_admin` VALUES ('1', 'admin', '5da00c0d878be19af623a76655e79bfb', 'sldNmboaSpIvBJxH9qMz', '1', '0', '0', '1538209218', '18', '127.0.0.1', '13000000000', '听雨', '', '\\themes\\admin_themes\\lib\\vaeyo\\img\\thumb.png');
-INSERT INTO `vae_admin` VALUES ('2', 'vae', '771b246a5fb4014746012e5b50d2fe99', 'CLOPngU50eAwlvTpXjzb', '1', '0', '0', '1538017711', '6', '127.0.0.1', '13000000000', 'vaeThink', '', '\\themes\\admin_themes\\lib\\vaeyo\\img\\thumb.png');
-INSERT INTO `vae_admin` VALUES ('3', 'pengwei', '72ef8ca7fbef2667f686f2c6dbddc2a2', 'wybH3Q9Mmpfn0DtZAeVu', '1', '1538211911', '1538211911', '0', '0', '', null, 'Admin', '系统所有者。', '/themes/admin_themes/lib/vaeyo/img/thumb.png');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group`
@@ -59,13 +56,12 @@ CREATE TABLE `vae_admin_group` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='权限分组';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='权限分组';
 
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
 INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58', '系统所有者，系统自动分配所有可操作权限。', '0', '1538037863');
-INSERT INTO `vae_admin_group` VALUES ('2', '游客', '1', '1,2,3,7,8,9,13,14,15,17,20,21,22,24,27,28,29,33,34,35,37,40,41,44,45,46,48,51,53,55,56', '游客，仅有浏览权限，无数据的增、删、改等权限。', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -82,8 +78,6 @@ CREATE TABLE `vae_admin_group_access` (
 -- ----------------------------
 -- Records of vae_admin_group_access
 -- ----------------------------
-INSERT INTO `vae_admin_group_access` VALUES ('2', '2', '0', '0');
-INSERT INTO `vae_admin_group_access` VALUES ('1', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_menu`
@@ -219,12 +213,11 @@ CREATE TABLE `vae_article` (
   `update_time` int(11) NOT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='内容';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容';
 
 -- ----------------------------
 -- Records of vae_article
 -- ----------------------------
-INSERT INTO `vae_article` VALUES ('1', '小米8青春版今日正式上市', '小米,小米手机', '小米8青春版今日正式上市', '-1', '\\upload\\admin\\thumb\\b5\\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png', '<p>小米8青春版今日正式上市啦</p>', '1', '0', '1537839805', null);
 
 -- ----------------------------
 -- Table structure for `vae_article_cate`
@@ -240,13 +233,11 @@ CREATE TABLE `vae_article_cate` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`,`pid`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='内容分类';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容分类';
 
 -- ----------------------------
 -- Records of vae_article_cate
 -- ----------------------------
-INSERT INTO `vae_article_cate` VALUES ('1', '0', '今日头条', '头条,今日头条', '实时类新闻。', '0', '0');
-INSERT INTO `vae_article_cate` VALUES ('2', '1', '科技', '科技,科技新闻,科技头条', '科技类头条新闻。', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_hook`
@@ -258,25 +249,26 @@ CREATE TABLE `vae_hook` (
   `only` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否只允许一个插件运行0:多个,1:一个',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子名称',
   `hook` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子',
-  `app` varchar(15) NOT NULL DEFAULT '' COMMENT '应用名(只有应用钩子才用)',
+  `module` varchar(15) NOT NULL DEFAULT '' COMMENT '模块名，模块专属钩子',
   `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
 
 -- ----------------------------
 -- Records of vae_hook
 -- ----------------------------
-INSERT INTO `vae_hook` VALUES ('1', '1', '0', '应用初始化', 'app_init', 'cmf', '应用初始化');
-INSERT INTO `vae_hook` VALUES ('2', '1', '0', '应用开始', 'app_begin', 'cmf', '应用开始');
-INSERT INTO `vae_hook` VALUES ('3', '1', '0', '模块初始化', 'module_init', 'cmf', '模块初始化');
-INSERT INTO `vae_hook` VALUES ('4', '1', '0', '控制器开始', 'action_begin', 'cmf', '控制器开始');
-INSERT INTO `vae_hook` VALUES ('5', '1', '0', '视图输出过滤', 'view_filter', 'cmf', '视图输出过滤');
-INSERT INTO `vae_hook` VALUES ('6', '1', '0', '应用结束', 'app_end', 'cmf', '应用结束');
-INSERT INTO `vae_hook` VALUES ('7', '1', '0', '日志write方法', 'log_write', 'cmf', '日志write方法');
-INSERT INTO `vae_hook` VALUES ('8', '1', '0', '输出结束', 'response_end', 'cmf', '输出结束');
-INSERT INTO `vae_hook` VALUES ('9', '1', '0', '后台控制器初始化', 'admin_init', 'cmf', '后台控制器初始化');
-INSERT INTO `vae_hook` VALUES ('10', '1', '0', '前台控制器初始化', 'home_init', 'cmf', '前台控制器初始化');
+INSERT INTO `vae_hook` VALUES ('1', '1', '0', '应用初始化', 'app_init', 'vae', '应用初始化');
+INSERT INTO `vae_hook` VALUES ('2', '1', '0', '应用开始', 'app_begin', 'vae', '应用开始');
+INSERT INTO `vae_hook` VALUES ('3', '1', '0', '模块初始化', 'module_init', 'vae', '模块初始化');
+INSERT INTO `vae_hook` VALUES ('4', '1', '0', '控制器开始', 'action_begin', 'vae', '控制器开始');
+INSERT INTO `vae_hook` VALUES ('5', '1', '0', '视图输出过滤', 'view_filter', 'vae', '视图输出过滤');
+INSERT INTO `vae_hook` VALUES ('6', '1', '0', '应用结束', 'app_end', 'vae', '应用结束');
+INSERT INTO `vae_hook` VALUES ('7', '1', '0', '日志write方法', 'log_write', 'vae', '日志write方法');
+INSERT INTO `vae_hook` VALUES ('8', '1', '0', '输出结束', 'response_end', 'vae', '输出结束');
+INSERT INTO `vae_hook` VALUES ('9', '1', '0', '后台控制器初始化', 'admin_init', 'vae', '后台控制器初始化');
+INSERT INTO `vae_hook` VALUES ('10', '1', '0', '前台控制器初始化', 'home_init', 'vae', '前台控制器初始化');
 INSERT INTO `vae_hook` VALUES ('11', '2', '1', '后台首页', 'admin_main', 'admin', '后台首页');
+INSERT INTO `vae_hook` VALUES ('12', '2', '0', '后台登录页面', 'admin_login', 'admin', '后台登录页面初始化');
 
 -- ----------------------------
 -- Table structure for `vae_hook_plugin`
@@ -294,7 +286,7 @@ CREATE TABLE `vae_hook_plugin` (
 -- ----------------------------
 -- Records of vae_hook_plugin
 -- ----------------------------
-INSERT INTO `vae_hook_plugin` VALUES ('1', '10000', '1', 'admin_main', 'Chart');
+INSERT INTO `vae_hook_plugin` VALUES ('1', '0', '1', 'admin_main', 'Chart');
 
 -- ----------------------------
 -- Table structure for `vae_plugin`
@@ -339,30 +331,6 @@ CREATE TABLE `vae_route` (
 -- ----------------------------
 INSERT INTO `vae_route` VALUES ('1', 'index/index/hehe', 'hehe', '1', '0', '0');
 INSERT INTO `vae_route` VALUES ('2', 'admin/index/index', 'god', '-1', '0', '0');
-
--- ----------------------------
--- Table structure for `vae_sms_code`
--- ----------------------------
-DROP TABLE IF EXISTS `vae_sms_code`;
-CREATE TABLE `vae_sms_code` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `code` int(6) unsigned NOT NULL,
-  `phone` bigint(11) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `is_use` int(1) NOT NULL DEFAULT '0' COMMENT '0未使用1已使用',
-  `update_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of vae_sms_code
--- ----------------------------
-INSERT INTO `vae_sms_code` VALUES ('1', '114529', '17739181521', '1526980983', '0', '1526980983');
-INSERT INTO `vae_sms_code` VALUES ('2', '680105', '15039097443', '1526981943', '0', '1526981943');
-INSERT INTO `vae_sms_code` VALUES ('3', '281988', '15039097443', '1526982030', '0', '1526982030');
-INSERT INTO `vae_sms_code` VALUES ('4', '132711', '15039097443', '1526982244', '0', '1526982244');
-INSERT INTO `vae_sms_code` VALUES ('5', '256719', '15039097443', '1526982310', '0', '1526982310');
-INSERT INTO `vae_sms_code` VALUES ('6', '442828', '13598689608', '1526982475', '0', '1526982475');
 
 -- ----------------------------
 -- Table structure for `vae_user`

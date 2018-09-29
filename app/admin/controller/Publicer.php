@@ -8,6 +8,10 @@ class Publicer extends ControllerBase
     //登录
     public function login()
     {
+        $adminLoginHook = vae_set_hook_one('admin_login');
+        if(!empty($adminLoginHook)) {
+            return $adminLoginHook;
+        }
         return $this->fetch();
     }
 

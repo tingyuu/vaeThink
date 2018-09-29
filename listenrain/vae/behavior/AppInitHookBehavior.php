@@ -8,22 +8,22 @@ class AppInitHookBehavior {
 
 	public function run(&$params){   
 		if (!vae_get_login_admin()) {
-            return;
+            return true;
         }
 
-        $systemHookPlugins = cache('init_hook_plugins_system_hook_plugins');
-        if (empty($systemHookPlugins)) {
-            $systemHooks = Db::name('hook')->column('hook');
+        $appHookPlugin = cache('app_init_hook_plugin');
+        if (empty($appHookPlugin)) {
+            $hook = Db::name('hook')->where('type', 1)->column('hook');
 
-            $systemHookPlugins = Db::name('hook_plugin')->field('hook,plugin')->where('status', 1)
-                ->where('hook', 'in', $systemHooks)
-                ->order('order asc')
-                ->select();
-            cache('init_hook_plugins_system_hook_plugins', $systemHookPlugins, null, 'init_hook_plugins');
+            $appHookPlugin = Db::name('hook_plugin')->field('hook,plugin')->where('status', 1)
+                            ->where('hook', 'in', $hook)
+                            ->order('order asc')
+                            ->select();
+            cache('app_init_hook_plugin', $appHookPlugin, 0);
         }
 
-        if (!empty($systemHookPlugins)) {
-            foreach ($systemHookPlugins as $hookPlugin) {
+        if (!empty($appHookPlugin)) {
+            foreach ($appHookPlugin as $hookPlugin) {
                 Hook::add($hookPlugin['hook'], vae_get_plugin_class($hookPlugin['plugin']));
             }
         }

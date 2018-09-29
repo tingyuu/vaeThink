@@ -286,42 +286,19 @@ function vae_get_system_info($key)
 function vae_get_plugin_class($name)
 {
     $name      = ucwords($name);
-    $pluginDir = vae_parse_name($name);
-    $class     = "plugin\\{$pluginDir}\\{$name}Plugin";
-    return $class;
-}
-
-/**
- * 字符串命名风格转换
- * type 0 将Java风格转换为C的风格 1 将C风格转换为Java的风格
- */
-function vae_parse_name($name, $type = 0, $ucfirst = true)
-{
-    return \think\Loader::parseName($name, $type, $ucfirst);
+    $plugin = \think\Loader::parseName($name, 0, true);
+    $className     = "plugin\\{$plugin}\\{$name}Index";
+    return $className;
 }
 
 //设置钩子
-function vae_set_hook($hook, $params=null)
+function vae_set_hook($hook, &$params = null, $extra = null)
 {
-    \think\Hook::listen($hook, $params);
+    return \think\Hook::listen($hook, $params, $extra = null);
 }
 
-//切分SQL文件成多个可以单独执行的sql语句
-function vae_split_sql($file, $tablePre, $charset = 'utf8mb4', $defaultTablePre = 'vae_', $defaultCharset = 'utf8mb4')
+//设置一个钩子
+function vae_set_hook_one($hook, &$params = null, $extra = null)
 {
-    if (file_exists($file)) {
-        //读取SQL文件
-        $sql = file_get_contents($file);
-        $sql = str_replace("\r", "\n", $sql);
-        $sql = str_replace("BEGIN;\n", '', $sql);//兼容 navicat 导出的 insert 语句
-        $sql = str_replace("COMMIT;\n", '', $sql);//兼容 navicat 导出的 insert 语句
-        $sql = str_replace($defaultCharset, $charset, $sql);
-        $sql = trim($sql);
-        //替换表前缀
-        $sql  = str_replace(" `{$defaultTablePre}", " `{$tablePre}", $sql);
-        $sqls = explode(";\n", $sql);
-        return $sqls;
-    }
-
-    return [];
+    return \think\Hook::listen($hook, $params, $extra, true);
 }

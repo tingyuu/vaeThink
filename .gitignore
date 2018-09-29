@@ -2,3 +2,5 @@
 *.log
 runtime
 data/install.lock
+data/conf/install.lock
+data/conf/extra/*
