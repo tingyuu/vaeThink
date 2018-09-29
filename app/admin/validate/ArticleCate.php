@@ -9,17 +9,17 @@ class ArticleCate extends Validate
 {
     protected $rule = [
         'title'       => 'require|unique:article_cate',
-        'pid'        => 'require',
-        'id'           => 'require',
+        'pid'         => 'require',
+        'id'          => 'require',
         'field'       => 'require',
     ];
 
     protected $message = [
         'title.require'       => '名称不能为空',
-        'pid.require'        => '父级分类为必选',
-        'title.unique'      => '同样的记录已经存在!',
-        'id.require'         => '缺少更新条件',
-        'filed.require'      => '缺少要更新的字段名',
+        'pid.require'         => '父级分类为必选',
+        'title.unique'        => '同样的记录已经存在!',
+        'id.require'          => '缺少更新条件',
+        'filed.require'       => '缺少要更新的字段名',
     ];
 
     protected $scene = [

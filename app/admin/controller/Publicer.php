@@ -5,11 +5,13 @@ use think\Db;
 
 class Publicer extends ControllerBase
 {
+    //登录
     public function login()
     {
         return $this->fetch();
     }
 
+    //登录提交
     public function loginSubmit()
     {
         if($this->request->isPost()){
@@ -41,6 +43,7 @@ class Publicer extends ControllerBase
         }
     }
 
+    //退出
     public function logout()
     {
         \think\Session::delete('vae_admin');

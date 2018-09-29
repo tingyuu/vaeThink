@@ -8,21 +8,21 @@ use think\Db;
 class Article extends Validate
 {
     protected $rule = [
-        'title'       => 'require|unique:article',
-        'thumb'          => 'require',
+        'title'            => 'require|unique:article',
+        'thumb'            => 'require',
         'content'          => 'require',
-        'id'              => 'require',
-        'article_cate_id'              => 'require',
-        'status'              => 'require'
+        'id'               => 'require',
+        'article_cate_id'  => 'require',
+        'status'           => 'require'
     ];
 
     protected $message = [
-        'title.require'       => '标题不能为空',
+        'title.require'                 => '标题不能为空',
         'article_cate_id.require'       => '所属分类为必选',
-        'title.unique'      => '同样的记录已经存在!',
-        'thumb.require'      => '相册不能为空',
-        'id.require'      => '缺少更新条件',
-        'status.require'         => '状态为必选',
+        'title.unique'                  => '同样的记录已经存在!',
+        'thumb.require'                 => '相册不能为空',
+        'id.require'                    => '缺少更新条件',
+        'status.require'                => '状态为必选',
     ];
 
     protected $scene = [

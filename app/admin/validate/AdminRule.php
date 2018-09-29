@@ -9,18 +9,18 @@ class AdminRule extends Validate
 {
     protected $rule = [
         'title'       => 'require|unique:admin_rule',
-        'name'       => 'require|unique:admin_rule',
-        'pid'        => 'require',
-        'id'           => 'require',
+        'name'        => 'require|unique:admin_rule',
+        'pid'         => 'require',
+        'id'          => 'require',
         'field'       => 'require',
     ];
 
     protected $message = [
-        'title.require'       => '名称不能为空',
+        'title.require'      => '名称不能为空',
         'name.require'       => '规则不能为空',
         'pid.require'        => '父级节点为必选',
-        'title.unique'      => '同样的记录已经存在!',
-        'name.unique'      => '同样的规则已经存在!',
+        'title.unique'       => '同样的记录已经存在!',
+        'name.unique'        => '同样的规则已经存在!',
         'id.require'         => '缺少更新条件',
         'filed.require'      => '缺少要更新的字段名',
     ];

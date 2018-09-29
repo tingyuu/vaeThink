@@ -1,5 +1,5 @@
 <?php
-namespace app\index\controller;
+namespace app\portal\controller;
 use vae\PHPMailer\PHPMailer\PHPMailer;
 
 class Index extends \vae\controller\ControllerBase

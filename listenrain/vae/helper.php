@@ -207,7 +207,7 @@ function vae_is_installed()
 {
     static $vaeIsInstalled;
     if (empty($vaeIsInstalled)) {
-        $vaeIsInstalled = file_exists(VAE_ROOT . 'public/install.vae');
+        $vaeIsInstalled = file_exists(VAE_ROOT . 'data/install.lock');
     }
     return $vaeIsInstalled;
 }
@@ -298,4 +298,30 @@ function vae_get_plugin_class($name)
 function vae_parse_name($name, $type = 0, $ucfirst = true)
 {
     return \think\Loader::parseName($name, $type, $ucfirst);
+}
+
+//设置钩子
+function vae_set_hook($hook, $params=null)
+{
+    \think\Hook::listen($hook, $params);
+}
+
+//切分SQL文件成多个可以单独执行的sql语句
+function vae_split_sql($file, $tablePre, $charset = 'utf8mb4', $defaultTablePre = 'vae_', $defaultCharset = 'utf8mb4')
+{
+    if (file_exists($file)) {
+        //读取SQL文件
+        $sql = file_get_contents($file);
+        $sql = str_replace("\r", "\n", $sql);
+        $sql = str_replace("BEGIN;\n", '', $sql);//兼容 navicat 导出的 insert 语句
+        $sql = str_replace("COMMIT;\n", '', $sql);//兼容 navicat 导出的 insert 语句
+        $sql = str_replace($defaultCharset, $charset, $sql);
+        $sql = trim($sql);
+        //替换表前缀
+        $sql  = str_replace(" `{$defaultTablePre}", " `{$tablePre}", $sql);
+        $sqls = explode(";\n", $sql);
+        return $sqls;
+    }
+
+    return [];
 }

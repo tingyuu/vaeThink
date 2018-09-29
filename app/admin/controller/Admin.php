@@ -48,7 +48,7 @@ class Admin extends AdminCheckAuth
                 return vae_assign(0,$result);
             } else {
             	$param['salt'] = vae_set_salt(20);
-            	$param['password'] = setPassword($param['password'],$param['salt']);
+            	$param['password'] = vae_set_password($param['password'],$param['salt']);
 				// 启动事务
 				Db::startTrans();
 				try{

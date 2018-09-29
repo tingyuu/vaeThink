@@ -10,15 +10,15 @@ class AdminGroup extends Validate
     protected $rule = [
         'title'       => 'require|unique:admin_group',
         'id'          => 'require',
-        'status'          => 'require|checkStatus:-1,1'
+        'status'      => 'require|checkStatus:-1,1'
     ];
 
     protected $message = [
         'title.require'       => '名称不能为空',
-        'title.unique'      => '同样的记录已经存在!',
-        'id.require'         => '缺少更新条件',
-        'status.require'         => '状态为必选',
-        'status.checkStatus'         => '系统所有者组不能被禁用!',
+        'title.unique'        => '同样的记录已经存在!',
+        'id.require'          => '缺少更新条件',
+        'status.require'      => '状态为必选',
+        'status.checkStatus'  => '系统所有者组不能被禁用!',
     ];
 
     protected $scene = [
