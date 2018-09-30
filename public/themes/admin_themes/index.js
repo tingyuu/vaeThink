@@ -9,8 +9,8 @@
 // +----------------------------------------------------------------------
 layui.config({
     base: '/themes/admin_themes/module/'
-}).define(['element','jquery','vaeyo','colorpicker'], function(exports){
-    var vaeyo = layui.vaeyo,$ = layui.jquery,element = layui.element,colorpicker = layui.colorpicker;
+}).define(['element','jquery','vaeyo','colorpicker','form'], function(exports){
+    var vaeyo = layui.vaeyo,$ = layui.jquery,element = layui.element,colorpicker = layui.colorpicker,form = layui.form;
 
     var thetab = layui.sessionData('vaeyoAdmin_tab');
     if(thetab.vaeyoTab &&　thetab.vaeyoTab.length > 0){
@@ -135,7 +135,7 @@ layui.config({
 
 	colorpicker.render({
 	    elem: '#vaeyo-color'
-	    ,color: ''
+	    ,color: '#1E9FFF'
 	    ,format: 'rgb'
 	    ,predefine: true
 	    ,alpha: true

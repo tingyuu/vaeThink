@@ -49,9 +49,9 @@ layui.define(['layer','element','form'], function(exports){
 				return false;
     		}
     		var elem = $(".vaeyo-menulist ul li[vae-id="+e+"]");
-            var theme = layui.data('vaeyoAdmin_theme').color ? layui.data('vaeyoAdmin_theme').color[1] : "#000";
+            var theme = layui.data('vaeyoAdmin_theme').color ? layui.data('vaeyoAdmin_theme').color[1] : "#8dacc4";
     		$(".vaeyo-menulist-3 ul li").css('color',theme);
-            elem.css('color',"#009688");
+            elem.css('color',"#fff");
             elem.siblings(".vaeyo-menulist-3:visible").slideUp("slow");
             elem.siblings(".vaeyo-menulist-2").children("i").attr("class","layui-icon layui-icon-triangle-r");
     		elem.parents(".vaeyo-menulist-3").show("show").siblings(".vaeyo-menulist-3:visible").slideUp("slow");

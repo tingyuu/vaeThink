@@ -2,15 +2,17 @@
 	width:100%; 
 	height:100%; 
 	border-right:1px solid #CCCCCC ; 
-	color:#000000; 
+	color:#8dacc4; 
 	font-size:14px; 
 	text-align:center;
 }
+..vaeyo-menulist li:hover{
+	color:#fff;
+}
 .vaeyo-menulist-1{
 	text-align:center;
-	width:200px;
+	width:220px;
 	padding-top:10px;
-	padding-left: 10px;
 }
 .vaeyo-menulist-2{
 	height:40px; 
@@ -18,38 +20,42 @@
 	cursor: pointer; 
 	font-size:14px; 
 	position:relative;
-	border-bottom:#ddd 1px solid;
+	border-bottom: 1px solid #17232c;
 	text-align: left;
-	padding-left: 13px;
+	padding-left: 20px;
 }
 .vaeyo-menulist-3{
 	display: none;
 	cursor:pointer; 
 	font-size:13px;
+	background: #131e25;
 }
 .vaeyo-menulist-3 li{ 
 	height:40px; 
 	line-height:40px; 
 	list-style:none; 
-	border-bottom:#ddd 1px solid; 
+	border-bottom: 1px solid #17232c; 
 	text-align:left;
-	padding-left: 30px;
+	padding-left: 40px;
 }
 .vae-menulist-4 li{
-	padding-left: 50px;
+	padding-left: 60px;
+	background-color: #10181e;
 }
 .vaeyo-bg-gray{
-	background-color: #f0f0f0;
+	background-color: #1c2b36;
 }
 .layui-layout-admin .layui-header{
 	height: 50px;
-	background-color: #303643;
+	background-color: #fff;
 }
 .layui-layout-admin .layui-logo{
 	line-height: 50px;
 	cursor:pointer;
 	font-size: 18px;
-	color: #fff;
+	color: rgba(255,255,255,.9);
+	background: #1E9FFF;
+    width: 220px;
 }
 .layui-layout-admin .layui-side{
 	top: 50px;
@@ -59,33 +65,41 @@
 .layui-nav .layui-nav-item{
 	line-height: 50px;
 }
+.layui-nav.layui-layout-left{
+	color: #000;
+	margin-left: 10px;
+}
+.layui-nav.layui-layout-left input{
+	border:0;
+}
 .layui-layout-admin .layui-body{
-	top: 40px;
+	top: 50px;
 	padding:10px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	bottom: 0px;
-	left: 210px;
+	left: 220px;
 	z-index: 1000000;
 	overflow: visible;
-	right: 0
+	right: 0;
+	background-color: #eff0f4;
 }
 .vaeyo-tab{
 	margin: 0;
 }
 .vaeyo-tab ul{
 	position: absolute;
-	top: -40px;
+	top: -50px;
 	height: 50px;
-	left: 10px;
+	left: 0px;
 }
 .vaeyo-tab .layui-tab-title{
 	border:0;
 	max-width: calc(100% - 200px);
-	background-color: #303643;
+	background-color: #fff;
 }
 .vaeyo-tab li{
-	color:#fff;
+	color:#000;
 	font-size: 12px;
 	line-height: 50px;
 }
@@ -98,7 +112,7 @@
 	width: 15px;
     height: 15px;
     line-height: 15px;
-    top: 5px;
+    top: 16px;
     right: 5px;
     font-size: 10px;
     display: none
@@ -107,8 +121,8 @@
 	display: inline-block;
 }
 .vaeyo-tab>.layui-tab-title .layui-this{
-	color:#fff;
-	background-color: #2C3E50;
+	color:#000;
+	background-color: #eff0f4;
     /*border-radius: 50px 0px;*/
 }
 .vaeyo-tab>.layui-tab-title .layui-this i{
@@ -122,10 +136,10 @@
 }
 .vaeyo-menulist .layui-icon{
 	font-size: 14px;
-	color: #666;
+	color: rgb(141, 172, 196);
 }
 .layui-nav .layui-nav-item #vaeyo-refresh {
-	color:#fff;
+	color:#000;
 }
 .layui-nav .layui-nav-item #vaeyo-refresh i{
 	font-size: 16px;
@@ -137,7 +151,6 @@
 	width: 25px;
     height: 25px;
     margin-right: 0;
-    border: 2px solid rgba(255,255,255,.7);
 }
 .layui-layout-admin .layui-footer{
 	left:220px;
@@ -147,7 +160,7 @@
 	font-size: 12px;
 }
 .layui-tab-content{
-	padding: 0;
+	padding: 0px;
 }
 .vaeyo-loading{
 	position: absolute;
@@ -162,7 +175,7 @@
 .vaeyo-menulist-top{
 	width:100%;
 	height: 35px;
-	margin-top: 5px;
+	margin-top: 15px;
 }
 .vaeyo-menulist-top a{
 	background-color: #5FB878;
