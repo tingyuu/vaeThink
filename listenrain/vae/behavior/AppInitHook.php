@@ -4,9 +4,10 @@ use think\db\Query;
 use think\Hook;
 use think\Db;
 
-class AppInitHookBehavior {
-
-	public function run(&$params){   
+class AppInitHook
+{
+	public function run(&$params){ 
+        //\think\Session::delete('vae_admin');  
 		if (!vae_get_login_admin()) {
             return true;
         }

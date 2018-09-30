@@ -5,7 +5,7 @@ use think\db\Query;
 use think\Hook;
 use think\Db;
 
-class ModuleInitHookBehavior
+class ModuleInitHook
 {
 
     public function run(&$param)

@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
+use app\admin\model\Plugin as PluginModel;
 
 class Plugin extends AdminCheckAuth
 {
@@ -12,13 +13,26 @@ class Plugin extends AdminCheckAuth
     //列表
     public function getPluginList()
     {
-    	$param = vae_get_param();
-        $where = array();
-        if(!empty($param['keywords'])) {
-            $where['id|name|desc'] = ['like', '%' . $param['keywords'] . '%'];
-        }
-        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
-        $lugin = \think\Db::name('Plugin')->where($where)->order('id asc')->paginate($rows,false,['query'=>$param]);
-    	return vae_assign_table(0,'',$plugin);
+        $pluginModel = new PluginModel;
+        $plugins = $pluginModel->getPlugin();
+        return vae_assign(0,'',$plugins);
+    }
+
+    //禁用
+    public function disabled()
+    {
+        $name =  vae_get_param('name');
+        \think\Db::name('HookPlugin')->where(['plugin'=>$name])->update(['status'=>0]);
+        cache('module_init_hook_plugin_admin',null);
+        return vae_assign(1,'禁用成功');
+    }
+
+    //启用
+    public function start()
+    {
+        $name =  vae_get_param('name');
+        \think\Db::name('HookPlugin')->where(['plugin'=>$name])->update(['status'=>1]);
+        cache('module_init_hook_plugin_admin',null);
+        return vae_assign(1,'启用成功');
     }
 }

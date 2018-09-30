@@ -4,13 +4,13 @@
 return [
     // 应用初始化
     'app_init'     => [
-        'vae\\behavior\\AppInitHookBehavior',
+        'vae\\behavior\\AppInitHook',
     ],
     // 应用开始
     'app_begin'    => [],
     // 模块初始化
     'module_init'  => [
-        'vae\\behavior\\ModuleInitHookBehavior',
+        'vae\\behavior\\ModuleInitHook',
     ],
     // 操作开始执行
     'action_begin' => [],

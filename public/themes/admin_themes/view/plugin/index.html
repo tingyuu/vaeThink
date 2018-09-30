@@ -14,14 +14,27 @@
   <table class="layui-hide" id="test" lay-filter="test"></table>
 </div>
 
-<script type="text/html" id="type">
-   {{#  if(d.type == 1){ }}系统钩子{{#  } else if(d.type == 2){ }} 应用钩子 {{#  } else { }}模板钩子{{#  } }}
+<script type="text/html" id="status">
+   {{#  if(d.status == 1){ }}<span style="color:#01AAED">已安装</span>{{#  }  else { }}<span style="color:#FF5722">未安装</span>{{#  } }}
 </script>
 
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs layui-btn-primary" vaeyo_tab vae-id="1004" vae-title="管理插件" vae-src="/admin/admin/edit/id/{{d.id}}">管理插件</a>
-</script>
-              
+  {{#  if(d.status == 0){ }}
+    <button class="layui-btn layui-btn-xs layui-bg-blue">安装</button>
+  {{#  }  else { }}
+    {{#  if(d.conf == 1){ }}
+    <button class="layui-btn layui-btn-xs layui-bg-blue">配置</button>
+    {{#  }  else { }}
+    <button class="layui-btn layui-btn-xs layui-btn-disabled">配置</button>
+    {{#  } }}
+    {{#  if(d.start == 1){ }}
+    <button class="layui-btn layui-btn-xs layui-bg-cyan" lay-event="disabled">禁用</button>
+    {{#  }  else { }}
+    <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="start">启用</button>
+    {{#  } }}
+    <button class="layui-btn layui-btn-xs layui-bg-red">卸载</button>
+  {{#  } }}
+</script>        
           
 <script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
  
@@ -37,47 +50,51 @@ layui.config({
   var tableIns = table.render({
     elem: '#test'
     ,toolbar: false
-    ,url: '/admin/hook/getPluginList' //数据接口
-    ,page: true //开启分页
+    ,url: '/admin/plugin/getPluginList' //数据接口
+    ,page: false //开启分页
     ,limit: 15
     ,cols: [[ //表头
       {field: 'title', title: '名称', align:'center'}
       ,{field: 'name', title: '标识', align:'center'}
       ,{field: 'desc', title: '描述', align:'center'}
       ,{field: 'author', title:'作者', align:'center'}
-      ,{field: 'status', title: '状态', toolbar: '#status', align:'center'}
-      ,{field: 'right', toolbar: '#barDemo', width:150, align:'center'}
+      ,{field: 'status', title: '安装状态', toolbar: '#status', align:'center'}
+      ,{field: 'right', toolbar: '#barDemo', width:200, align:'center'}
     ]]
   });
   
   //监听行工具事件
   table.on('tool(test)', function(obj){
     var data = obj.data;
-    //console.log(obj)
-    if(obj.event === 'del'){
-      layer.confirm('真的删除行么', {icon: 3, title:'提示'}, function(index){
+    if(obj.event === 'disabled'){
+      layer.confirm('确定要禁用此插件吗?', {icon: 3, title:'提示'}, function(index){
         $.ajax({
-          url:"/admin/admin/delete",
-          data:{id:data.id},
+          url:"/admin/plugin/disabled",
+          data:{name:data.name},
           success:function(res){
             layer.msg(res.msg);
             if(res.code==1){
-              obj.del();
+              window.location.reload();
+            }
+          }
+        })
+        layer.close(index);
+      });
+    } else if(obj.event === 'start'){
+      layer.confirm('确定要启用此插件吗?', {icon: 3, title:'提示'}, function(index){
+        $.ajax({
+          url:"/admin/plugin/start",
+          data:{name:data.name},
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code==1){
+              window.location.reload();
             }
           }
         })
         layer.close(index);
       });
     }
-  });
-
-  //监听搜索提交
-  form.on('submit(vaeform)', function(data){
-    console.log(data.field.keywords)
-    if(data.field.keywords) {
-      tableIns.reload({where:{keywords:data.field.keywords}});
-    }
-    return false;
   });
 });
 </script>
