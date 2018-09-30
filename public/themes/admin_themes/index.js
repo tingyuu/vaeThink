@@ -1,12 +1,12 @@
 // +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
+// | vaeThink [ Programming makes me happy ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2018 http://vaeyo.pengyichen.cn All rights reserved.
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 // | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
+// +---------------------------------------------------------------------
 layui.config({
     base: '/themes/admin_themes/module/'
 }).define(['element','jquery','vaeyo','colorpicker','form'], function(exports){
@@ -27,8 +27,10 @@ layui.config({
 
 	var theme = layui.data('vaeyoAdmin_theme').color;
 	if(theme){
-		$('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', theme[1]);
-	        $('.layui-layout-admin .layui-header,.layui-layout-admin .layui-side,.vaeyo-tab .layui-tab-title').css('background-color', theme[0]);
+		// $('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', theme[1]);
+	 //    $('.layui-layout-admin .layui-header,.layui-layout-admin .layui-side,.vaeyo-tab .layui-tab-title').css('background-color', theme[0]);
+	    $('.layui-layout-admin .layui-logo').css('color', theme[1]);
+	    $('.layui-layout-admin .layui-logo').css('background-color', theme[0]);
 	}
 
 	$(document).ready(function(){
@@ -153,8 +155,10 @@ layui.config({
 			} else {
 			　　thatColor = "#fff";
 			}
-			$('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', thatColor);
-	        $('.layui-layout-admin .layui-header,.layui-layout-admin .layui-side,.vaeyo-tab .layui-tab-title').css('background-color', color);
+			// $('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', thatColor);
+	  //       $('.layui-layout-admin .layui-header,.layui-layout-admin .layui-side,.vaeyo-tab .layui-tab-title').css('background-color', color);
+	        $('.layui-layout-admin .layui-logo').css('color', thatColor);
+	        $('.layui-layout-admin .layui-logo').css('background-color', color);
 	        layui.data('vaeyoAdmin_theme', {
 			  key: 'color'
 			  ,value: [color,thatColor]
@@ -168,9 +172,11 @@ layui.config({
 		  key: 'color'
 		  ,remove: true
 		});
-		$('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', "#000");
-	    $('.layui-layout-admin .layui-header,.vaeyo-tab .layui-tab-title').css('background-color', "#000");
-	    $('.layui-layout-admin .layui-side').css('background-color', "#f0f0f0");
+		// $('.vaeyo-menulist,.vaeyo-menulist .vaeyo-menulist-2 .layui-icon,.vaeyo-menulist .vaeyo-menulist-3 .layui-icon').css('color', "#000");
+	 //    $('.layui-layout-admin .layui-header,.vaeyo-tab .layui-tab-title').css('background-color', "#000");
+	 //    $('.layui-layout-admin .layui-side').css('background-color', "#f0f0f0");
+	    $('.layui-layout-admin .layui-logo').css('color', '#fff');
+	    $('.layui-layout-admin .layui-logo').css('background-color', '#1E9FFF');
 		layer.msg("主题已成功恢复默认");
 	})
 

@@ -16,12 +16,6 @@
 	  	<div class="layui-header">
 		    <div class="layui-logo" vaeyo-home>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</div>
 		    <div class="vaeyo-loading" vaeyo-loading><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i></div>
-		    <!-- <ul class="layui-nav layui-layout-left layui-form">
-		      <li class="layui-nav-item"><i class="layui-icon layui-icon-search"></i></li>
-		      <li class="layui-nav-item">
-		      	<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">   
-		      </li>
-		    </ul> -->
 		    <ul class="layui-nav layui-layout-right">
 		      <li class="layui-nav-item" lay-unselect>
 		      	<a href="javascript:;" vaeyo-refresh class="refreshThis" id="vaeyo-refresh">
@@ -48,7 +42,7 @@
 						<a href="javascript:;" style="background-color: #01AAED" vaeyo_tab vae-id="1008" vae-title="添加文章" vae-src="/admin/article/add"><i class="layui-icon layui-icon-edit"></i></a>
 						<a href="javascript:;" style="background-color: #FFB800" vaeyo_tab vae-id="1010" vae-title="滑块组件" vae-src="/view/slider.html"><i class="layui-icon layui-icon-website"></i></a>
 						<a href="javascript:;" style="background-color: #FF5722" vaeyo_tab vae-id="13" vae-title="回收站" vae-src="/admin/recycle/index"><i class="layui-icon layui-icon-log"></i></a>
-						<a href="javascript:;" vaeyo-del-cache style="background-color: #2F4056"><i class="layui-icon layui-icon-delete"></i></a>
+						<a href="javascript:;" vaeyo-del-cache style="background-color: #009688"><i class="layui-icon layui-icon-delete"></i></a>
 					</div>
 					{volist name=":vae_set_admin_menu()" id="v"}
 						<div class="vaeyo-menulist-2"><i class="layui-icon layui-icon-triangle-r"></i> {$v.title}</div>

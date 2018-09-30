@@ -1,4 +1,13 @@
 <?php
+// +----------------------------------------------------------------------
+// | vaeThink [ Programming makes me happy ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: 听雨 < 389625819@qq.com >
+// +----------------------------------------------------------------------
 namespace vae\behavior;
 use think\db\Query;
 use think\Hook;
@@ -8,7 +17,7 @@ class AppInitHook
 {
 	public function run(&$params){ 
         //\think\Session::delete('vae_admin');  
-		if (!vae_get_login_admin()) {
+		if (!vae_is_installed()) {
             return true;
         }
 

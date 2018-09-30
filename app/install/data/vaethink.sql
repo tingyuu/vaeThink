@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : 本地服务器
 Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : vaethinkdemo
+Source Database       : vaethink
 
 Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-09-29 22:43:33
+Date: 2018-09-30 23:54:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,7 +61,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58', '系统所有者，系统自动分配所有可操作权限。', '0', '1538037863');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62', '系统所有者，系统自动分配所有可操作权限。', '0', '1538310278');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -93,7 +93,7 @@ CREATE TABLE `vae_admin_menu` (
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
 
 -- ----------------------------
 -- Records of vae_admin_menu
@@ -132,7 +132,7 @@ CREATE TABLE `vae_admin_rule` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
@@ -195,6 +195,10 @@ INSERT INTO `vae_admin_rule` VALUES ('55', '0', 'hook/index', '钩子管理', '1
 INSERT INTO `vae_admin_rule` VALUES ('56', '55', 'hook/getHookList', '钩子列表', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('57', '0', 'plugin/index', '插件管理', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('58', '57', 'plugin/getPluginList', '插件列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('59', '57', 'plugin/start', '启用插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('60', '57', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('61', '57', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('62', '57', 'plugin/install', '安装插件', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`
@@ -213,7 +217,7 @@ CREATE TABLE `vae_article` (
   `update_time` int(11) NOT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容';
 
 -- ----------------------------
 -- Records of vae_article
@@ -233,7 +237,7 @@ CREATE TABLE `vae_article_cate` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`,`pid`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容分类';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容分类';
 
 -- ----------------------------
 -- Records of vae_article_cate
@@ -268,7 +272,7 @@ INSERT INTO `vae_hook` VALUES ('8', '1', '0', '输出结束', 'response_end', 'v
 INSERT INTO `vae_hook` VALUES ('9', '1', '0', '后台控制器初始化', 'admin_init', 'vae', '后台控制器初始化');
 INSERT INTO `vae_hook` VALUES ('10', '1', '0', '前台控制器初始化', 'home_init', 'vae', '前台控制器初始化');
 INSERT INTO `vae_hook` VALUES ('11', '2', '1', '后台首页', 'admin_main', 'admin', '后台首页');
-INSERT INTO `vae_hook` VALUES ('12', '2', '0', '后台登录页面', 'admin_login', 'admin', '后台登录页面初始化');
+INSERT INTO `vae_hook` VALUES ('12', '2', '1', '后台登录页面', 'admin_login', 'admin', '后台登录页面初始化');
 
 -- ----------------------------
 -- Table structure for `vae_hook_plugin`
@@ -276,17 +280,16 @@ INSERT INTO `vae_hook` VALUES ('12', '2', '0', '后台登录页面', 'admin_logi
 DROP TABLE IF EXISTS `vae_hook_plugin`;
 CREATE TABLE `vae_hook_plugin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `order` int(11) NOT NULL DEFAULT '10000' COMMENT '排序',
+  `order` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态-1禁用,1启用',
   `hook` varchar(50) NOT NULL DEFAULT '' COMMENT '钩子名',
   `plugin` varchar(50) NOT NULL DEFAULT '' COMMENT '插件名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='钩子关联插件表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='钩子关联插件表';
 
 -- ----------------------------
 -- Records of vae_hook_plugin
 -- ----------------------------
-INSERT INTO `vae_hook_plugin` VALUES ('1', '0', '1', 'admin_main', 'Chart');
 
 -- ----------------------------
 -- Table structure for `vae_plugin`
@@ -294,23 +297,21 @@ INSERT INTO `vae_hook_plugin` VALUES ('1', '0', '1', 'admin_main', 'Chart');
 DROP TABLE IF EXISTS `vae_plugin`;
 CREATE TABLE `vae_plugin` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '插件类型;1:网站;8:微信',
-  `has_admin` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台管理,0:没有;1:有',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '状态;1:开启;0:禁用',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '插件安装时间',
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '插件标识名,英文字母(惟一)',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '插件标识',
   `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '插件名称',
-  `hooks` varchar(255) NOT NULL DEFAULT '' COMMENT '实现的钩子;以“,”分隔',
+  `hook` varchar(255) NOT NULL DEFAULT '' COMMENT '实现的钩子;以“,”分隔',
   `author` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '插件作者',
   `desc` varchar(255) NOT NULL COMMENT '插件描述',
+  `interface` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台管理,0:没有;1:有',
   `config` text COMMENT '插件配置',
+  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '插件安装时间',
+  `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='插件表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='插件表';
 
 -- ----------------------------
 -- Records of vae_plugin
 -- ----------------------------
-INSERT INTO `vae_plugin` VALUES ('1', '1', '0', '1', '0', 'Chart', '后台首页图表', '', '听雨', '后台首页图表', '');
 
 -- ----------------------------
 -- Table structure for `vae_route`
@@ -324,13 +325,11 @@ CREATE TABLE `vae_route` (
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='路由设置';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='路由设置';
 
 -- ----------------------------
 -- Records of vae_route
 -- ----------------------------
-INSERT INTO `vae_route` VALUES ('1', 'index/index/hehe', 'hehe', '1', '0', '0');
-INSERT INTO `vae_route` VALUES ('2', 'admin/index/index', 'god', '-1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_user`

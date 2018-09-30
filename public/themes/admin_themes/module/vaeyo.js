@@ -1,12 +1,12 @@
 // +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
+// | vaeThink [ Programming makes me happy ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2018 http://vaeyo.pengyichen.cn All rights reserved.
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 // | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
+// +---------------------------------------------------------------------
 layui.define(['layer','element','form'], function(exports){ 
 	var layer = layui.layer,$ = layui.$,element = layui.element,form = layui.form,MOD_NAME = 'element', THIS = 'layui-this', SHOW = 'layui-show';
 
@@ -49,7 +49,7 @@ layui.define(['layer','element','form'], function(exports){
 				return false;
     		}
     		var elem = $(".vaeyo-menulist ul li[vae-id="+e+"]");
-            var theme = layui.data('vaeyoAdmin_theme').color ? layui.data('vaeyoAdmin_theme').color[1] : "#8dacc4";
+            var theme = "#8dacc4";
     		$(".vaeyo-menulist-3 ul li").css('color',theme);
             elem.css('color',"#fff");
             elem.siblings(".vaeyo-menulist-3:visible").slideUp("slow");

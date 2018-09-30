@@ -20,19 +20,19 @@
 
 <script type="text/html" id="barDemo">
   {{#  if(d.status == 0){ }}
-    <button class="layui-btn layui-btn-xs layui-bg-blue">安装</button>
+    <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="install">安装</button>
   {{#  }  else { }}
-    {{#  if(d.conf == 1){ }}
-    <button class="layui-btn layui-btn-xs layui-bg-blue">配置</button>
+    {{#  if(d.interface == 1){ }}
+    <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="interface">管理</button>
     {{#  }  else { }}
-    <button class="layui-btn layui-btn-xs layui-btn-disabled">配置</button>
+    <button class="layui-btn layui-btn-xs layui-btn-disabled">管理</button>
     {{#  } }}
     {{#  if(d.start == 1){ }}
     <button class="layui-btn layui-btn-xs layui-bg-cyan" lay-event="disabled">禁用</button>
     {{#  }  else { }}
     <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="start">启用</button>
     {{#  } }}
-    <button class="layui-btn layui-btn-xs layui-bg-red">卸载</button>
+    <button class="layui-btn layui-btn-xs layui-bg-red" lay-event="uninstall">卸载</button>
   {{#  } }}
 </script>        
           
@@ -72,9 +72,10 @@ layui.config({
           url:"/admin/plugin/disabled",
           data:{name:data.name},
           success:function(res){
-            layer.msg(res.msg);
             if(res.code==1){
               window.location.reload();
+            } else {
+              layer.msg(res.msg);
             }
           }
         })
@@ -86,14 +87,47 @@ layui.config({
           url:"/admin/plugin/start",
           data:{name:data.name},
           success:function(res){
-            layer.msg(res.msg);
             if(res.code==1){
               window.location.reload();
+            } else {
+              layer.msg(res.msg);
             }
           }
         })
         layer.close(index);
       });
+    } else if(obj.event === 'uninstall'){
+      layer.confirm('确定要卸载此插件吗?', {icon: 3, title:'提示'}, function(index){
+        $.ajax({
+          url:"/admin/plugin/uninstall",
+          data:{name:data.name},
+          success:function(res){
+            if(res.code==1){
+              window.location.reload();
+            } else {
+              layer.msg(res.msg);
+            }
+          }
+        })
+        layer.close(index);
+      });
+    } else if(obj.event === 'install'){
+      layer.confirm('确定要安装此插件吗?', {icon: 3, title:'提示'}, function(index){
+        $.ajax({
+          url:"/admin/plugin/install",
+          data:data,
+          success:function(res){
+            if(res.code==1){
+              window.location.reload();
+            } else {
+              layer.msg(res.msg);
+            }
+          }
+        })
+        layer.close(index);
+      });
+    } else if(obj.event === 'interface'){
+      
     }
   });
 });

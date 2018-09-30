@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</title>
+<link rel="stylesheet" href="/plugin/hacker/view/css/style.css">
+<link rel="stylesheet" href="/plugin/hacker/view/css/style-search.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="/static/layui/css/layui.css" />
+</head>
+
+<body>
+<canvas id="canvas" width="1280" height="1024"> 您的浏览器不支持canvas标签，请您更换浏览器 </canvas>
+<script src="/plugin/hacker/view/js/word.js"></script>
+
+<div id="d" class="webdesigntuts-workshop">
+	<form class="layui-form" id="vaeyo-login">
+		 <span>
+		  <input class="input" name="username" type="search" placeholder="账户" autocomplete="off" value="vae" />
+		  <input class="input" name="password" type="search" placeholder="密码:vaethink" autocomplete="off"/>
+		  <br>
+		  <input type="search" name="captcha" placeholder="验证码" class="input" autocomplete="off">
+		  <img src="/captcha" class="input" height="37" width="198" id="captcha" onclick="this.src='/captcha?seed='+Math.random()" style="margin-top: 11px;">
+		  <br>
+		  <button lay-submit lay-filter="vaeyo-login-submit" id="vaeyo-login-submit">登入系统</button>
+		 </span>
+	</form>
+</div>
+
+<script  src='/static/layui/layui.js'></script>
+<script type="text/javascript">
+	layui.use(['form'], function () {
+        var form = layui.form,$ = layui.$;
+        form.on('submit(vaeyo-login-submit)', function(data) {
+            $.ajax({
+                url:"/admin/publicer/loginSubmit",
+                data:$('#vaeyo-login').serialize(),
+                type:'post',
+                async: false,
+                success:function(res) {
+                    layer.tips(res.msg,'#vaeyo-login-submit');
+                    if(res.code === 1) {
+                        setTimeout(function() {
+                            location.href = "/admin/index/index";
+                        }, 1500);
+                    } else {
+                        $('#captcha').click();
+                    }
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

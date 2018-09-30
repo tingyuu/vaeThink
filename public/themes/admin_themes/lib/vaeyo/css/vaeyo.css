@@ -52,7 +52,7 @@
 .layui-layout-admin .layui-logo{
 	line-height: 50px;
 	cursor:pointer;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(255,255,255,.9);
 	background: #1E9FFF;
     width: 220px;
@@ -74,7 +74,7 @@
 }
 .layui-layout-admin .layui-body{
 	top: 50px;
-	padding:10px;
+	padding:0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	bottom: 0px;
@@ -99,9 +99,10 @@
 	background-color: #fff;
 }
 .vaeyo-tab li{
-	color:#000;
+	color:#555555;
 	font-size: 12px;
-	line-height: 50px;
+	line-height: 48px;
+	border-top: 2px solid #fff;
 }
 .vaeyo-tab .layui-tab-title li{
 	min-width: 40px;
@@ -117,12 +118,22 @@
     font-size: 10px;
     display: none
 }
+.vaeyo-tab .layui-tab-title li:hover{
+	color:#000;
+	background-color: #eff0f4;
+	border-top: 2px solid #2E241B;
+}
 .vaeyo-tab .layui-tab-title li:hover .layui-tab-close{
 	display: inline-block;
+}
+.vaeyo-tab .layui-tab-title li .layui-tab-close:hover{
+	background-color:#eff0f4;
+	color:#FF5722;
 }
 .vaeyo-tab>.layui-tab-title .layui-this{
 	color:#000;
 	background-color: #eff0f4;
+	border-top: 2px solid #2E241B;
     /*border-radius: 50px 0px;*/
 }
 .vaeyo-tab>.layui-tab-title .layui-this i{
@@ -187,6 +198,6 @@
 	color: #fff;
 	font-size: 14px;
 }
-.layui-tab-item.layui-show iframe{
-
+.layui-nav.layui-layout-right .layui-nav-bar{
+	background-color:#fff;
 }

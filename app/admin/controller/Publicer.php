@@ -1,18 +1,36 @@
 <?php
+// +----------------------------------------------------------------------
+// | vaeThink [ Programming makes me happy ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: 听雨 < 389625819@qq.com >
+// +---------------------------------------------------------------------
 namespace app\admin\controller;
 use vae\controller\ControllerBase;
 use think\Db;
 
 class Publicer extends ControllerBase
 {
+    protected function _initialize()
+    {
+        parent::_initialize();
+    }
+
     //登录
     public function login()
     {
-        $adminLoginHook = vae_set_hook_one('admin_login');
-        if(!empty($adminLoginHook)) {
-            return $adminLoginHook;
+        if(vae_get_login_admin()) {
+            $this->redirect('admin/index/index');
+        } else {
+            $adminLoginHook = vae_set_hook_one('admin_login');
+            if(!empty($adminLoginHook)) {
+                return $adminLoginHook;
+            }
+            return $this->fetch();
         }
-        return $this->fetch();
     }
 
     //登录提交

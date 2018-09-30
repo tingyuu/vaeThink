@@ -1,7 +1,14 @@
 <?php
-
+// +----------------------------------------------------------------------
+// | vaeThink [ Programming makes me happy ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: 听雨 < 389625819@qq.com >
+// +---------------------------------------------------------------------
 namespace app\admin\validate;
-
 use think\Validate;
 use think\Db;
 
@@ -29,7 +36,4 @@ class AdminRule extends Validate
         'add'  => ['title', 'pid', 'name'],
         'edit' => ['id', 'field' ,'title.unique','ame.unique'],
     ];
-
-    // 自定义验证规则
-    
 }

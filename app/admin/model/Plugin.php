@@ -1,5 +1,13 @@
 <?php
-
+// +----------------------------------------------------------------------
+// | vaeThink [ Programming makes me happy ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2018 http://www.vaeThink.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: 听雨 < 389625819@qq.com >
+// +---------------------------------------------------------------------
 namespace app\admin\model;
 use think\Db;
 use think\Model;
@@ -34,4 +42,22 @@ class Plugin extends Model
         }
         return $plugin;
 	}
+
+    public function install($param)
+    {
+        try{
+            
+            $this->strict(false)->field(true)->insert($param);
+            Db::name('HookPlugin')->insert([
+                'hook'    => $param['hook'],
+                'plugin'  => $param['name'],
+            ]);
+            cache('module_init_hook_plugin_admin',null);
+            Db::commit();    
+        } catch (\Exception $e) {
+            Db::rollback();
+            return vae_assign(0,'安装失败:'.$e->getMessage());
+        }
+        return vae_assign(1,'安装成功');
+    }
 }

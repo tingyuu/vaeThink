@@ -18,5 +18,5 @@
   background-color: #c1c1c1;
   border-radius: 4px;
   }
-  .vae-body{}
+  .vae-body{padding:10px;padding-bottom: 0}
   .vae-content{padding:10px;background-color:#fff;box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);}
