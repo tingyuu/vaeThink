@@ -13,7 +13,7 @@ use vae\controller\AdminCheckAuth;
 use think\Db;
 use app\common\model\Article;
 
-class Recycle extends AdminCheckAuth
+class RecycleController extends AdminCheckAuth
 {
     public function index()
     {

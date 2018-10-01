@@ -12,7 +12,7 @@ namespace app\admin\controller;
 use vae\controller\ControllerBase;
 use think\Db;
 
-class Publicer extends ControllerBase
+class PublicerController extends ControllerBase
 {
     protected function _initialize()
     {

@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 
-class Hook extends AdminCheckAuth
+class HookController extends AdminCheckAuth
 {
     public function index()
     {

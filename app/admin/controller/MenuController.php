@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 
-class Menu extends AdminCheckAuth
+class MenuController extends AdminCheckAuth
 {
     public function index()
     { 

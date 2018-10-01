@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 
-class Rule extends AdminCheckAuth
+class RuleController extends AdminCheckAuth
 {
     public function index()
     {

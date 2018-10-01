@@ -13,7 +13,7 @@ use vae\controller\ControllerBase;
 use think\Db;
 use mysqli;
 
-class Index extends ControllerBase
+class IndexController extends ControllerBase
 {
     public function _initialize()
     {
@@ -132,8 +132,12 @@ return [
 ];";
 
                 // 创建数据库配置文件
-                file_put_contents(VAE_ROOT . "data/conf/database.php",$db_str);
-                file_put_contents(VAE_ROOT . "data/install.lock",'vaeThink安装鉴定文件，勿删！！！！！此次安装时间：'.date('Y-m-d H:i:s',time()));
+                if(false == file_put_contents(VAE_ROOT . "data/conf/database.php",$db_str)) {
+                    return vae_assign(0,'创建数据库配置文件失败，请检查目录权限');
+                }
+                if(false == file_put_contents(VAE_ROOT . "data/install.lock",'vaeThink安装鉴定文件，勿删！！！！！此次安装时间：'.date('Y-m-d H:i:s',time()))) {
+                    return vae_assign(0,'创建安装鉴定文件失败，请检查目录权限');
+                }
 
                 //创建管理员信息
                 $param = array();

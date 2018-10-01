@@ -12,7 +12,7 @@ namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 use think\Db;
 
-class Admin extends AdminCheckAuth
+class AdminController extends AdminCheckAuth
 {
     public function index()
     {

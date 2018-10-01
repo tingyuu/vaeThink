@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 
-class Cate extends AdminCheckAuth
+class RouteController extends AdminCheckAuth
 {
     public function index()
     {
@@ -19,30 +19,45 @@ class Cate extends AdminCheckAuth
     }
 
     //列表
-    public function getCateList()
+    public function getRouteList()
     {
-    	$cate = \think\Db::name('ArticleCate')->order('create_time asc')->select();
-    	return vae_assign(0,'',$cate);
+    	$param = vae_get_param();
+        $where = array();
+        if(!empty($param['keywords'])) {
+            $where['id|full_url|url'] = ['like', '%' . $param['keywords'] . '%'];
+        }
+        $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
+        $route = \think\Db::name('route')->order('create_time asc')->paginate($rows,false,['query'=>$param]);
+    	return vae_assign_table(0,'',$route);
     }
 
     //添加
     public function add()
     {
-    	return view('',['pid'=>vae_get_param('pid')]);
+    	return view();
     }
 
     //提交添加
     public function addSubmit()
     {
     	if($this->request->isPost()){
-    		$result = $this->validate(vae_get_param(), 'app\admin\validate\ArticleCate.add');
+            $param = vae_get_param();
+    		$result = $this->validate($param, 'app\admin\validate\Route.add');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('ArticleCate')->strict(false)->field(true)->insert(vae_get_param());
+                \think\loader::model('Route')->strict(false)->field(true)->insert($param);
+                \think\Cache::rm('vae_route');// 删除路由缓存
                 return vae_assign();
             }
     	}
+    }
+
+    //修改
+    public function edit()
+    {
+        $id   = vae_get_param('id');
+        return view('',['route'=>\think\Db::name('route')->find($id)]);
     }
 
     //提交修改
@@ -50,13 +65,12 @@ class Cate extends AdminCheckAuth
     {
         if($this->request->isPost()) {
         	$param = vae_get_param();
-        	$result = $this->validate($param, 'app\admin\validate\ArticleCate.edit');
+        	$result = $this->validate($param, 'app\admin\validate\Route.edit');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-            	$data[$param['field']] = $param['value'];
-            	$data['id'] = $param['id'];
-                \think\loader::model('ArticleCate')->strict(false)->field(true)->update($data);
+                \think\loader::model('Route')->where(['id'=>$param['id']])->strict(false)->field(true)->update($param);
+                \think\Cache::rm('vae_route');// 删除路由缓存
                 return vae_assign();
             }
         }
@@ -66,16 +80,9 @@ class Cate extends AdminCheckAuth
     public function delete()
     {
         $id    = vae_get_param("id");
-        $cate_count = \think\Db::name('ArticleCate')->where(["pid" => $id])->count();
-        if ($cate_count > 0) {
-            return vae_assign(0,"该分类下还有子分类，无法删除！");
-        }
-        $content_count = \think\Db::name('Article')->where(["article_cate_id" => $id])->count();
-        if ($content_count > 0) {
-            return vae_assign(0,"该分类下还有文章，无法删除！");
-        }
-        if (\think\Db::name('ArticleCate')->delete($id) !== false) {
-            return vae_assign(1,"删除分类成功！");
+        if (\think\Db::name('Route')->delete($id) !== false) {
+            \think\Cache::rm('vae_route');// 删除路由缓存
+            return vae_assign(1,"删除路由成功！");
         } else {
             return vae_assign(0,"删除失败！");
         }

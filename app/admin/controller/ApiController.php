@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckLogin;
 
-class Api extends AdminCheckLogin
+class ApiController extends AdminCheckLogin
 {
     //上传文件
     public function upload()

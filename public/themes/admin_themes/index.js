@@ -52,6 +52,20 @@ layui.config({
 		vaeyo.recordTab();
 	});
 
+	$('#0').load(function(){
+		setTimeout(function(){
+			$('#0').contents().find("[vaeyo_tab]").on('click', function(){
+		        vaeyo.addTab({
+		            elem:"vaeyo-tab",
+		            title:$(this).attr('vae-title'),
+		            content:$(this).attr('vae-src'),
+		            id:$(this).attr('vae-id')
+		        })
+		        vaeyo.recordTab();
+		    })
+		},500)
+	})
+	
 	element.on('tabDelete(vaeyo-tab)', function(data){
 	  vaeyo.recordTab();
 	});

@@ -31,14 +31,14 @@ layui.define(['layer','element','form'], function(exports){
                 setTimeout(function(){
                     $("[vaeyo-loading]").hide();
                     $('#'+e.id).contents().find("[vaeyo_tab]").on('click', function(){
-                    self.addTab({
-                        elem:"vaeyo-tab",
-                        title:$(this).attr('vae-title'),
-                        content:$(this).attr('vae-src'),
-                        id:$(this).attr('vae-id')
-                    })
-                    self.recordTab();
-                }) 
+                        self.addTab({
+                            elem:"vaeyo-tab",
+                            title:$(this).attr('vae-title'),
+                            content:$(this).attr('vae-src'),
+                            id:$(this).attr('vae-id')
+                        })
+                        self.recordTab();
+                    }) 
                 },500)
             }); 
     	},

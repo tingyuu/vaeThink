@@ -79,7 +79,7 @@
 	padding-bottom: 0px;
 	bottom: 0px;
 	left: 220px;
-	z-index: 1000000;
+	z-index: 1017;
 	overflow: visible;
 	right: 0;
 	background-color: #eff0f4;
@@ -91,7 +91,7 @@
 	position: absolute;
 	top: -50px;
 	height: 50px;
-	left: 0px;
+	left: 10px;
 }
 .vaeyo-tab .layui-tab-title{
 	border:0;
@@ -130,11 +130,16 @@
 	background-color:#eff0f4;
 	color:#FF5722;
 }
+.vaeyo-tab .layui-tab-title .vaeyo-tab-home .layui-tab-close{
+	display: none;
+}
+.vaeyo-tab .layui-tab-title .vaeyo-tab-home:hover .layui-tab-close{
+	display: none;
+}
 .vaeyo-tab>.layui-tab-title .layui-this{
 	color:#000;
-	background-color: #eff0f4;
+	background-color: #f1f2f7;
 	border-top: 2px solid #2E241B;
-    /*border-radius: 50px 0px;*/
 }
 .vaeyo-tab>.layui-tab-title .layui-this i{
 	display: inline-block;

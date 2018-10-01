@@ -11,10 +11,14 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckLogin;
 
-class Index extends AdminCheckLogin
+class MainController extends AdminCheckLogin
 {
     public function index()
     {
-        return view();
+        $adminMainHook = vae_set_hook_one('admin_main');
+        if(!empty($adminMainHook)) {
+        	return $adminMainHook;
+        }
+        return $this->fetch();
     }
 }

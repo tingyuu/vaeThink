@@ -13,7 +13,7 @@ use vae\controller\AdminCheckAuth;
 use app\admin\model\Plugin as PluginModel;
 use think\Db;
 
-class Plugin extends AdminCheckAuth
+class PluginController extends AdminCheckAuth
 {
     public function index()
     {

@@ -6,20 +6,123 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/themes/admin_themes/lib/layui/css/layui.css"  media="all">
+  <style type="text/css">
+    .layui-anim .vae-card .layui-icon{
+      width:50px;
+      height:50px;
+      line-height: 50px;
+      text-align: center;
+      display: block;
+      border-radius: 50%;
+      background-color: #FF5722;
+      color:#fff;
+      opacity: .9;
+      font-size: 24px;
+      float: left;
+    }
+    .vaeyo-main-header{
+      height: 280px;
+    }
+    .vae-card{
+      height:50px;
+      padding:20px;
+    }
+    .vae-card .vae-card-right{
+      float: left;
+      display: block;
+      width:calc(100% - 100px);
+      margin-left: 20px;
+      height:100%;
+    }
+    .vae-card .vae-card-right h2{
+      line-height: 50px;
+    }
+  </style>
 </head>
 <body class="vae-body">
 
-  <div style="background-color: #F2F2F2;">
-    <div class="layui-row layui-col-space20">
-      <div class="layui-col-md12">
+  <div style="background-color: #f1f2f7;padding-top:10px;padding-right: 10px;padding-left: 10px;">
+    <div class="layui-row layui-col-space25">
+      <div class="layui-col-md3 layui-anim layui-anim-scale">
         <div class="layui-card">
-          <div class="layui-card-header">系统通知</div>
+          <div class="layui-card-body vae-card">
+            <a href="javascript:;" vaeyo_tab vae-id="4" vae-title="管理员" vae-src="/admin/admin/index">
+              <i class="layui-icon layui-icon-user" style="background-color: #5FB878"></i>
+              <div class="vae-card-right">
+                <h2>4563258</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3 layui-anim layui-anim-scale">
+        <div class="layui-card">
+          <div class="layui-card-body vae-card">
+            <a href="javascript:;">
+              <i class="layui-icon layui-icon-reply-fill"></i>
+              <div class="vae-card-right">
+                <h2>4563258</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3 layui-anim layui-anim-scale">
+        <div class="layui-card">
+          <div class="layui-card-body vae-card">
+            <a href="javascript:;">
+              <i class="layui-icon layui-icon-notice" style="background-color: #01AAED"></i>
+              <div class="vae-card-right">
+                <h2>4563258</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md3 layui-anim layui-anim-scale">
+        <div class="layui-card">
+          <div class="layui-card-body vae-card">
+            <a href="javascript:;">
+              <i class="layui-icon layui-icon-star" style="background-color: #2F4056"></i>
+              <div class="vae-card-right">
+                <h2>4563258</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md8">
+        <div class="layui-row layui-col-space25">
+          <div class="layui-col-md6 layui-anim layui-anim-scale">
+            <div class="layui-card">
+              <div class="layui-card-body">
+                <table id="comments" lay-filter="comments"></table>
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-md6 layui-anim layui-anim-scale">
+            <div class="layui-card">
+              <div class="layui-card-body">
+                <table id="message" lay-filter="message"></table>
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-md12 layui-anim layui-anim-scale">
+            <div class="layui-card">
+              <div class="layui-card-body">
+                <div class="vaeyo-main-header" id="vaeyo-main-header"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md4 layui-anim layui-anim-scale">
+        <div class="layui-card">
           <div class="layui-card-body">
             <table class="layui-table" lay-skin="nob" lay-size="sm">
               <colgroup>
-                <col width="80">
-                <col width="500">
+                <col width="100">
                 <col>
               </colgroup>
               <tbody>
@@ -42,50 +145,12 @@
           </div>
         </div>
       </div>
-      <div class="layui-col-md12">
+      <div class="layui-col-md4 layui-anim layui-anim-scale">
         <div class="layui-card">
-          <div class="layui-card-header">开发者贡献榜</div>
           <div class="layui-card-body">
-            <span class="layui-badge">听雨</span> <span class="layui-badge layui-bg-green">虚位以待</span> <span class="layui-badge layui-bg-green">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span> <span class="layui-badge layui-bg-blue">虚位以待</span>
-          </div>
-        </div>
-      </div>
-      <div class="layui-col-md12">
-        <div class="layui-card">
-          <div class="layui-card-header">开发手册</div>
-          <div class="layui-card-body">
-            <table class="layui-table" lay-skin="nob" lay-size="sm">
+            <table class="layui-table" lay-skin="" lay-size="sm">
               <colgroup>
-                <col width="80">
-                <col width="500">
-                <col>
-              </colgroup>
-              <tbody>
-                <tr>
-                  <td><b>vaeThink开发手册</b></td>
-                  <td><a href="javascript:;" target="_blank"><span class="layui-badge layui-bg-green">前往阅读</span></a></td>
-                </tr>
-                <tr>
-                  <td><b>ThinkPHP开发手册</b></td>
-                  <td><a href="https://www.kancloud.cn/manual/thinkphp5" target="_blank"><span class="layui-badge layui-bg-green">前往阅读</span></a></td>
-                </tr>
-                <tr>
-                  <td><b>Layui开发手册</b></td>
-                  <td><a href="https://www.layui.com/doc/" target="_blank"><span class="layui-badge layui-bg-green">前往阅读</span></a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="layui-col-md12">
-        <div class="layui-card">
-          <div class="layui-card-header">系统信息</div>
-          <div class="layui-card-body">
-            <table class="layui-table" lay-skin="nob" lay-size="sm">
-              <colgroup>
-                <col width="80">
-                <col width="500">
+                <col width="150">
                 <col>
               </colgroup>
               <tbody>
@@ -122,43 +187,130 @@
           </div>
         </div>
       </div>
-      <div class="layui-col-md12">
+      <div class="layui-col-md2 layui-anim layui-anim-scale">
         <div class="layui-card">
-          <div class="layui-card-header">交流方式</div>
           <div class="layui-card-body">
-            <table class="layui-table" lay-skin="nob" lay-size="sm">
-              <colgroup>
-                <col width="80">
-                <col width="500">
-                <col>
-              </colgroup>
-              <tbody>
-                <tr>
-                  <td><b>官网</b></td>
-                  <td><a href="javascript:;" style="color:#FF5722">www.vaethink.com</a></td>
-                </tr>
-                <tr>
-                  <td><b>QQ交流群</b></td>
-                  <td><a href="javascript:;">221470096</a></td>
-                </tr>
-                <tr>
-                  <td><b>邮箱</b></td>
-                  <td><a href="mailto:389625819@qq.com">389625819@qq.com</a></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="layui-btn-container" style="padding:3px 0">
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="http://www.vaethink.com" target="_blank">官方网站</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="http://www.vaethink.com" target="_blank">官方社区</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="https://jq.qq.com/?_wv=1027&k=5bmwTll" target="_blank">官方交流群</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="https://gitee.com/pengweimy/vaeyoAdmin" target="_blank">免费下载</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md2 layui-anim layui-anim-scale">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="layui-btn-container" style="padding:3px 0">
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="http://www.vaethink.com/doc/" target="_blank">开发手册</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="https://www.kancloud.cn/manual/thinkphp5" target="_blank">TP开发手册</a></div>
+              <div><a class="layui-btn layui-btn-fluid layui-btn-primary" href="https://www.layui.com/doc/" target="_blank">Layui开发手册</a></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div> 
 
-  <script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
+  <script src="/themes/admin_themes/lib/layui/layui.js" charset="utf-8"></script>
   <script>
     layui.config({
         base: '/themes/admin_themes/module/'
-    }).define(['layer','element'], function(exports){
-      var $ = layui.jquery,layer = layui.layer,element;
+    }).define(['table','echarts','layer','element'], function(exports){
+      var $ = layui.jquery,layer = layui.layer,element = layui.element,table = layui.table;
+
+      var myChart = echarts.init(document.getElementById('vaeyo-main-header'));
+        var pv = [];
+        var uv = [];
+        for (var i = 23; i >= 0; i--) {
+          pv[i] = Math.floor(Math.random()*i*50); 
+          uv[i] = Math.floor(Math.random()*i*100);
+        }
+        var data = {
+          "time":['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'],
+          "pv":pv,
+          "uv":uv
+        }
+        option = {
+            tooltip : {
+              trigger: 'axis'
+            },
+            legend: {
+              data:['','']
+            },
+            tooltip : {
+              trigger: 'axis'
+            },
+            legend: {
+              data:['UV','PV']
+            },
+            grid: {
+                top:'10%',
+                left: '1%',
+                right: '2%',
+                bottom: '5%',
+                containLabel: true
+            },
+            xAxis : [{
+              type : 'category',
+              boundaryGap : false,
+              data: data.time
+            }],
+            yAxis : [{
+              type : 'value',
+              splitLine: {show: false}
+            }],
+            series : [{
+              name:'UV',
+              type:'line',
+              smooth: true,
+              itemStyle: {normal: {color:'#009688'}},
+              lineStyle:{normal:{color:'#009688',width:1}},
+              areaStyle: {normal:{color:'#009688'}},
+              data: data.uv
+            },{
+              name:'PV',
+              type:'line',
+              smooth: true,
+              itemStyle: {normal: {color:'#01AAED'}},
+              lineStyle:{normal:{color:'#01AAED',width:1}},
+              areaStyle: {normal:{color:'#01AAED'}},
+              data: data.pv
+            }]
+        };
+        myChart.setOption(option);
+        $(window).on('resize', function () {
+          myChart.resize();
+        });
+
+        //评论
+        table.render({
+          elem: '#comments'
+          ,height: 250
+          ,url: '/admin/admin/getAdminList' //数据接口
+          ,page: true //开启分页
+          ,cols: [[ //表头
+            {field: 'username', title: '管理员'}
+            ,{field: 'nickname', title: '昵称'}
+            ,{field: 'last_login_time', title: '最后上线时间', sort: true}
+          ]]
+          ,size: 'sm'
+        });
+
+        //留言
+        table.render({
+          elem: '#message'
+          ,height: 250
+          ,url: '/admin/hook/getHookList' //数据接口
+          ,page: true //开启分页
+          ,cols: [[ //表头
+            {field: 'name', title: '名称'}
+            ,{field: 'hook', title: '钩子'}
+            ,{field: 'module', title: '模块', sort: true}
+          ]]
+          ,size: 'sm'
+        });
     
       exports('main', {});
   });  

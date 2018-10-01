@@ -12,7 +12,7 @@ namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 use think\Config;
 
-class Conf extends AdminCheckAuth
+class ConfController extends AdminCheckAuth
 {
     //网站信息
     public function webConf()
