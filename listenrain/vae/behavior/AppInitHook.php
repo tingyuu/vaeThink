@@ -18,7 +18,7 @@ class AppInitHook
 	public function run(&$params){ 
         //\think\Session::delete('vae_admin');  
 		if (!vae_is_installed()) {
-            return true;
+            return;
         }
 
         $appHookPlugin = cache('app_init_hook_plugin');

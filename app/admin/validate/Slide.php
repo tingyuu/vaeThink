@@ -12,28 +12,26 @@ namespace app\admin\validate;
 use think\Validate;
 use think\Db;
 
-class AdminRule extends Validate
+class Slide extends Validate
 {
     protected $rule = [
-        'title'       => 'require|unique:admin_rule',
-        'name'        => 'unique:admin_rule',
-        'pid'         => 'require',
-        'id'          => 'require',
-        'field'       => 'require',
+        'title'       => 'require|unique:slide',
+        'name'            => 'require|unique:slide',
+        'id'             => 'require',
+        'status'         => 'require'
     ];
 
     protected $message = [
-        'title.require'      => '名称不能为空',
-        //'name.require'       => '规则不能为空',
-        'pid.require'        => '父级节点为必选',
-        'title.unique'       => '同样的记录已经存在!',
-        'name.unique'        => '同样的规则已经存在!',
-        'id.require'         => '缺少更新条件',
-        'filed.require'      => '缺少要更新的字段名',
+        'title.require'       => '标题不能为空',
+        'name.require'            => '标识不能为空',
+        'title.unique'        => '同样的记录已经存在!',
+        'name.unique'             => '同样的记录已经存在!',
+        'id.require'             => '缺少更新条件',
+        'status.require'         => '状态为必选',
     ];
 
     protected $scene = [
-        'add'  => ['title', 'pid', 'name'],
-        'edit' => ['id', 'field' ,'title.unique','ame.unique'],
+        'add'  => ['title', 'name', 'status'],
+        'edit' => ['id', 'title', 'name', 'status'],
     ];
 }

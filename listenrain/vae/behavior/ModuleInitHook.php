@@ -19,7 +19,7 @@ class ModuleInitHook
     public function run(&$param)
     {
         if (!vae_is_installed()) {
-            return true;
+            return;
         }
 
         $module = request()->module();

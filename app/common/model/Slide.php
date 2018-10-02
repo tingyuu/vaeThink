@@ -8,21 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: 听雨 < 389625819@qq.com >
 // +---------------------------------------------------------------------
-
-// 应用路由
-
+namespace app\common\model;
 use think\Db;
-use think\Cache;
-use think\Route;
+use think\Model;
+class Slide extends Model
+{
 
-if (!vae_is_installed()) {
-    return;
 }
-if(Cache::get('vae_route')) {
-	$runtimeRoute = Cache::get('vae_route');
-} else {
-	$runtimeRoute = Db::name("route")->where(['status' => 1])->order('create_time asc')->column('url,full_url');
-	Cache::set('vae_route',$runtimeRoute);
-}
-
-Route::rule($runtimeRoute);

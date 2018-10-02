@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地服务器
+Source Server         : 本地
 Source Server Version : 50553
 Source Host           : localhost:3306
-Source Database       : vaethink1
+Source Database       : vaethink
 
 Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-10-01 23:29:01
+Date: 2018-10-02 23:45:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,7 +61,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62', '系统所有者，系统自动分配所有可操作权限。', '0', '1538310278');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70', '系统所有者，系统自动分配所有可操作权限。', '0', '1538493425');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -93,7 +93,7 @@ CREATE TABLE `vae_admin_menu` (
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
 
 -- ----------------------------
 -- Records of vae_admin_menu
@@ -108,7 +108,7 @@ INSERT INTO `vae_admin_menu` VALUES ('7', '0', '门户', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('10', '7', '分类', 'admin/cate/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('11', '7', '内容', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('12', '11', '文章', 'admin/article/index', '', '1', '0', '0');
-INSERT INTO `vae_admin_menu` VALUES ('13', '11', '回收站', 'admin/recycle/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('13', '11', '回收站', 'admin/recycle/index', '', '2', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('14', '1', '路由', 'admin/route/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('15', '1', '配置', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('16', '15', '网站信息', 'admin/conf/webConf', '', '1', '0', '0');
@@ -116,6 +116,10 @@ INSERT INTO `vae_admin_menu` VALUES ('17', '15', '邮箱配置', 'admin/conf/ema
 INSERT INTO `vae_admin_menu` VALUES ('18', '0', '插件', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('19', '18', '内置钩子', 'admin/hook/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('20', '18', '插件管理', 'admin/plugin/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('21', '18', '插件市场', '', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('22', '7', '幻灯片', 'admin/slide/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('23', '7', '导航', 'admin/nav/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('24', '11', '页面', 'admin/page/index', '', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_rule`
@@ -132,7 +136,7 @@ CREATE TABLE `vae_admin_rule` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
@@ -199,6 +203,14 @@ INSERT INTO `vae_admin_rule` VALUES ('59', '57', 'plugin/start', '启用插件',
 INSERT INTO `vae_admin_rule` VALUES ('60', '57', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('61', '57', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('62', '57', 'plugin/install', '安装插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('63', '0', '', '幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('64', '63', 'slide/index', '幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('65', '64', 'slide/add', '添加幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('66', '65', 'slide/addSubmit', '保存添加的幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('67', '64', 'slide/edit', '修改幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('68', '67', 'slide/editSubmit', '保存修改的幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('69', '64', 'slide/delete', '删除幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('70', '64', 'slide/getSlideList', '幻灯片组列表', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`
@@ -329,6 +341,47 @@ CREATE TABLE `vae_route` (
 
 -- ----------------------------
 -- Records of vae_route
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `vae_slide`
+-- ----------------------------
+DROP TABLE IF EXISTS `vae_slide`;
+CREATE TABLE `vae_slide` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL DEFAULT '标题',
+  `name` varchar(50) NOT NULL COMMENT '标识',
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
+  `desc` varchar(255) DEFAULT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片';
+
+-- ----------------------------
+-- Records of vae_slide
+-- ----------------------------
+INSERT INTO `vae_slide` VALUES ('1', '首页幻灯片', 'VAE_INDEX_SLIDE', '-1', '首页幻灯片组。', '0', '0');
+
+-- ----------------------------
+-- Table structure for `vae_slide_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `vae_slide_info`;
+CREATE TABLE `vae_slide_info` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `slide_id` int(11) unsigned NOT NULL,
+  `title` varchar(225) DEFAULT NULL,
+  `desc` varchar(255) DEFAULT NULL,
+  `img` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
+  `order` int(11) NOT NULL DEFAULT '0',
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='幻灯片详情';
+
+-- ----------------------------
+-- Records of vae_slide_info
 -- ----------------------------
 
 -- ----------------------------

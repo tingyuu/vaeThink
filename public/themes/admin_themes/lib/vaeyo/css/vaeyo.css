@@ -112,11 +112,12 @@
 	position: absolute;
 	width: 15px;
     height: 15px;
-    line-height: 15px;
+    line-height: 16px;
     top: 16px;
     right: 5px;
     font-size: 10px;
-    display: none
+    display: none;
+	border-radius: 50%;
 }
 .vaeyo-tab .layui-tab-title li:hover{
 	color:#000;
@@ -127,8 +128,8 @@
 	display: inline-block;
 }
 .vaeyo-tab .layui-tab-title li .layui-tab-close:hover{
-	background-color:#eff0f4;
-	color:#FF5722;
+	background-color:#777;
+	color:#fff;
 }
 .vaeyo-tab .layui-tab-title .vaeyo-tab-home .layui-tab-close{
 	display: none;
