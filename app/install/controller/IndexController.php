@@ -10,7 +10,6 @@
 // +---------------------------------------------------------------------
 namespace app\install\controller;
 use vae\controller\ControllerBase;
-use think\Db;
 use mysqli;
 
 class IndexController extends ControllerBase
@@ -131,6 +130,7 @@ return [
     'prefix'             =>  '{$data['DB_PREFIX']}',  
 ];";
 
+                
                 // 创建数据库配置文件
                 if(false == file_put_contents(VAE_ROOT . "data/conf/database.php",$db_str)) {
                     return vae_assign(0,'创建数据库配置文件失败，请检查目录权限');
@@ -138,7 +138,8 @@ return [
                 if(false == file_put_contents(VAE_ROOT . "data/install.lock",'vaeThink安装鉴定文件，勿删！！！！！此次安装时间：'.date('Y-m-d H:i:s',time()))) {
                     return vae_assign(0,'创建安装鉴定文件失败，请检查目录权限');
                 }
-
+                
+                sleep(2);
                 //创建管理员信息
                 $param = array();
                 $param['username']    = vae_get_param('username');
@@ -151,8 +152,8 @@ return [
                 $param['create_time'] = time();
                 $param['update_time'] = time();
                 
-                Db::name('Admin')->strict(false)->field(true)->insert($param);
-                Db::name('AdminGroupAccess')->strict(false)->field(true)->insert([
+                \think\Db::name('Admin')->strict(false)->field(true)->insert($param);
+                \think\Db::name('AdminGroupAccess')->strict(false)->field(true)->insert([
                     'uid'         => 1,
                     'group_id'    => 1,
                     'create_time' => time(),

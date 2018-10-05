@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
+Source Server         : 本地服务器
 Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : vaethink
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-10-02 23:45:55
+Date: 2018-10-05 18:18:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -203,8 +203,7 @@ INSERT INTO `vae_admin_rule` VALUES ('59', '57', 'plugin/start', '启用插件',
 INSERT INTO `vae_admin_rule` VALUES ('60', '57', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('61', '57', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('62', '57', 'plugin/install', '安装插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('63', '0', '', '幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('64', '63', 'slide/index', '幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('64', '0', 'slide/index', '幻灯片组', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('65', '64', 'slide/add', '添加幻灯片组', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('66', '65', 'slide/addSubmit', '保存添加的幻灯片组', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('67', '64', 'slide/edit', '修改幻灯片组', '1', '', '0', '0');
@@ -361,7 +360,7 @@ CREATE TABLE `vae_slide` (
 -- ----------------------------
 -- Records of vae_slide
 -- ----------------------------
-INSERT INTO `vae_slide` VALUES ('1', '首页幻灯片', 'VAE_INDEX_SLIDE', '-1', '首页幻灯片组。', '0', '0');
+INSERT INTO `vae_slide` VALUES ('1', '首页幻灯片', 'VAE_INDEX_SLIDE', '1', '首页幻灯片组。', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_slide_info`
@@ -406,31 +405,8 @@ CREATE TABLE `vae_user` (
   `address` varchar(500) DEFAULT NULL,
   `id_num` varchar(18) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vae_user
 -- ----------------------------
-INSERT INTO `vae_user` VALUES ('1', '听雨', 'https://wx.qlogo.cn/mmopen/vi_32/oOn2eCicFVEboolnbcsLrXIX8aTE52NS02XZUhdhAKtKgtGvnzDCLoD52PZYRqdwpPAkVtkkiaUwvmIo4Hc0NJrA/132', '0', 'os14r5LeKtGJk2TAqWY_t1C-OPH4', 'QSjEz8hsUFJHO29iWMRmVABdtl6IP0cvubZrgfn3X14xyLC5p7', '1534067133', '1534067133', '1535937928', '1.195.33.128', '582', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('2', '21baby', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKB5zcMiaDu4yFeRywdADOiamTMnUUhODz7m8wkUJviaQm0icuPpPbZzWFDFkIIE3sLxnxWpHC1m1yqYQ/132', '2', 'os14r5AsUEUhvJ2mp9kQHROzcQDA', '561ed7pET9bcCarg8hUBQHxoyG3ZNfFvSLWJkqYnli4jA0DRzV', '1534070496', '1534070496', '1534331853', '1.195.35.152', '12', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('3', null, null, null, 'os14r5NhNEfzKKfcMaeOxGXIGXGA', 'z6BrRnIk7hAHQqbswxaf40uvdEeUJGYoiFSKgVXCOLy8NpPj2D', '1534071166', '1534071166', '1534071167', '223.166.222.108', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('4', null, null, null, 'os14r5M-J_yBlp4ma-4hrmytS8ns', 'fBt9T2KhPAQbedizx8mnSXrcgJWUyGkv0HVO1qs5DjEwM7Nalp', '1534151804', '1534151804', '1534151806', '101.227.139.163', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('5', '公孙胜', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLbKp0Id2libic88QNQqofyOIpXIGQNNia3zMnWh83lzHKYnTt2XFec329fWfZicd1sLT03CeJAHZYyIA/132', '0', 'os14r5MR7sI2bMxZF-P443Mt63BY', 'oPDrLSbCUlhduj6ZvBm794X0tkMcR1FIsNVOxKgzT5Yfe3JH8A', '1534154329', '1534154329', '1534154372', '101.227.139.163', '3', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('6', null, null, null, 'os14r5FbSRy84CT6HBrCgvqV0XzY', 'LKxUw3R8VXcgo7yC2eW9JMr01mnIihEBzNFZ4v6YQtOuDdqHAa', '1534211526', '1534211526', '1534211527', '223.166.222.108', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('7', '武松', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJrCta0BxlH8u8nI0UypiaotRYlJElcYT3XoQmN3oaXEpCAtl1450ibiaBngV33u3WHHQtFSbC7le51Q/132', '0', 'os14r5I836kxjej3UrFAy9s1cjWE', '0XcTZLCHIf5VmyMSnDs9rU7xPAKwO1J4GQvgeERd3zb6iWNYpo', '1534250779', '1534250779', '1534250822', '101.227.139.163', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('8', null, null, null, 'os14r5L1lhbHPoq1HGIRMBizBgbk', 'Li2Ryh6aGoYsepfugD1HBzrQmlv90SU4nJCxdPjKXMEWbcO85k', '1534294365', '1534294365', '1534294367', '223.166.222.108', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('9', null, null, null, 'os14r5M81PDS8g9RMczQSlKRvN98', 'tr4pyuF13DRLGe6f0qSYK2cxnmjOaTko7PVJEHZXslzhABb9C5', '1534294370', '1534294370', '1534294372', '223.166.222.108', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('10', null, null, null, 'os14r5CoDcxzByeL4CrcP_rIcLhE', '7UWIGaVE8lBvLDxjwkfHi9n15Ph46KJRoeZ2pcQ0TOXqAYburS', '1534321150', '1534321150', '1534321150', '183.60.88.4', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('11', null, null, null, 'os14r5NB12UUXu2Vg_r7pbZWf7fc', 'Pw59X0RvjULldQVSisuY6KTtk2ZHcCAEaIFgqoWrp7bMNym3JG', '1534390952', '1534390952', '1534390952', '118.113.78.88', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('12', null, null, null, 'os14r5DoDgKyaxAQ7wPdNOoU1ucI', 'zUx8NJ7VHaef0ETt3BSLg2XOv96CGWhpIPkm5nwRDrMKoQ1qbd', '1534392663', '1534392663', '1534392663', '118.212.207.36', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('13', null, null, null, 'os14r5CTi479FY2tv7_e8GU7s85g', 'MzdyEmerhsGiFoxu7t2QHLaTlK9OpRSBUDjCVZAJg0YNqW58vc', '1534394939', '1534394939', '1534394939', '61.158.149.115', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('14', null, null, null, 'os14r5DgZNWqrTMOtplKIgyyAbIQ', 'gdbGNhxF3DP7KOkJIe8lLUQSp5CvB4rAz2iyEoMwjRXqcZas0u', '1534400856', '1534400856', '1534400856', '219.155.7.235', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('15', null, null, null, 'os14r5IJx05NjMA4KQbahIgDmAs4', '7g2syJptOdBjWvMnFLNVeifQu561zAYZbC84STHhxPcmXKIDqa', '1534402534', '1534402534', '1534925555', '61.158.149.45', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('16', null, null, null, 'os14r5IorpGL0_QcKXODiVvprddA', 'vVCA7a2M3DISfd9X15cPibUNJouTs8zmxrRyBqlKg6FnheZEOG', '1534582430', '1534582430', '1534582430', '117.136.50.137', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('17', null, null, null, 'os14r5E5WvA-EnYCKQEj7RDAYVHI', '2qJQoAk5NaVM1uBWI0bxj9GeFgsidTf3rtOnlRvpy7US4h6PwX', '1534745233', '1534745233', '1534745233', '113.251.23.135', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('18', '苏小辉', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epF1dbEWKbxTxeQW8ibTXP6ZiaPw6Ce3jkibxUwEGibWVlMYdUyWSpHrW65zL1ewMGiaqOT92XjvWA2hlQ/132', '1', 'os14r5BhYN5Sc2ZsGNyMxTotUd0E', 'xkUFzbLBWcdtiMsDo1RNpVaYEZK02O6unwfmj97g3ylSG4TrJH', '1535195009', '1535195009', '1535679486', '1.195.34.229', '3', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('19', 'star', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKzvq5AqMRD6DlrCcRmpDZ7NaERKcyGuKiaCaKeGqWkQMfM7KRXHbhw4PzhlkdibicwreyVLrB5HjrNw/132', '1', 'os14r5MpgrgeG_zjBo5jFoclaQbs', 'RwNhKQdFJ4y1UxXu5ALYpMT9G3nrlIHzSCeaDoVjkPOm8v6qB7', '1535536092', '1535536092', '1535944805', '112.241.183.102', '2', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('20', null, null, null, 'os14r5JWIaaUF0ak4R7zRK67a3as', '9QkaRU13qXeWJfm6LFhMIOnNPKYH4sGuiZA5bd7TlCBVpSj2g0', '1535667333', '1535667333', '1535667333', '223.104.21.59', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('21', null, null, null, 'os14r5Pth1ChL29nH6eqq5OqxV8I', 'OXhBwJML5GDdigUnpNqmS8tPbHrTQel4WcoaRAIvF2fxuCVKk9', '1535985595', '1535985595', '1535985595', '111.199.187.25', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('22', null, null, null, 'os14r5BNH2GeBzzrvp5U-O7jakP4', 'ywmFqgvxABVJeYbK9dWc7ZEDR8nSONGso1CXrkLPuHhTz0Mt6i', '1536196861', '1536196861', '1536196861', '1.195.33.114', '1', '0', null, null, null, null);
-INSERT INTO `vae_user` VALUES ('23', '', '', null, 'oJJQr5FRuGcoxjUA3KBOXxl-E-CU', 'TJYlsVWzvXUnSmHpja8dcD7g2ix9GB0AeQOE56ur1fCohNbKR4', '1536732731', '1537493378', '1537494686', '1.195.33.197', '259', '0', '卟咚', '15039097443', '410781199004270811', '鞍山市大所多');

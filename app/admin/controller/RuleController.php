@@ -77,7 +77,7 @@ class RuleController extends AdminCheckAuth
         if ($count > 0) {
             return vae_assign(0,"该节点下还有子节点，无法删除！");
         }
-        if (\think\Db::name('AdminMenu')->delete($id) !== false) {
+        if (\think\Db::name('AdminRule')->delete($id) !== false) {
             return vae_assign(1,"删除节点成功！");
         } else {
             return vae_assign(0,"删除失败！");
