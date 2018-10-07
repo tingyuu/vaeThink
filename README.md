@@ -1,10 +1,10 @@
 vaeThink
 ===============
 
-[![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
+<!-- [![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
 [![Latest Stable Version](https://poser.pugx.org/topthink/think/v/stable)](https://packagist.org/packages/topthink/think)
 [![Latest Unstable Version](https://poser.pugx.org/topthink/think/v/unstable)](https://packagist.org/packages/topthink/think)
-[![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
+[![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think) -->
 
 vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的核心理念不变的同时，对一般项目所必需的功能进行了基础开发和封装，帮助用户在开始一个新的PHP项目时能够快速完成基础功能的搭建。vaeThink保留了ThinkPHP和Layui的所有特征，对于熟悉TP5和Layui的开发者尤为方便，即使没使用过TP5和Layui在开发文档的帮助下也能快速使用vaeThink!
 
