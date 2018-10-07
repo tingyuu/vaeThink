@@ -15,7 +15,7 @@
 </div>
 
 <script type="text/html" id="status">
-   {{#  if(d.status == 1){ }}<span style="color:#01AAED">已安装</span>{{#  }  else { }}<span style="color:#FF5722">未安装</span>{{#  } }}
+   <i class="layui-icon {{#  if(d.status == 1){ }}layui-icon-ok{{#  } else { }}layui-icon-close{{#  } }}"></i>
 </script>
 
 <script type="text/html" id="barDemo">

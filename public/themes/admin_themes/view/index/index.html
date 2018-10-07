@@ -13,17 +13,18 @@
 <body class="layui-layout-body">
 
 	<div class="layui-layout layui-layout-admin">
+		
 	  	<div class="layui-header">
 		    <div class="layui-logo" vaeyo-home>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</div>
 		    <div class="vaeyo-loading" vaeyo-loading><i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i></div>
 		    <ul class="layui-nav layui-layout-right">
 		      <li class="layui-nav-item" lay-unselect>
-		      	<a href="javascript:;" vaeyo-refresh class="refreshThis" id="vaeyo-refresh">
+		      	<a href="javascript:;" vaeyo-refresh class="refreshThis" id="vaeyo-refresh" title="刷新当前页">
 			      	<i class="layui-icon layui-icon-refresh-3"></i> 
 			    </a>
 		      </li>
 		      <li class="layui-nav-item" lay-unselect>
-		        <a href="javascript:;" vaeyo-logout>
+		        <a href="javascript:;" vaeyo-logout title="点击退出登录">
 		          <img src="{:vae_get_login_admin('thumb')}" class="layui-nav-img">
 		        </a>
 		      </li>
@@ -34,15 +35,16 @@
 			  </li>
 		    </ul>
 		</div>
+
 		<div class="layui-side vaeyo-bg-gray">
 		    <div class="vaeyo-menulist">
 				<div class="vaeyo-menulist-1">
 					<div class="vaeyo-menulist-top">
-						<a href="javascript:;" vaeyo_tab vae-id="4" vae-title="管理员" vae-src="/admin/admin/index"><i class="layui-icon layui-icon-user"></i></a>
-						<a href="javascript:;" style="background-color: #01AAED" vaeyo_tab vae-id="1008" vae-title="添加文章" vae-src="/admin/article/add"><i class="layui-icon layui-icon-edit"></i></a>
-						<a href="/" style="background-color: #FFB800" target="_blank"><i class="layui-icon layui-icon-website"></i></a>
+						<a href="javascript:;" title="修改个人信息" vaeyo_tab vae-id="10000" vae-title="修改个人信息" vae-src="/admin/api/editPersonal"><i class="layui-icon layui-icon-username"></i></a>
+						<a href="javascript:;" title="修改密码" style="background-color: #01AAED" vaeyo_tab vae-id="10001" vae-title="修改密码" vae-src="/admin/api/editPassword"><i class="layui-icon layui-icon-password"></i></a>
+						<a href="/" title="门户首页" style="background-color: #FFB800" target="_blank"><i class="layui-icon layui-icon-website"></i></a>
 						<a href="javascript:;" style="background-color: #FF5722" vaeyo_tab vae-id="13" vae-title="回收站" vae-src="/admin/recycle/index"><i class="layui-icon layui-icon-log"></i></a>
-						<a href="javascript:;" vaeyo-del-cache style="background-color: #009688"><i class="layui-icon layui-icon-delete"></i></a>
+						<a href="javascript:;" title="清空缓存" vaeyo-del-cache style="background-color: #009688"><i class="layui-icon layui-icon-delete"></i></a>
 					</div>
 					{volist name=":vae_set_admin_menu()" id="v"}
 						<div class="vaeyo-menulist-2"><i class="layui-icon layui-icon-triangle-r"></i> {$v.title}</div>

@@ -99,4 +99,83 @@ class SlideController extends AdminCheckAuth
             return vae_assign(0,"删除失败！");
         }
     }
+
+    //管理幻灯片
+    public function slideInfo()
+    {
+        return view('',[
+            'slide_id' => vae_get_param('id')
+        ]);
+    }
+
+    //幻灯片列表
+    public function getSlideInfoList()
+    {
+        $id            = vae_get_param('id');
+        $slideInfoList = Db::name('SlideInfo')->where([
+            'slide_id' => $id
+        ])->select();
+        return vae_assign(0,'',$slideInfoList);
+    }
+
+    //添加幻灯片
+    public function addSlideInfo()
+    {
+        return view('',[
+            'slide_id' => vae_get_param('id')
+        ]);
+    }
+
+    //保存幻灯片添加
+    public function addSlideInfoSubmit()
+    {
+        if($this->request->isPost()){
+            $param = vae_get_param();
+            $result = $this->validate($param, 'app\admin\validate\Slide.addInfo');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                \think\loader::model('SlideInfo')->strict(false)->field(true)->insert($param);
+                return vae_assign();
+            }
+        }
+    }
+
+    //修改幻灯片
+    public function editSlideInfo()
+    {
+        $id = vae_get_param('id');
+        $slideInfo = Db::name('SlideInfo')->find($id);
+        return view('',[
+            'slideInfo' => $slideInfo
+        ]);
+    }
+
+    //保存幻灯片修改
+    public function editSlideInfoSubmit()
+    {
+        if($this->request->isPost()){
+            $param = vae_get_param();
+            $result = $this->validate($param, 'app\admin\validate\Slide.editInfo');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                \think\loader::model('SlideInfo')->where([
+                    'id' => $param['id']
+                ])->strict(false)->field(true)->update($param);
+                return vae_assign();
+            }
+        }
+    }
+
+    //删除幻灯片
+    public function deleteSlideInfo()
+    {
+        $id    = vae_get_param("id");
+        if (Db::name('SlideInfo')->delete($id) !== false) {
+            return vae_assign(1,"删除成功！");
+        } else {
+            return vae_assign(0,"删除失败！");
+        }
+    }
 }

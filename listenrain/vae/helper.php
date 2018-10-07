@@ -100,6 +100,7 @@ function vae_get_admin_group(){
 function vae_get_admin_group_info($id){
     $group = \think\Db::name('admin_group')->where(['id'=>$id])->find();
     $group['rules'] = explode(',',$group['rules']);
+    $group['menus'] = explode(',',$group['menus']);
     return $group;
 }
 
@@ -148,17 +149,31 @@ function vae_set_recursion($result,$pid=0,$format="L "){
     return $list;
 }
 
-//菜单父子关系排序，用于后台菜单dom
+//菜单父子关系排序，用于后台菜单DOM
 function vae_set_admin_menu(){
-    if(\think\Cache::get('admin_menu')) {
-        $list = \think\Cache::get('admin_menu');
+    if(\think\Cache::tag('VAE_ADMIN_MENU')->get('menu'.vae_get_login_admin('id'))) {
+        $list = \think\Cache::tag('VAE_ADMIN_MENU')->get('menu'.vae_get_login_admin('id'));
     } else {
-        $menu = \think\Db::name('admin_menu')->order('order asc')->select();
+        $adminGroup = \think\Db::name('admin_group_access')->where([
+            'uid' => vae_get_login_admin('id')
+        ])->column('group_id');
+        $adminMenu = \think\Db::name('admin_group')->where([
+            'id' => ['IN',$adminGroup]
+        ])->column('menus');
+        $adminMenus = [];
+        foreach ($adminMenu as $k => $v) {
+            $v = explode(',',$v);
+            $adminMenus = array_merge($adminMenus,$v);
+        }
+        $menu = \think\Db::name('admin_menu')->where([
+            'id' => ['IN',$adminMenus]
+        ])->order('order asc')->select();
         $list = array();
         //先找出顶级菜单
         foreach ($menu as $k => $v) {
             if($v['pid'] == 0) {
                 $list[$k] = $v;
+                unset($menu[$k]);
             }
         }
         //通过顶级菜单找到下属的子菜单
@@ -166,6 +181,7 @@ function vae_set_admin_menu(){
             foreach ($menu as $key => $v) {
                 if($v['pid'] == $val['id']) {
                     $list[$k]['list'][] = $v;
+                    unset($menu[$key]);
                 }
             }
         }
@@ -176,12 +192,13 @@ function vae_set_admin_menu(){
                     foreach ($menu as $key => $v) {
                         if($v['pid'] == $vals['id']) {
                             $list[$k]['list'][$ks]['list'][] = $v;
+                            unset($menu[$key]);
                         }
                     }
                 }
             }
         }
-        \think\Cache::set('admin_menu',$list);
+        \think\Cache::tag('VAE_ADMIN_MENU')->set('menu'.vae_get_login_admin('id'),$list);
     }
     return $list;
 }

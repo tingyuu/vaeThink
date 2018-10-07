@@ -22,26 +22,31 @@ class Admin extends Validate
         'thumb'          => 'require',
         'group_id'       => 'require',
         'id'             => 'require',
-        'status'         => 'require|checkStatus:-1,1'
+        'status'         => 'require|checkStatus:-1,1',
+        'old_password'   => 'require|different:password',
     ];
 
     protected $message = [
-        'username.require'       => '用户名不能为空',
-        'password.require'       => '密码不能为空',
-        'password.confirm'       => '两次密码不一致',
-        'username.unique'        => '同样的记录已经存在!',
-        'phone.require'          => '手机不能为空',
-        'nickname.require'       => '昵称不能为空',
-        'thumb.require'          => '头像不能为空',
-        'group_id.require'       => '至少要选择一个分组',
-        'id.require'             => '缺少更新条件',
-        'status.require'         => '状态为必选',
-        'status.checkStatus'     => '系统所有者不能被禁用!',
+        'username.require'          => '用户名不能为空',
+        'password.require'          => '密码不能为空',
+        'password.confirm'          => '两次密码不一致',
+        'username.unique'           => '同样的记录已经存在!',
+        'phone.require'             => '手机不能为空',
+        'nickname.require'          => '昵称不能为空',
+        'thumb.require'             => '头像不能为空',
+        'group_id.require'          => '至少要选择一个分组',
+        'id.require'                => '缺少更新条件',
+        'status.require'            => '状态为必选',
+        'status.checkStatus'        => '系统所有者不能被禁用!',
+        'old_password.require'      => '请提供旧密码',
+        'old_password.different'    => '新密码不能和旧密码一样',
     ];
 
     protected $scene = [
-        'add' => ['phone', 'nickname', 'thumb', 'group_id', 'password', 'username', 'status'],
-        'edit' => ['phone', 'nickname', 'thumb', 'group_id', 'id', 'username.unique', 'status'],
+        'add'          => ['phone', 'nickname', 'thumb', 'group_id', 'password', 'username', 'status'],
+        'edit'         => ['phone', 'nickname', 'thumb', 'group_id', 'id', 'username.unique', 'status'],
+        'editPersonal' => ['phone', 'nickname', 'thumb'],
+        'editPassword' => ['old_password', 'password'],
     ];
 
     // 自定义验证规则

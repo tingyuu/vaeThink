@@ -11,6 +11,7 @@
 namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 use think\Db;
+use think\Exception;
 
 class AdminController extends AdminCheckAuth
 {
@@ -63,6 +64,10 @@ class AdminController extends AdminCheckAuth
 				try{
 				    $uid = \think\loader::model('Admin')->strict(false)->field(true)->insertGetId($param);
                 	foreach ($param['group_id'] as $k => $v) {
+                        //为了系统安全，只有系统所有者才可创建id为1的管理员分组
+                        if($v == 1 and vae_get_login_admin('id') !== 1) {
+                            throw new Exception("你没有权限创建系统所有者", 1);
+                        }
                 		$data[$k] = [
                 			'uid' => $uid,
                 			'group_id' => $v
@@ -114,12 +119,18 @@ class AdminController extends AdminCheckAuth
                     \think\loader::model('Admin')->where(['id'=>$param['id']])->strict(false)->field(true)->update($param);
                     Db::name('AdminGroupAccess')->where(['uid'=>$param['id']])->delete();
                     foreach ($param['group_id'] as $k => $v) {
+                        //为了系统安全，只有系统所有者才可创建id为1的管理员分组
+                        if($v == 1 and vae_get_login_admin('id') !== 1) {
+                            throw new Exception("你没有权限创建系统所有者", 1);
+                        }
                         $data[$k] = [
                             'uid' => $param['id'],
                             'group_id' => $v
                         ];
                     }
                     \think\loader::model('AdminGroupAccess')->strict(false)->field(true)->insertAll($data);
+                    //清除菜单缓存
+                    \think\Cache::clear('VAE_ADMIN_MENU');
                     // 提交事务
                     Db::commit();    
                 } catch (\Exception $e) {

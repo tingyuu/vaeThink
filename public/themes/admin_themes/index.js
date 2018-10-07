@@ -151,7 +151,7 @@ layui.config({
 
 	colorpicker.render({
 	    elem: '#vaeyo-color'
-	    ,color: '#1E9FFF'
+	    ,color: theme ? theme[0] : '#1E9FFF'
 	    ,format: 'rgb'
 	    ,predefine: true
 	    ,alpha: true

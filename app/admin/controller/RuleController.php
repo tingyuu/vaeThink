@@ -42,7 +42,7 @@ class RuleController extends AdminCheckAuth
             } else {
                 $rid = \think\loader::model('AdminRule')->strict(false)->field(true)->insertGetId($param);
                 //自动为系统所有者管理组分配新增的节点
-                $group = \think\loader::model('AdminGroup')->where(['id'=>1])->find();
+                $group = \think\loader::model('AdminGroup')->find(1);
                 if(!empty($group)) {
                     $group->rules = $group->rules.','.$rid;
                     $group->save();

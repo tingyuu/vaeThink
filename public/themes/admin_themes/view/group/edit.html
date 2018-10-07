@@ -16,8 +16,12 @@
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">选择权限</label>
-			<div class="layui-input-block">
+			<div class="layui-input-inline" style="min-width: 300px;">
 				<div id="vaeTree"></div>
+			</div>
+			<label class="layui-form-label">分配菜单</label>
+			<div class="layui-input-inline" style="min-width: 300px;">
+				<div id="vaeMenu"></div>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -61,6 +65,15 @@ layui.config({
 		dataType: 'json',
 		success: function(data){
 			authtree.render('#vaeTree', data.data.trees, {inputname: 'rules[]', layfilter: 'lay-check-auth', openall: false});
+		}
+	});
+
+	// 初始化
+	$.ajax({
+		url: '/admin/api/getMenuTree/id/{$id}',
+		dataType: 'json',
+		success: function(data){
+			authtree.render('#vaeMenu', data.data.trees, {inputname: 'menus[]', layfilter: 'lay-check-auth', openall: false});
 		}
 	});
 

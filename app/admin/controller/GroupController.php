@@ -54,6 +54,9 @@ class GroupController extends AdminCheckAuth
             	if(!empty($param['rules'])) {
                     $param['rules'] = implode(',',$param['rules']);
                 }
+                if(!empty($param['menus'])) {
+                    $param['menus'] = implode(',',$param['menus']);
+                }
 			    \think\loader::model('AdminGroup')->strict(false)->field(true)->insert($param);
                 return vae_assign();
             }
@@ -71,18 +74,25 @@ class GroupController extends AdminCheckAuth
     public function editSubmit()
     {
         if($this->request->isPost()){
-            if($this->request->isPost()){
-                $param = vae_get_param();
-                $result = $this->validate($param, 'app\admin\validate\AdminGroup.edit');
-                if ($result !== true) {
-                    return vae_assign(0,$result);
-                } else {
-                    if(!empty($param['rules'])) {
-                        $param['rules'] = implode(',',$param['rules']);
-                    }
-                    \think\loader::model('AdminGroup')->where(['id'=>$param['id']])->strict(false)->field(true)->update($param);
-                    return vae_assign();
+            $param = vae_get_param();
+            $result = $this->validate($param, 'app\admin\validate\AdminGroup.edit');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                //为了系统安全id为1的系统所有者管理组不允许修改
+                if($param['id'] == 1) {
+                    return vae_assign(0,'为了系统安全,该管理组不允许修改');
                 }
+                if(!empty($param['rules'])) {
+                $param['rules'] = implode(',',$param['rules']);
+                }
+                if(!empty($param['menus'])) {
+                    $param['menus'] = implode(',',$param['menus']);
+                }
+                \think\loader::model('AdminGroup')->where(['id'=>$param['id']])->strict(false)->field(true)->update($param);
+                //清除菜单缓存
+                \think\Cache::clear('VAE_ADMIN_MENU');
+                return vae_assign();
             }
         }
     }

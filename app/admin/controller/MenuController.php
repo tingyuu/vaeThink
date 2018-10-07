@@ -40,8 +40,15 @@ class MenuController extends AdminCheckAuth
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('AdminMenu')->strict(false)->field(true)->insert($param);
-                \think\Cache::rm('admin_menu');// 删除后台菜单缓存
+                $mid = \think\loader::model('AdminMenu')->strict(false)->field(true)->insertGetId($param);
+                //自动为系统所有者管理组分配新增的菜单
+                $group = \think\loader::model('AdminGroup')->find(1);
+                if(!empty($group)) {
+                    $group->menus = $group->menus.','.$mid;
+                    $group->save();
+                }
+                //清除菜单缓存
+                \think\Cache::clear('VAE_ADMIN_MENU');
                 return vae_assign();
             }
     	}
@@ -59,7 +66,8 @@ class MenuController extends AdminCheckAuth
             	$data[$param['field']] = $param['value'];
             	$data['id'] = $param['id'];
                 \think\loader::model('AdminMenu')->strict(false)->field(true)->update($data);
-                \think\Cache::rm('admin_menu');// 删除后台菜单缓存
+                //清除菜单缓存
+                \think\Cache::clear('VAE_ADMIN_MENU');
                 return vae_assign();
             }
         }
@@ -74,7 +82,7 @@ class MenuController extends AdminCheckAuth
             return vae_assign(0,"该菜单下还有子菜单，无法删除！");
         }
         if (\think\Db::name('AdminMenu')->delete($id) !== false) {
-            \think\Cache::rm('admin_menu');// 删除后台菜单缓存
+            \think\Cache::clear('VAE_ADMIN_MENU');// 删除后台菜单缓存
             return vae_assign(1,"删除菜单成功！");
         } else {
             return vae_assign(0,"删除失败！");
