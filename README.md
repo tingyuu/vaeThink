@@ -15,7 +15,9 @@ vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的�
 ## 安装方法
 
 1.将下载好的vaeThink源码放入你的localhost环境中；
+
 2.分配一个域名指向vaeThink下的public目录；
+
 3.直接访问你分配的域名，根据安装引导完成安装。
 
 ## 目录结构
