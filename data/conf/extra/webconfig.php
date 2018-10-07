@@ -1,1 +1,0 @@
-<?php return ['admin_title'=>'vaeThink','title'=>'vaeThink轻量级高速PHP内容管理系统','keywords'=>'vaeThink,vae,php,thinkphp,layui,内容管理','logo'=>'\upload\admin\thumb\b5\b7fb935d158abb2d9fb96ce31460e1c0d84e24.png','desc'=>'vaeThink是一款搭载了ThinkPHP和Layui的轻量级高速PHP内容管理系统，扩展性好，可为开发者节省大量的开发时间和成本。','icp'=>'','code'=>''];
