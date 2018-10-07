@@ -1,1 +1,0 @@
-<?php return ['smtp'=>'smtp.qq.com','username'=>'389625819@qq.com','password'=>'fysbjpviloaccbdg','port'=>'465','email'=>'389625819@qq.com','from'=>'vaeThink','template'=>'<p style="text-align: center;">如果只是遇见，不能停留，不如不相遇。很高兴认识你，为vaeThink停留的朋友。</p><p style="text-align: right;">听雨。</p>'];
