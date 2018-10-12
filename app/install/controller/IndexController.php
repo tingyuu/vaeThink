@@ -153,12 +153,6 @@ return [
                 $param['update_time'] = time();
                 
                 \think\Db::name('Admin')->strict(false)->field(true)->insert($param);
-                \think\Db::name('AdminGroupAccess')->strict(false)->field(true)->insert([
-                    'uid'         => 1,
-                    'group_id'    => 1,
-                    'create_time' => time(),
-                    'update_time' => time(),
-                ]);
                 
                 return vae_assign();
             }
