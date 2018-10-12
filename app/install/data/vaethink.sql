@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2018-10-07 17:20:48
+Date: 2018-10-12 15:22:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77', '1,2,3,4,5,6,7,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1538811337');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1539312243');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -79,6 +79,7 @@ CREATE TABLE `vae_admin_group_access` (
 -- ----------------------------
 -- Records of vae_admin_group_access
 -- ----------------------------
+INSERT INTO `vae_admin_group_access` VALUES ('1', '1', '1538960617', '1538960617');
 
 -- ----------------------------
 -- Table structure for `vae_admin_menu`
@@ -136,88 +137,94 @@ CREATE TABLE `vae_admin_rule` (
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+  KEY `name` (`name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
 -- ----------------------------
-INSERT INTO `vae_admin_rule` VALUES ('1', '0', 'menu/index', '菜单', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('2', '1', 'menu/getMenuList', '菜单列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('3', '1', 'menu/add', '添加菜单', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('4', '3', 'menu/addSubmit', '保存添加的菜单', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('5', '1', 'menu/editSubmit', '保存菜单修改', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('6', '1', 'menu/delete', '删除菜单', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('7', '0', 'rule/index', '节点', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('8', '7', 'rule/getRuleList', '节点列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('9', '7', 'rule/add', '添加节点', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('10', '9', 'rule/addSubmit', '保存添加的节点', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('11', '7', 'rule/editSubmit', '保存节点修改', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('12', '7', 'rule/delete', '节点删除', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('13', '0', 'admin/index', '管理员', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('14', '13', 'admin/getAdminList', '管理员列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('15', '13', 'admin/add', '添加管理员', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('16', '15', 'admin/addSubmit', '保存添加的管理员', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('17', '13', 'admin/edit', '修改管理员', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('18', '17', 'admin/editSubmit', '保存管理员的修改', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('19', '13', 'admin/delete', '管理员删除', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('20', '0', 'group/index', '管理组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('21', '20', 'group/getGroupList', '管理组列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('22', '20', 'group/add', '添加管理组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('23', '22', 'group/addSubmit', '保存添加的管理组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('24', '20', 'group/edit', '管理组修改', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('25', '24', 'group/editSubmit', '保存管理组的修改', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('26', '20', 'group/delete', '管理组删除', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('27', '0', 'cate/index', '分类', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('28', '27', 'cate/getCateList', '分类列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('29', '27', 'cate/add', '添加分类', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('30', '29', 'cate/addSubmit', '保存添加的分类', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('31', '27', 'cate/editSubmit', '保存修改的分类', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('32', '27', 'cate/delete', '删除分类', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('33', '0', 'article/index', '文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('34', '33', 'article/getContentList', '文章列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('35', '33', 'article/add', '添加文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('36', '35', 'article/addSubmit', '保存添加的文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('37', '33', 'article/edit', '编辑文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('38', '37', 'article/editSubmit', '保存编辑的文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('39', '33', 'article/delete', '删除文章', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('40', '0', 'recycle/index', '回收站', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('41', '40', 'recycle/getRecycleList', '回收列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('42', '40', 'recycle/reduction', '还原', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('43', '40', 'recycle/delete', '彻底删除', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('44', '0', 'route/index', '路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('45', '44', 'route/getRouteList', '路由列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('46', '44', 'route/add', '添加路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('47', '46', 'route/addSubmit', '保存添加的路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('48', '44', 'route/edit', '修改路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('49', '48', 'route/editSubmit', '保存修改的路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('50', '44', 'route/delete', '删除路由', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('51', '0', 'conf/webConf', '网站信息', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('52', '51', 'conf/webConfSubmit', '保存网站信息', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('53', '0', 'conf/emailConf', '邮箱配置', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('54', '53', 'conf/emailConfSubmit', '保存邮箱配置', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('55', '0', 'hook/index', '钩子管理', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('56', '55', 'hook/getHookList', '钩子列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('57', '0', 'plugin/index', '插件管理', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('58', '57', 'plugin/getPluginList', '插件列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('59', '57', 'plugin/start', '启用插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('60', '57', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('61', '57', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('62', '57', 'plugin/install', '安装插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('64', '0', 'slide/index', '幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('65', '64', 'slide/add', '添加幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('66', '65', 'slide/addSubmit', '保存添加的幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('67', '64', 'slide/edit', '修改幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('68', '67', 'slide/editSubmit', '保存修改的幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('69', '64', 'slide/delete', '删除幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('70', '64', 'slide/getSlideList', '幻灯片组列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('71', '0', 'slide/slideInfo', '幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('72', '71', 'slide/getSlideInfoList', '幻灯片列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('73', '71', 'slide/addSlideInfo', '添加幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('74', '73', 'slide/addSlideInfoSubmit', '保存添加的幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('75', '71', 'slide/editSlideInfo', '编辑幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('76', '75', 'slide/editSlideInfoSubmit', '保存编辑的幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('77', '71', 'slide/deleteSlideInfo', '删除幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('1', '0', '', '系统', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('2', '1', '', '配置', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('3', '1', '', '管理', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('4', '0', '', '门户', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('5', '4', '', '内容', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('6', '0', '', '插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('7', '1', 'menu/index', '菜单', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('8', '7', 'menu/getMenuList', '菜单列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('9', '7', 'menu/add', '添加菜单', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('10', '9', 'menu/addSubmit', '保存添加的菜单', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('11', '7', 'menu/editSubmit', '保存菜单修改', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('12', '7', 'menu/delete', '删除菜单', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('13', '1', 'rule/index', '节点', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('14', '13', 'rule/getRuleList', '节点列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('15', '13', 'rule/add', '添加节点', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('16', '15', 'rule/addSubmit', '保存添加的节点', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('17', '13', 'rule/editSubmit', '保存节点修改', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('18', '13', 'rule/delete', '节点删除', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('19', '3', 'admin/index', '管理员', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('20', '19', 'admin/getAdminList', '管理员列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('21', '19', 'admin/add', '添加管理员', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('22', '21', 'admin/addSubmit', '保存添加的管理员', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('23', '19', 'admin/edit', '修改管理员', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('24', '23', 'admin/editSubmit', '保存管理员的修改', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('25', '19', 'admin/delete', '管理员删除', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('26', '3', 'group/index', '管理组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('27', '26', 'group/getGroupList', '管理组列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('28', '26', 'group/add', '添加管理组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('29', '28', 'group/addSubmit', '保存添加的管理组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('30', '26', 'group/edit', '管理组修改', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('31', '30', 'group/editSubmit', '保存管理组的修改', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('32', '26', 'group/delete', '管理组删除', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('33', '4', 'cate/index', '分类', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('34', '33', 'cate/getCateList', '分类列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('35', '33', 'cate/add', '添加分类', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('36', '35', 'cate/addSubmit', '保存添加的分类', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('37', '33', 'cate/editSubmit', '保存修改的分类', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('38', '33', 'cate/delete', '删除分类', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('39', '5', 'article/index', '文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('40', '39', 'article/getContentList', '文章列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('41', '39', 'article/add', '添加文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('42', '41', 'article/addSubmit', '保存添加的文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('43', '39', 'article/edit', '编辑文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('44', '43', 'article/editSubmit', '保存编辑的文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('45', '39', 'article/delete', '删除文章', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('46', '5', 'recycle/index', '回收站', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('47', '46', 'recycle/getRecycleList', '回收列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('48', '46', 'recycle/reduction', '还原', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('49', '46', 'recycle/delete', '彻底删除', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('50', '1', 'route/index', '路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('51', '50', 'route/getRouteList', '路由列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('52', '50', 'route/add', '添加路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('53', '52', 'route/addSubmit', '保存添加的路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('54', '50', 'route/edit', '修改路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('55', '54', 'route/editSubmit', '保存修改的路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('56', '50', 'route/delete', '删除路由', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('57', '2', 'conf/webConf', '网站信息', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('58', '57', 'conf/webConfSubmit', '保存网站信息', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('59', '2', 'conf/emailConf', '邮箱配置', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('60', '59', 'conf/emailConfSubmit', '保存邮箱配置', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('61', '6', 'hook/index', '钩子管理', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('62', '61', 'hook/getHookList', '钩子列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('63', '6', 'plugin/index', '插件管理', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('64', '63', 'plugin/getPluginList', '插件列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('65', '63', 'plugin/start', '启用插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('66', '63', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('67', '63', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('68', '63', 'plugin/install', '安装插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('69', '4', 'slide/index', '幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('70', '69', 'slide/add', '添加幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('71', '70', 'slide/addSubmit', '保存添加的幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('72', '69', 'slide/edit', '修改幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('73', '72', 'slide/editSubmit', '保存修改的幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('74', '69', 'slide/delete', '删除幻灯片组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('75', '69', 'slide/getSlideList', '幻灯片组列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('76', '4', 'slide/slideInfo', '幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('77', '76', 'slide/getSlideInfoList', '幻灯片列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('78', '76', 'slide/addSlideInfo', '添加幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('79', '78', 'slide/addSlideInfoSubmit', '保存添加的幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('80', '76', 'slide/editSlideInfo', '编辑幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('81', '80', 'slide/editSlideInfoSubmit', '保存编辑的幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('82', '76', 'slide/deleteSlideInfo', '删除幻灯片', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`

@@ -26,59 +26,56 @@ class ApiController extends AdminCheckLogin
         return vae_assign(0,$res['msg']);
     }
 
+    public function list_to_tree($list, $group=[], $pk = 'id', $pid = 'pid', $child = 'list', $root = 0)
+    {
+        // 创建Tree
+        $tree = array();
+        if (is_array($list)) {
+            // 创建基于主键的数组引用
+            $refer = array();
+            foreach ($list as $key => $data) {
+                $refer[$data[$pk]] =& $list[$key];
+                $refer[$data[$pk]]['name'] = $list[$key]['title'];
+                $refer[$data[$pk]]['value'] = $list[$key]['id'];
+                if(!empty($group) and in_array($list[$key]['id'], $group)) {
+                    $refer[$data[$pk]]['checked'] = true;
+                }
+            }
+            foreach ($list as $key => $data) {
+                // 判断是否存在parent
+                $parentId = $data[$pid];
+                if ($root == $parentId) {
+                    $tree[$data[$pk]] =& $list[$key];
+                    $tree[$data[$pk]]['name'] = $list[$key]['title'];
+                    $tree[$data[$pk]]['value'] = $list[$key]['id'];
+                    if(!empty($group) and in_array($list[$key]['id'], $group)) {
+                        $tree[$data[$pk]]['checked'] = true;
+                    }
+                } else {
+                    if (!empty($refer[$parentId])) {
+                        $parent =& $refer[$parentId];
+                        $parent[$child][$data[$pk]] =& $list[$key];
+                        $parent[$child][$data[$pk]]['name'] = $list[$key]['title'];
+                        $parent[$child][$data[$pk]]['value'] = $list[$key]['id'];
+                        if(!empty($group) and in_array($list[$key]['id'], $group)) {
+                            $parent[$child][$data[$pk]]['checked'] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return $tree;
+    }
+
     //获取权限树所需的节点列表
     public function getRuleTree()
     {
         $rule = vae_get_admin_rule();
+        $group = [];
         if(!empty(vae_get_param('id'))) {
-            $group = vae_get_admin_group_info(vae_get_param('id'));
+            $group = vae_get_admin_group_info(vae_get_param('id'))['rules'];
         }
-        $list = array();
-
-        //先找出顶级菜单
-        foreach ($rule as $k => $v) {
-            if($v['pid'] == 0) {
-                $list[$k] = $v;
-                $list[$k]['name'] = $v['title'];
-                $list[$k]['value'] = $v['id'];
-                if(isset($group) and in_array($v['id'], $group['rules'])) {
-                    $list[$k]['checked'] = true;
-                }
-                //unset($rule[$k]);
-            }
-        }
-        //通过顶级菜单找到下属的子菜单
-        foreach ($list as $k => $val) {
-            foreach ($rule as $key => $v) {
-                if($v['pid'] == $val['id']) {
-                    $list[$k]['list'][$key] = $v;
-                    $list[$k]['list'][$key]['name'] = $v['title'];
-                    $list[$k]['list'][$key]['value'] = $v['id'];
-                    if(isset($group) and in_array($v['id'], $group['rules'])) {
-                        $list[$k]['list'][$key]['checked'] = true;
-                    }
-                }
-                //unset($rule[$key]);
-            }
-        }
-        //三级菜单
-        foreach ($list as $k => $val) {
-            if(isset($val['list'])) {
-                foreach ($val['list'] as $ks => $vals) {
-                    foreach ($rule as $key => $v) {
-                        if($v['pid'] == $vals['id']) {
-                            $list[$k]['list'][$ks]['list'][$key] = $v;
-                            $list[$k]['list'][$ks]['list'][$key]['name'] = $v['title'];
-                            $list[$k]['list'][$ks]['list'][$key]['value'] = $v['id'];
-                            if(isset($group) and in_array($v['id'], $group['rules'])) {
-                                $list[$k]['list'][$ks]['list'][$key]['checked'] = true;
-                            }
-                        }
-                        //unset($rule[$key]);
-                    }
-                }
-            }
-        }
+        $list = $this->list_to_tree($rule,$group);
         $data['trees'] = $list;
         return vae_assign(0,'',$data);
     }
@@ -87,55 +84,11 @@ class ApiController extends AdminCheckLogin
     public function getMenuTree()
     {
         $rule = vae_get_admin_menu();
+        $group = [];
         if(!empty(vae_get_param('id'))) {
-            $group = vae_get_admin_group_info(vae_get_param('id'));
+            $group = vae_get_admin_group_info(vae_get_param('id'))['menus'];
         }
-        $list = array();
-
-        //先找出顶级菜单
-        foreach ($rule as $k => $v) {
-            if($v['pid'] == 0) {
-                $list[$k] = $v;
-                $list[$k]['name'] = $v['title'];
-                $list[$k]['value'] = $v['id'];
-                if(isset($group) and in_array($v['id'], $group['menus'])) {
-                    $list[$k]['checked'] = true;
-                }
-                unset($rule[$k]);
-            }
-        }
-        //通过顶级菜单找到下属的子菜单
-        foreach ($list as $k => $val) {
-            foreach ($rule as $key => $v) {
-                if($v['pid'] == $val['id']) {
-                    $list[$k]['list'][$key] = $v;
-                    $list[$k]['list'][$key]['name'] = $v['title'];
-                    $list[$k]['list'][$key]['value'] = $v['id'];
-                    if(isset($group) and in_array($v['id'], $group['menus'])) {
-                        $list[$k]['list'][$key]['checked'] = true;
-                    }
-                    unset($rule[$key]);
-                }
-            }
-        }
-        //三级菜单
-        foreach ($list as $k => $val) {
-            if(isset($val['list'])) {
-                foreach ($val['list'] as $ks => $vals) {
-                    foreach ($rule as $key => $v) {
-                        if($v['pid'] == $vals['id']) {
-                            $list[$k]['list'][$ks]['list'][$key] = $v;
-                            $list[$k]['list'][$ks]['list'][$key]['name'] = $v['title'];
-                            $list[$k]['list'][$ks]['list'][$key]['value'] = $v['id'];
-                            if(isset($group) and in_array($v['id'], $group['menus'])) {
-                                $list[$k]['list'][$ks]['list'][$key]['checked'] = true;
-                            }
-                            unset($rule[$key]);
-                        }
-                    }
-                }
-            }
-        }
+        $list = $this->list_to_tree($rule,$group);
         $data['trees'] = $list;
         return vae_assign(0,'',$data);
     }

@@ -149,6 +149,32 @@ function vae_set_recursion($result,$pid=0,$format="L "){
     return $list;
 }
 
+function vae_list_to_tree($list, $pk = 'id', $pid = 'pid', $child = 'list', $root = 0)
+{
+    // 创建Tree
+    $tree = array();
+    if (is_array($list)) {
+        // 创建基于主键的数组引用
+        $refer = array();
+        foreach ($list as $key => $data) {
+            $refer[$data[$pk]] =& $list[$key];
+        }
+        foreach ($list as $key => $data) {
+            // 判断是否存在parent
+            $parentId = $data[$pid];
+            if ($root == $parentId) {
+                $tree[$data[$pk]] =& $list[$key];
+            } else {
+                if (isset($refer[$parentId])) {
+                    $parent =& $refer[$parentId];
+                    $parent[$child][$data[$pk]] =& $list[$key];
+                }
+            }
+        }
+    }
+    return $tree;
+}
+
 //菜单父子关系排序，用于后台菜单DOM
 function vae_set_admin_menu(){
     if(\think\Cache::tag('VAE_ADMIN_MENU')->get('menu'.vae_get_login_admin('id'))) {
@@ -168,36 +194,7 @@ function vae_set_admin_menu(){
         $menu = \think\Db::name('admin_menu')->where([
             'id' => ['IN',$adminMenus]
         ])->order('order asc')->select();
-        $list = array();
-        //先找出顶级菜单
-        foreach ($menu as $k => $v) {
-            if($v['pid'] == 0) {
-                $list[$k] = $v;
-                unset($menu[$k]);
-            }
-        }
-        //通过顶级菜单找到下属的子菜单
-        foreach ($list as $k => $val) {
-            foreach ($menu as $key => $v) {
-                if($v['pid'] == $val['id']) {
-                    $list[$k]['list'][] = $v;
-                    unset($menu[$key]);
-                }
-            }
-        }
-        //三级菜单
-        foreach ($list as $k => $val) {
-            if(isset($val['list'])) {
-                foreach ($val['list'] as $ks => $vals) {
-                    foreach ($menu as $key => $v) {
-                        if($v['pid'] == $vals['id']) {
-                            $list[$k]['list'][$ks]['list'][] = $v;
-                            unset($menu[$key]);
-                        }
-                    }
-                }
-            }
-        }
+        $list = vae_list_to_tree($menu);
         \think\Cache::tag('VAE_ADMIN_MENU')->set('menu'.vae_get_login_admin('id'),$list);
     }
     return $list;
