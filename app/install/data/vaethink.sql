@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 本地服务器
-Source Server Version : 50547
+Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : vaethink
 
 Target Server Type    : MYSQL
-Target Server Version : 50547
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-10-12 15:22:25
+Date: 2018-10-14 13:11:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1539312243');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68,83,84,85,86,87,88,89,90,91,92,93,94,95,96', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1539488985');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -119,9 +119,8 @@ INSERT INTO `vae_admin_menu` VALUES ('18', '0', '插件', '', '', '1', '0', '0')
 INSERT INTO `vae_admin_menu` VALUES ('19', '18', '内置钩子', 'admin/hook/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('20', '18', '插件管理', 'admin/plugin/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('21', '18', '插件市场', '', '', '1', '0', '0');
-INSERT INTO `vae_admin_menu` VALUES ('22', '7', '幻灯组', 'admin/slide/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('22', '7', '轮播', 'admin/slide/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('23', '7', '导航', 'admin/nav/index', '', '1', '0', '0');
-INSERT INTO `vae_admin_menu` VALUES ('24', '11', '页面', 'admin/page/index', '', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_rule`
@@ -138,7 +137,7 @@ CREATE TABLE `vae_admin_rule` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
@@ -211,20 +210,34 @@ INSERT INTO `vae_admin_rule` VALUES ('65', '63', 'plugin/start', '启用插件',
 INSERT INTO `vae_admin_rule` VALUES ('66', '63', 'plugin/disabled', '禁用插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('67', '63', 'plugin/uninstall', '卸载插件', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('68', '63', 'plugin/install', '安装插件', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('69', '4', 'slide/index', '幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('70', '69', 'slide/add', '添加幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('71', '70', 'slide/addSubmit', '保存添加的幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('72', '69', 'slide/edit', '修改幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('73', '72', 'slide/editSubmit', '保存修改的幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('74', '69', 'slide/delete', '删除幻灯片组', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('75', '69', 'slide/getSlideList', '幻灯片组列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('76', '4', 'slide/slideInfo', '幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('77', '76', 'slide/getSlideInfoList', '幻灯片列表', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('78', '76', 'slide/addSlideInfo', '添加幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('79', '78', 'slide/addSlideInfoSubmit', '保存添加的幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('80', '76', 'slide/editSlideInfo', '编辑幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('81', '80', 'slide/editSlideInfoSubmit', '保存编辑的幻灯片', '1', '', '0', '0');
-INSERT INTO `vae_admin_rule` VALUES ('82', '76', 'slide/deleteSlideInfo', '删除幻灯片', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('69', '4', 'slide/index', '轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('70', '69', 'slide/add', '添加轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('71', '70', 'slide/addSubmit', '保存添加的轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('72', '69', 'slide/edit', '修改轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('73', '72', 'slide/editSubmit', '保存修改的轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('74', '69', 'slide/delete', '删除轮播组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('75', '69', 'slide/getSlideList', '轮播组列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('76', '4', 'slide/slideInfo', '轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('77', '76', 'slide/getSlideInfoList', '轮播列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('78', '76', 'slide/addSlideInfo', '添加轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('79', '78', 'slide/addSlideInfoSubmit', '保存添加的轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('80', '76', 'slide/editSlideInfo', '编辑轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('81', '80', 'slide/editSlideInfoSubmit', '保存编辑的轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('82', '76', 'slide/deleteSlideInfo', '删除轮播', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('83', '4', '', '导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('84', '83', 'nav/index', '导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('85', '84', 'nav/getNavList', '导航组列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('86', '84', 'nav/add', '添加导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('87', '86', 'nav/addSubmit', '保存添加的导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('88', '84', 'nav/edit', '修改导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('89', '88', 'nav/editSubmit', '保存修改的导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('90', '84', 'nav/delete', '删除导航组', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('91', '83', 'nav/navInfo', '管理导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('92', '91', 'nav/getNavInfoList', '导航列表', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('93', '91', 'nav/addNavInfo', '添加导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('94', '93', 'nav/addNavInfoSubmit', '保存添加的导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('95', '91', 'nav/editNavInfoSubmit', '保存修改的导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('96', '91', 'nav/deleteNavInfo', '删除导航', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`
@@ -238,6 +251,7 @@ CREATE TABLE `vae_article` (
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1下架',
   `thumb` varchar(1000) NOT NULL,
   `content` text NOT NULL,
+  `read` int(11) NOT NULL DEFAULT '0' COMMENT '阅读量',
   `article_cate_id` int(11) NOT NULL DEFAULT '0',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
@@ -304,7 +318,7 @@ CREATE TABLE `vae_hook` (
   `module` varchar(15) NOT NULL DEFAULT '' COMMENT '模块名，模块专属钩子',
   `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
 
 -- ----------------------------
 -- Records of vae_hook
@@ -318,9 +332,11 @@ INSERT INTO `vae_hook` VALUES ('6', '1', '0', '应用结束', 'app_end', 'vae', 
 INSERT INTO `vae_hook` VALUES ('7', '1', '0', '日志write方法', 'log_write', 'vae', '日志write方法');
 INSERT INTO `vae_hook` VALUES ('8', '1', '0', '输出结束', 'response_end', 'vae', '输出结束');
 INSERT INTO `vae_hook` VALUES ('9', '1', '0', '后台控制器初始化', 'admin_init', 'vae', '后台控制器初始化');
-INSERT INTO `vae_hook` VALUES ('10', '1', '0', '前台控制器初始化', 'home_init', 'vae', '前台控制器初始化');
+INSERT INTO `vae_hook` VALUES ('10', '1', '0', 'API控制器初始化', 'api_init', 'vae', 'API控制器初始化');
 INSERT INTO `vae_hook` VALUES ('11', '2', '1', '后台首页', 'admin_main', 'admin', '后台首页');
 INSERT INTO `vae_hook` VALUES ('12', '2', '1', '后台登录页面', 'admin_login', 'admin', '后台登录页面初始化');
+INSERT INTO `vae_hook` VALUES ('13', '1', '0', '文件上传前', 'upload_begin', 'vae', '文件上传完成前');
+INSERT INTO `vae_hook` VALUES ('14', '1', '0', '文件上传后', 'upload_end', 'vae', '文件上传完成后');
 
 -- ----------------------------
 -- Table structure for `vae_hook_plugin`
@@ -340,24 +356,44 @@ CREATE TABLE `vae_hook_plugin` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `vae_page`
+-- Table structure for `vae_nav`
 -- ----------------------------
-DROP TABLE IF EXISTS `vae_page`;
-CREATE TABLE `vae_page` (
+DROP TABLE IF EXISTS `vae_nav`;
+CREATE TABLE `vae_nav` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `keywords` varchar(1000) DEFAULT NULL,
-  `desc` varchar(1000) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1下架',
-  `content` text NOT NULL,
+  `title` varchar(50) NOT NULL DEFAULT '标题',
+  `name` varchar(50) NOT NULL COMMENT '标识',
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
+  `desc` varchar(255) DEFAULT NULL,
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
-  `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='页面';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航';
 
 -- ----------------------------
--- Records of vae_page
+-- Records of vae_nav
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `vae_nav_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `vae_nav_info`;
+CREATE TABLE `vae_nav_info` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `nav_id` int(11) unsigned NOT NULL,
+  `title` varchar(225) DEFAULT NULL,
+  `src` varchar(100) DEFAULT NULL,
+  `param` varchar(100) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
+  `order` int(11) NOT NULL DEFAULT '0',
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航详情';
+
+-- ----------------------------
+-- Records of vae_nav_info
 -- ----------------------------
 
 -- ----------------------------
@@ -418,7 +454,7 @@ CREATE TABLE `vae_slide` (
 -- ----------------------------
 -- Records of vae_slide
 -- ----------------------------
-INSERT INTO `vae_slide` VALUES ('1', '首页幻灯片', 'VAE_INDEX_SLIDE', '1', '首页幻灯片组。', '0', '0');
+INSERT INTO `vae_slide` VALUES ('1', '首页轮播', 'VAE_INDEX_SLIDE', '1', '首页轮播组。', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_slide_info`
@@ -430,6 +466,7 @@ CREATE TABLE `vae_slide_info` (
   `title` varchar(225) DEFAULT NULL,
   `desc` varchar(255) DEFAULT NULL,
   `img` varchar(255) NOT NULL,
+  `src` varchar(100) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `order` int(11) NOT NULL DEFAULT '0',
   `create_time` int(11) NOT NULL,

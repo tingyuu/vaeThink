@@ -96,7 +96,7 @@ function vae_get_admin_group(){
     return $group;
 }
 
-//读取制定权限分组详情
+//读取指定权限分组详情
 function vae_get_admin_group_info($id){
     $group = \think\Db::name('admin_group')->where(['id'=>$id])->find();
     $group['rules'] = explode(',',$group['rules']);
@@ -209,8 +209,12 @@ function vae_upload($module,$use){
         $res['msg']='没有上传文件';
         return $res;
     }
+    //上传开始前的钩子
+    vae_set_hook('upload_begin');
     $info = $file->rule('sha1')->move(VAE_ROOT . 'public' . DS . 'upload' . DS . $module . DS . $use);
     if($info) {
+        //文件上传成功后的钩子
+        vae_set_hook('upload_end');
         $res['code'] = 1;
         $res['data'] = DS . 'upload' . DS . $module . DS . $use . DS . $info->getSaveName();
         return $res;
@@ -324,4 +328,10 @@ function vae_set_hook($hook, &$params = null, $extra = null)
 function vae_set_hook_one($hook, &$params = null, $extra = null)
 {
     return \think\Hook::listen($hook, $params, $extra, true);
+}
+
+//读取导航列表
+function vae_get_nav($nav_id){
+    $nav = \think\Db::name('NavInfo')->where('nav_id',$nav_id)->order('order asc')->select();
+    return $nav;
 }

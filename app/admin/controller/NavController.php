@@ -12,7 +12,7 @@ namespace app\admin\controller;
 use vae\controller\AdminCheckAuth;
 use think\Db;
 
-class SlideController extends AdminCheckAuth
+class NavController extends AdminCheckAuth
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class SlideController extends AdminCheckAuth
     }
 
     //列表
-    public function getSlideList()
+    public function getNavList()
     {
     	$param = vae_get_param();
         $where = array();
@@ -28,11 +28,11 @@ class SlideController extends AdminCheckAuth
             $where['id|name|title|desc'] = ['like', '%' . $param['keywords'] . '%'];
         }
         $rows = empty($param['limit']) ? \think\Config::get('paginate.list_rows') : $param['limit'];
-        $slide = \think\loader::model('Slide')
+        $nav = \think\loader::model('Nav')
     			->order('create_time asc')
                 ->where($where)
     			->paginate($rows,false,['query'=>$param]);
-    	return vae_assign_table(0,'',$slide);
+    	return vae_assign_table(0,'',$nav);
     }
 
     //添加
@@ -46,11 +46,11 @@ class SlideController extends AdminCheckAuth
     {
     	if($this->request->isPost()){
     		$param = vae_get_param();
-    		$result = $this->validate($param, 'app\admin\validate\Slide.add');
+    		$result = $this->validate($param, 'app\admin\validate\Nav.add');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-				\think\loader::model('Slide')->strict(false)->field(true)->insert($param);
+				\think\loader::model('Nav')->strict(false)->field(true)->insert($param);
                 return vae_assign();
             }
     	}
@@ -60,9 +60,9 @@ class SlideController extends AdminCheckAuth
     public function edit()
     {
         $id    = vae_get_param('id');
-        $slide = Db::name('slide')->find($id);
+        $nav = Db::name('nav')->find($id);
         return view('',[
-            'slide'=>$slide
+            'nav'=>$nav
         ]);
     }
 
@@ -71,11 +71,11 @@ class SlideController extends AdminCheckAuth
     {
         if($this->request->isPost()){
             $param = vae_get_param();
-            $result = $this->validate($param, 'app\admin\validate\Slide.edit');
+            $result = $this->validate($param, 'app\admin\validate\Nav.edit');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('Slide')->where([
+                \think\loader::model('Nav')->where([
                     'id'=>$param['id']
                 ])->strict(false)->field(true)->update($param);
                 return vae_assign();
@@ -87,92 +87,89 @@ class SlideController extends AdminCheckAuth
     public function delete()
     {
         $id    = vae_get_param("id");
-        $count = Db::name('SlideInfo')->where([
-            'slide_id' => $id
+        $count = Db::name('NavInfo')->where([
+            'nav_id' => $id
         ])->count();
         if($count > 0) {
-            return vae_assign(0,'该组下还有幻灯片，无法删除');
+            return vae_assign(0,'该组下还有导航，无法删除');
         }
-        if (Db::name('Slide')->delete($id) !== false) {
+        if (Db::name('Nav')->delete($id) !== false) {
             return vae_assign(1,"删除成功！");
         } else {
             return vae_assign(0,"删除失败！");
         }
     }
 
-    //管理幻灯片
-    public function slideInfo()
+    //管理导航
+    public function navInfo()
     {
         return view('',[
-            'slide_id' => vae_get_param('id')
+            'nav_id' => vae_get_param('id')
         ]);
     }
 
-    //幻灯片列表
-    public function getSlideInfoList()
+    //导航列表
+    public function getNavInfoList()
     {
         $id            = vae_get_param('id');
-        $slideInfoList = Db::name('SlideInfo')->where([
-            'slide_id' => $id
-        ])->select();
-        return vae_assign(0,'',$slideInfoList);
+        $navInfoList = Db::name('NavInfo')->where([
+            'nav_id' => $id
+        ])->order('order asc')->select();
+        return vae_assign(0,'',$navInfoList);
     }
 
-    //添加幻灯片
-    public function addSlideInfo()
+    //添加导航
+    public function addNavInfo()
     {
         return view('',[
-            'slide_id' => vae_get_param('id')
+            'nav_id' => vae_get_param('id'),
+            'pid' => vae_get_param('pid')
         ]);
     }
 
-    //保存幻灯片添加
-    public function addSlideInfoSubmit()
+    //保存添加
+    public function addNavInfoSubmit()
     {
         if($this->request->isPost()){
             $param = vae_get_param();
-            $result = $this->validate($param, 'app\admin\validate\Slide.addInfo');
+            $result = $this->validate($param, 'app\admin\validate\Nav.addInfo');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('SlideInfo')->strict(false)->field(true)->insert($param);
+                \think\loader::model('NavInfo')->strict(false)->field(true)->insert($param);
+                //清除导航缓存
+                \think\Cache::clear('VAE_NAV');
                 return vae_assign();
             }
         }
     }
 
-    //修改幻灯片
-    public function editSlideInfo()
+    //保存修改
+    public function editNavInfoSubmit()
     {
-        $id = vae_get_param('id');
-        $slideInfo = Db::name('SlideInfo')->find($id);
-        return view('',[
-            'slideInfo' => $slideInfo
-        ]);
-    }
-
-    //保存幻灯片修改
-    public function editSlideInfoSubmit()
-    {
-        if($this->request->isPost()){
+        if($this->request->isPost()) {
             $param = vae_get_param();
-            $result = $this->validate($param, 'app\admin\validate\Slide.editInfo');
+            $result = $this->validate($param, 'app\admin\validate\Nav.editInfo');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('SlideInfo')->where([
-                    'id' => $param['id']
-                ])->strict(false)->field(true)->update($param);
+                $data[$param['field']] = $param['value'];
+                $data['id'] = $param['id'];
+                \think\loader::model('NavInfo')->strict(false)->field(true)->update($data);
+                //清除导航缓存
+                \think\Cache::clear('VAE_NAV');
                 return vae_assign();
             }
         }
     }
 
-    //删除幻灯片
-    public function deleteSlideInfo()
+    //删除
+    public function deleteNavInfo()
     {
         $id    = vae_get_param("id");
-        if (Db::name('SlideInfo')->delete($id) !== false) {
+        if (Db::name('NavInfo')->delete($id) !== false) {
+            //清除导航缓存
+            \think\Cache::clear('VAE_NAV');
             return vae_assign(1,"删除成功！");
         } else {
             return vae_assign(0,"删除失败！");

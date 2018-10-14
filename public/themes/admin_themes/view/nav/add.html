@@ -15,43 +15,30 @@
   <div class="layui-form-item">
     <label class="layui-form-label">标题</label>
     <div class="layui-input-block" style="max-width: 500px;">
-      <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input" value="{$slideInfo.title}">
-    </div>
-  </div>
-  <div class="layui-form-item layui-form-text">
-    <label class="layui-form-label">描述</label>
-    <div class="layui-input-block" style="max-width: 600px;">
-      <textarea name="desc" placeholder="请输入描述" class="layui-textarea">{$slideInfo.desc}</textarea>
+      <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
-    <label class="layui-form-label">图片</label>
-    <div class="layui-input-inline">
-      <div class="layui-upload">
-        <button type="button" class="layui-btn" id="test1">上传图片</button>
-        <div class="layui-upload-list" id="demo1">
-          <img src="{$slideInfo.img}" />
-          <input type="hidden" name="img" value="{$slideInfo.img}">
-        </div>
-      </div>
-    </div>
-  </div> 
-  <div class="layui-form-item">
-    <label class="layui-form-label">链接</label>
+    <label class="layui-form-label">标识</label>
     <div class="layui-input-block" style="max-width: 500px;">
-      <input type="text" name="src" autocomplete="off" placeholder="请输入链接" class="layui-input" value="{$slideInfo.src}">
+      <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入标识" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">状态</label>
     <div class="layui-input-block">
-      <input type="radio" name="status" value="1" title="正常" {eq name="$slideInfo.status" value="1"}checked{/eq}>
-      <input type="radio" name="status" value="-1" title="禁用" {eq name="$slideInfo.status" value="-1"}checked{/eq}>
+      <input type="radio" name="status" value="1" title="正常" checked>
+      <input type="radio" name="status" value="-1" title="禁用">
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">备注</label>
+    <div class="layui-input-block" style="max-width: 600px;">
+      <textarea name="desc" placeholder="请输入备注" class="layui-textarea"></textarea>
     </div>
   </div>
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <input type="hidden" name="id" value="{$slideInfo.id}" />
       <button class="layui-btn" lay-submit="" lay-filter="vaeform">立即提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
@@ -68,26 +55,11 @@ layui.config({
   ,$ = layui.$
   ,upload = layui.upload
   ,vae = layui.vaeyo;
-
-  //头像上传
-  var uploadInst = upload.render({
-    elem: '#test1'
-    ,url: '/admin/api/upload'
-    ,done: function(res){
-      //如果上传失败
-      if(res.code == 0){
-        return layer.msg('上传失败');
-      }
-      //上传成功
-      $('#demo1 input').attr('value',res.data);
-      $('#demo1 img').attr('src',res.data);
-    }
-  });
   
   //监听提交
   form.on('submit(vaeform)', function(data){
     $.ajax({
-      url:"/admin/slide/editSlideInfoSubmit",
+      url:"/admin/nav/addSubmit",
       type:'post',
       data:data.field,
       success:function(e){

@@ -11,23 +11,24 @@
 <body class="vae-body">
 
 <div class="vae-content">
+  <form class="layui-form" style="display: inline;">
+    <input type="text" name="keywords" required  lay-verify="required" placeholder="ID/标题/标识/备注" class="layui-input" autocomplete="off" style="max-width: 200px;display: inline;margin: -10px 10px 0 0;height: 30px;" />
+    <button class="layui-btn layui-btn-sm layui-btn-danger" lay-submit="" lay-filter="vaeform">提交搜索</button>
+  </form> 
   <table class="layui-hide" id="test" lay-filter="test"></table>
 </div>
-
-<script type="text/html" id="img">
-  <img src='{{d.img}}' height="25" />
-</script>
 
 <script type="text/html" id="status">
   <i class="layui-icon {{#  if(d.status == 1){ }}layui-icon-ok{{#  } else { }}layui-icon-close{{#  } }}"></i>
 </script>
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-primary layui-btn-sm" vaeyo_tab vae-id="1014" vae-title="添加轮播" vae-src="/admin/slide/addSlideInfo?id={$slide_id}">添加轮播</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm" vaeyo_tab vae-id="1016" vae-title="添加导航组" vae-src="/admin/nav/add">添加导航组</button>
   </div>
 </script>
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-xs layui-btn-primary" vaeyo_tab vae-id="1015" vae-title="编辑轮播" vae-src="/admin/slide/editSlideInfo/id/{{d.id}}">编辑</a>
+  <a class="layui-btn layui-btn-xs layui-btn-primary" vaeyo_tab vae-id="1017" vae-title="编辑导航组" vae-src="/admin/nav/edit/id/{{d.id}}">编辑</a>
+  <a class="layui-btn layui-btn-xs layui-btn-primary" vaeyo_tab vae-id="1018" vae-title="管理导航" vae-src="/admin/nav/navInfo?id={{d.id}}">管理导航</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
               
@@ -46,14 +47,13 @@ layui.config({
   var tableIns = table.render({
     elem: '#test'
     ,toolbar: '#toolbarDemo'
-    ,url: '/admin/slide/getSlideInfoList' //数据接口
-    ,where: {id:vae.getParam('id')}
-    ,page: false //开启分页
+    ,url: '/admin/nav/getNavList' //数据接口
+    ,page: true //开启分页
     ,cols: [[ //表头
       {field: 'id', title: 'ID', sort: true, fixed: 'left', align:'center', width:80}
-      ,{field: 'img', title:'图片', toolbar: '#img', align:'center'}
       ,{field: 'title', title: '标题', align:'center'}
-      ,{field: 'desc', title: '描述', align:'center'}
+      ,{field: 'name', title:'标识', align:'center'}
+      ,{field: 'desc', title: '备注', align:'center'}
       ,{field: 'status', title:'状态', toolbar: '#status', align:'center', width:100}
       ,{field: 'right', toolbar: '#barDemo', width:200, align:'center'}
     ]]
@@ -66,7 +66,7 @@ layui.config({
     if(obj.event === 'del'){
       layer.confirm('真的删除行么', {icon: 3, title:'提示'}, function(index){
         $.ajax({
-          url:"/admin/slide/deleteSlideInfo",
+          url:"/admin/nav/delete",
           data:{id:data.id},
           success:function(res){
             layer.msg(res.msg);
@@ -78,6 +78,15 @@ layui.config({
         layer.close(index);
       });
     }
+  });
+
+  //监听搜索提交
+  form.on('submit(vaeform)', function(data){
+    console.log(data.field.keywords)
+    if(data.field.keywords) {
+      tableIns.reload({where:{keywords:data.field.keywords}});
+    }
+    return false;
   });
 });
 </script>
