@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 本地服务器
-Source Server Version : 50553
+Source Server Version : 50547
 Source Host           : localhost:3306
 Source Database       : vaethink
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2018-10-14 13:11:02
+Date: 2018-10-18 14:43:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,7 +118,6 @@ INSERT INTO `vae_admin_menu` VALUES ('17', '15', '邮箱配置', 'admin/conf/ema
 INSERT INTO `vae_admin_menu` VALUES ('18', '0', '插件', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('19', '18', '内置钩子', 'admin/hook/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('20', '18', '插件管理', 'admin/plugin/index', '', '1', '0', '0');
-INSERT INTO `vae_admin_menu` VALUES ('21', '18', '插件市场', '', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('22', '7', '轮播', 'admin/slide/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('23', '7', '导航', 'admin/nav/index', '', '1', '0', '0');
 
@@ -318,7 +317,7 @@ CREATE TABLE `vae_hook` (
   `module` varchar(15) NOT NULL DEFAULT '' COMMENT '模块名，模块专属钩子',
   `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
 
 -- ----------------------------
 -- Records of vae_hook
@@ -394,6 +393,27 @@ CREATE TABLE `vae_nav_info` (
 
 -- ----------------------------
 -- Records of vae_nav_info
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `vae_page`
+-- ----------------------------
+DROP TABLE IF EXISTS `vae_page`;
+CREATE TABLE `vae_page` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `keywords` varchar(1000) DEFAULT NULL,
+  `desc` varchar(1000) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1下架',
+  `content` text NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `delete_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='页面';
+
+-- ----------------------------
+-- Records of vae_page
 -- ----------------------------
 
 -- ----------------------------
