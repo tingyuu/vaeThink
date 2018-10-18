@@ -15,13 +15,26 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">安排权限</label>
-			<div class="layui-input-inline" style="min-width: 400px;">
-				<div id="vaeTree"></div>
-			</div>
-			<label class="layui-form-label">安排菜单</label>
-			<div class="layui-input-inline" style="min-width: 400px;">
-				<div id="vaeMenu"></div>
+			<label class="layui-form-label">权限及菜单</label>
+			<div class="layui-input-block" style="max-width: 500px;">
+				<div class="layui-tab">
+				  <ul class="layui-tab-title">
+				    <li class="layui-this">权限配置</li>
+				    <li>菜单配置</li>
+				  </ul>
+				  <div class="layui-tab-content">
+				    <div class="layui-tab-item layui-show">
+				    	<div class="layui-input-inline" style="min-width: 400px;">
+							<div id="vaeTree"></div>
+						</div>
+				    </div>
+				    <div class="layui-tab-item">
+				    	<div class="layui-input-inline" style="min-width: 400px;">
+							<div id="vaeMenu"></div>
+						</div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -62,6 +75,7 @@ layui.config({
 	// 初始化
 	$.ajax({
 		url: "/admin/api/getRuleTree/id/{$id}",
+		async:false, 
 		dataType: 'json',
 		success: function(data){
 			authtree.render('#vaeTree', data.data.trees, {inputname: 'rules[]', layfilter: 'lay-check-auth', openall: false});
@@ -71,6 +85,7 @@ layui.config({
 	// 初始化
 	$.ajax({
 		url: '/admin/api/getMenuTree/id/{$id}',
+		async:false, 
 		dataType: 'json',
 		success: function(data){
 			authtree.render('#vaeMenu', data.data.trees, {inputname: 'menus[]', layfilter: 'lay-check-auth', openall: false});
