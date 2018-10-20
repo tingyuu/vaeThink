@@ -8,16 +8,16 @@
 // +----------------------------------------------------------------------
 // | Author: 听雨 < 389625819@qq.com >
 // +----------------------------------------------------------------------
-namespace plugin\hacker;
+namespace plugin\stay;
 use vae\controller\PluginBase;
 
-class HackerIndex extends PluginBase
+class StayIndex extends PluginBase
 {
     public $explain = [
-        'name'        => 'Hacker',
+        'name'        => 'Stay',
         'hook'        => 'admin_login',
-        'title'       => '[黑客]后台登录页',
-        'desc'        => '自定义黑客风格后台登录页',
+        'title'       => '[停留]后台登录页',
+        'desc'        => '自定义唯美风格后台登录页',
         'author'      => '听雨',
         'interface'   => 0,
     ];
