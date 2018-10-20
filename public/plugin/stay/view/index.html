@@ -26,14 +26,14 @@
             <h1>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</h1>
             <form action="" id="vaeyo-login">
 				<div>
-					<input type="text" name="username" class="username" placeholder="Username" autocomplete="off"/>
+					<input type="text" name="username" class="username" placeholder="Username" autocomplete="off" value="vae" />
 				</div>
                 <div>
-					<input type="password" name="password" class="password" placeholder="Password" oncontextmenu="return false" onpaste="return false" />
+					<input type="password" name="password" class="password" placeholder="Password:vaethink" oncontextmenu="return false" onpaste="return false" />
                 </div>
                 <div>
-	                <input type="search" name="captcha" placeholder="验证码" autocomplete="off" style="width:150px;float: left;" />
-			  		<img src="/captcha" class="input" height="37" width="198" id="captcha" onclick="this.src='/captcha?seed='+Math.random()" style="margin-left: 1px;margin-top: 27px;width:150px;display: block;float: left;">
+	                <input type="search" name="captcha" placeholder="Code" autocomplete="off" style="width:140px;float: left;" />
+			  		<img src="/captcha" class="input" height="37" width="198" id="captcha" onclick="this.src='/captcha?seed='+Math.random()" style="margin-left: 20px;margin-top: 27px;width:140px;display: block;float: left;border-radius: 6px;border: 1px solid rgba(255,255,255,.8);box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;">
 			  	</div>
                 <button id="submit" type="button">Sign in</button>
             </form>
