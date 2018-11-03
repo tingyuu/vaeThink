@@ -37,7 +37,7 @@ input {
     width: 270px;
     height: 42px;
 	line-height:42px;
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 0 15px;
     background: #2d2d2d; /* browsers that don't support rgba */
     *background-color:transparent;
@@ -81,7 +81,7 @@ button {
     cursor: pointer;
     width: 300px;
     height: 44px;
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 0;
     background: #ef4300;
     -moz-border-radius: 6px;
@@ -136,7 +136,7 @@ button:active {
 
 .connect {
     width: 800px;
-    margin: 50px auto 0 auto;
+    margin: 35px auto 0 auto;
     font-size: 14px;
     
     text-shadow: 0 1px 3px rgba(0,0,0,.2);
