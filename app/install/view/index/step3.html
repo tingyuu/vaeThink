@@ -56,6 +56,7 @@
         <div class="layui-input-inline">
           <input type="text" name="DB_NAME" required  lay-verify="required" autocomplete="off" class="layui-input" value="vaethink">
         </div>
+        <div class="layui-form-mid layui-word-aux">不能有"-"等特殊符号</div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">表前缀</label>
@@ -98,7 +99,7 @@
     </form>
     <div style="display: none;text-align: center;" id="complete">
       <h1>安装完成!</h1><br><br><br>
-      <a href="{:url('index/index/index')}" class="layui-btn layui-bg-cyan">访问前台</a>
+      <a href="/" class="layui-btn layui-bg-cyan">访问API模块</a>
       <a href="{:url('admin/index/index')}" class="layui-btn layui-bg-cyan">访问后台</a>
     </div>
   </div>
