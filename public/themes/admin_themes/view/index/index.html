@@ -92,7 +92,26 @@
 	<script>
 		layui.config({
 		  base: '/themes/admin_themes/'
-		}).use('index');
+		}).use(['index'], function(){
+			var $ = layui.$;
+			$("[vaeyo-logout]").on("click", function(){
+				layer.confirm('确认注销登录吗?', {icon: 7, title:'警告'}, function(index){
+				  //注销
+				  $.ajax({
+				  	url:"/admin/publicer/logout",
+				  	success:function(res){
+				  		layer.msg(res.msg);
+				  		if(res.code == 1){
+				  			setTimeout(function(){
+				  				location.href="{:url('admin/publicer/login')}"
+				  			},1000)
+				  		}
+				  	}
+				  })
+				  layer.close(index);
+				});
+			})
+		});
 	</script> 
 	  
 </body>

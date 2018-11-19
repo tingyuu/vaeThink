@@ -22,9 +22,9 @@
    {{#  if(d.type == 1){ }}系统钩子{{#  } else if(d.type == 2){ }} 应用钩子 {{#  } else { }}模板钩子{{#  } }}
 </script>
 
-<script type="text/html" id="barDemo">
+<!-- <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs layui-btn-primary" vaeyo_tab vae-id="1004" vae-title="管理插件" vae-src="/admin/admin/edit/id/{{d.id}}">管理插件</a>
-</script>
+</script> -->
               
           
 <script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
@@ -50,7 +50,7 @@ layui.config({
       ,{field: 'hook', title: '钩子', align:'center'}
       ,{field: 'type', title:'类型', toolbar: '#type', align:'center'}
       ,{field: 'desc', title: '描述', align:'center'}
-      ,{field: 'right', toolbar: '#barDemo', width:150, align:'center'}
+      // ,{field: 'right', toolbar: '#barDemo', width:150, align:'center'}
     ]]
   });
   

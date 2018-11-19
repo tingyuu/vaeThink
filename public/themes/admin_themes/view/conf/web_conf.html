@@ -60,6 +60,18 @@
       <textarea name="code" placeholder="请输入完整的统计代码" class="layui-textarea">{$webConf.code}</textarea>
     </div>
   </div>
+   <div class="layui-form-item">
+    <label class="layui-form-label">网站域名</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="domain" autocomplete="off" placeholder="请输入网站域名" class="layui-input" value="{$webConf.domain}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">api缓存时间</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="port_cache_time" autocomplete="off" placeholder="请输入port模块接口数据缓存时间" class="layui-input" value="{$webConf.port_cache_time}">
+    </div>
+  </div>
   <div class="layui-form-item">
     <div class="layui-input-block">
       <button class="layui-btn" lay-submit="" lay-filter="vaeform">立即提交</button>

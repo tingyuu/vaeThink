@@ -6,7 +6,7 @@ vaeThink 1.0
 [![Latest Unstable Version](https://poser.pugx.org/topthink/think/v/unstable)](https://packagist.org/packages/topthink/think)
 [![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think) -->
 
-vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的核心理念不变的同时，对一般项目所必需的功能进行了基础开发和封装，帮助用户在开始一个新的PHP项目时能够快速完成基础功能的搭建。vaeThink保留了ThinkPHP和Layui的所有特征，对于熟悉TP5和Layui的开发者尤为方便，即使没使用过TP5和Layui在开发文档的帮助下也能快速使用vaeThink!
+vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的核心理念不变的同时，对一般项目所必需的功能进行了基础开发和封装，帮助用户在开始一个新的PHP项目时能够快速完成基础功能的搭建，少一些前戏，多一些高潮。vaeThink保留了ThinkPHP和Layui的所有特征，对于熟悉TP5和Layui的开发者尤为方便，即使没使用过TP5和Layui在开发文档的帮助下也能快速使用vaeThink!
 
 > vaeThink的运行环境要求PHP5.4(>5.4)以上。
 
@@ -33,7 +33,7 @@ www  WEB部署目录（或者子目录）
 │  │  ├─controller      模块控制器目录
 │  │  ├─model           模块模型目录
 │  │  ├─validate        模块验证器目录
-│  ├─portal             门户模块目录
+│  ├─port               API接口模块目录
 │  │  ├─controller      模块控制器目录
 │  │  ├─model           模块模型目录
 │  │  ├─validate        模块验证器目录
@@ -52,13 +52,16 @@ www  WEB部署目录（或者子目录）
 │  └─install.lock       用于系统鉴定是否完成安装
 │ 
 ├─public                WEB目录（对外访问目录）
+│  ├─plugin          	插件目录
+│  ├─themes          	模板文件目录
+│  └─admin_themes       admin模块模板文件目录
 │  ├─index.php          入口文件
 │  ├─router.php         快速测试文件
 │  └─.htaccess          用于apache的重写
 │
 ├─listenrain            系统核心引擎目录
 │  ├─thinkphp           ThinkPHP5框架文件目录
-│  ├─vae                vaeThink系统核心类库目录
+│  ├─vae                vaeThink框架核心类库目录
 │
 ├─extend                扩展类库目录
 ├─vendor                第三方类库目录（Composer依赖库）

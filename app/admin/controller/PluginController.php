@@ -37,7 +37,15 @@ class PluginController extends AdminCheckAuth
         ])->update([
             'status' => 0
         ]);
-        cache('module_init_hook_plugin_admin',null);
+        $plugin = Db::name('plugin')->where('name',$name)->find();
+        $hook = Db::name('hook')->where('hook',$plugin['hook'])->find();
+        if($hook['type'] == 1){
+            $cache_name = 'app_init_hook_plugin';
+        }else{
+            $module = $hook['module'];
+            $cache_name = "module_init_hook_plugin_{$module}";
+        }
+        cache($cache_name,null);
         return vae_assign(1,'禁用成功');
     }
 
@@ -50,7 +58,15 @@ class PluginController extends AdminCheckAuth
         ])->update([
             'status' => 1
         ]);
-        cache('module_init_hook_plugin_admin',null);
+        $plugin = Db::name('plugin')->where('name',$name)->find();
+        $hook = Db::name('hook')->where('hook',$plugin['hook'])->find();
+        if($hook['type'] == 1){
+            $cache_name = 'app_init_hook_plugin';
+        }else{
+            $module = $hook['module'];
+            $cache_name = "module_init_hook_plugin_{$module}";
+        }
+        cache($cache_name,null);
         return vae_assign(1,'启用成功');
     }
 
@@ -58,21 +74,9 @@ class PluginController extends AdminCheckAuth
     public function uninstall()
     {
         $name =  vae_get_param('name');
-        Db::startTrans();
-        try{
-            Db::name('plugin')->where([
-                'name' => $name
-            ])->delete();
-            Db::name('HookPlugin')->where([
-                'plugin' => $name
-            ])->delete();
-            cache('module_init_hook_plugin_admin',null);
-            Db::commit();    
-        } catch (\Exception $e) {
-            Db::rollback();
-            return vae_assign(0,'卸载失败:'.$e->getMessage());
-        }
-        return vae_assign(1,'卸载成功');
+        $pluginModel = new PluginModel;
+        $plugins = $pluginModel->uninstall($name);
+        return $plugins;
     }
 
     //安装
@@ -81,6 +85,15 @@ class PluginController extends AdminCheckAuth
         $param =  vae_get_param();
         $pluginModel = new PluginModel;
         $plugins = $pluginModel->install($param);
+        return $plugins;
+    }
+
+    //配置
+    public function setConfig()
+    {
+        $name =  vae_get_param('name');
+        $pluginModel = new PluginModel;
+        $plugins = $pluginModel->setConfig($name);
         return $plugins;
     }
 }

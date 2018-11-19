@@ -78,6 +78,7 @@ class NavController extends AdminCheckAuth
                 \think\loader::model('Nav')->where([
                     'id'=>$param['id']
                 ])->strict(false)->field(true)->update($param);
+                \think\Cache::clear('VAE_NAV');
                 return vae_assign();
             }
         }
@@ -95,6 +96,7 @@ class NavController extends AdminCheckAuth
         }
         if (Db::name('Nav')->delete($id) !== false) {
             return vae_assign(1,"删除成功！");
+            \think\Cache::clear('VAE_NAV');
         } else {
             return vae_assign(0,"删除失败！");
         }

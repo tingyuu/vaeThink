@@ -11,7 +11,7 @@
 <body class="vae-body">
 
 <div class="vae-content">
-  <button class="layui-btn layui-btn-primary layui-btn-sm" vaeyo_tab vae-id="100000" vae-title="插件市场" vae-src="https://www.vaethink.com">插件市场</button> 
+  <a class="layui-btn layui-btn-primary layui-btn-sm" href="http://think.vaethink.com/list/cate_id/4.html" target="_blank">插件市场</a> 
   <table class="layui-hide" id="test" lay-filter="test"></table>
 </div>
 
@@ -24,9 +24,9 @@
     <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="install">安装</button>
   {{#  }  else { }}
     {{#  if(d.interface == 1){ }}
-    <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="interface">管理</button>
+    <button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="setConfig" vaeyo_tab vae-id="6666" vae-title="插件配置" vae-src="/admin/plugin/setConfig/name/{{d.name}}">配置</button>
     {{#  }  else { }}
-    <button class="layui-btn layui-btn-xs layui-btn-disabled">管理</button>
+    <button class="layui-btn layui-btn-xs layui-btn-disabled">配置</button>
     {{#  } }}
     {{#  if(d.start == 1){ }}
     <button class="layui-btn layui-btn-xs layui-bg-cyan" lay-event="disabled">禁用</button>

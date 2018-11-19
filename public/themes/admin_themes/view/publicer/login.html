@@ -27,10 +27,10 @@
             <h2>{:vae_get_config('webconfig.admin_title') ? vae_get_config('webconfig.admin_title') : 'vaeThink'}</h2>
 	        <form class="layui-form" id="vaeyo-login">
 			  <div class="layui-form-item">
-			      <input type="text" name="username" lay-verify="required" placeholder="账户" autocomplete="off" class="layui-input" value="vae">
+			      <input type="text" name="username" lay-verify="required" placeholder="账户" autocomplete="off" class="layui-input">
 			  </div>
 			  <div class="layui-form-item">
-			      <input type="password" name="password" lay-verify="required" placeholder="密码:vaethink" autocomplete="off" class="layui-input">
+			      <input type="password" name="password" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
 			  </div>
 			  <div class="layui-form-item">
 			      <div class="layui-input-inline">
@@ -57,7 +57,7 @@
                             layer.tips(res.msg,'#vaeyo-login-submit');
                             if(res.code === 1) {
                                 setTimeout(function() {
-                                    location.href = "/admin/index/index";
+                                    location.href = "{:url('admin/index/index')}";
                                 }, 1500);
                             } else {
                                 $('#captcha').click();

@@ -80,6 +80,7 @@ class ArticleController extends AdminCheckAuth
                 return vae_assign(0,$result);
             } else {
                 \think\loader::model('Article')->where(['id'=>$param['id']])->strict(false)->field(true)->update($param);
+                \think\Cache::clear('VAE_ARTICLE_INFO');
                 return vae_assign();
             }
         }
@@ -91,6 +92,7 @@ class ArticleController extends AdminCheckAuth
         $id    = vae_get_param("id");
         if (ArticleModel::destroy($id) !== false) {
             return vae_assign(1,"成功放入回收站！");
+            \think\Cache::clear('VAE_ARTICLE_INFO');
         } else {
             return vae_assign(0,"删除失败！");
         }

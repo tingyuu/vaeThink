@@ -67,11 +67,26 @@ layui.config({
 	})
 	
 	element.on('tabDelete(vaeyo-tab)', function(data){
-	  vaeyo.recordTab();
+		var lastthetab = layui.sessionData('vaeyoAdmin_tab');
+		if(lastthetab.vaeyoTab &&lastthetab.vaeyoTab.length > 0){
+			var html = $('.vaeyo-tab [lay-id='+lastthetab.vaeyoTab[1].id+']').click();
+	    } else {
+	    	vaeyo.changeTab(0);
+	    }
+	  	vaeyo.recordTab();
 	});
 
 	$("[vaeyo-home]").on('click', function(){
-		element.tabChange('vaeyo-tab', 0);
+		var thetabs = layui.sessionData('vaeyoAdmin_tab');
+		if(thetabs.vaeyoTab &&　thetabs.vaeyoTab.length > 1){
+			console.log(thetabs.vaeyoTab)
+	    	for (var i = thetabs.vaeyoTab.length; i > 0; i--) {
+	    		if(thetabs.vaeyoTab[i-1].id != 0){
+	    			element.tabDelete('vaeyo-tab', thetabs.vaeyoTab[i-1].id);
+	    		}
+	    	}
+	    }
+	    //$('.vaeyo-tab [lay-id="0"]').click();
 		$(".vaeyo-menulist-2").children("i").attr("class","layui-icon layui-icon-triangle-r");
 		$(".vaeyo-menulist-3:visible").slideUp("slow");
 		return false;
@@ -98,24 +113,6 @@ layui.config({
 			});
 		}
 		return false;
-	})
-
-	$("[vaeyo-logout]").on("click", function(){
-		layer.confirm('确认注销登录吗?', {icon: 7, title:'警告'}, function(index){
-		  //注销
-		  $.ajax({
-		  	url:"/admin/publicer/logout",
-		  	success:function(res){
-		  		layer.msg(res.msg);
-		  		if(res.code == 1){
-		  			setTimeout(function(){
-		  				location.href="/admin/publicer/login"
-		  			},1000)
-		  		}
-		  	}
-		  })
-		  layer.close(index);
-		});
 	})
 
 	$("[vaeyo-del-cache]").on('click', function(e){

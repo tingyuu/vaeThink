@@ -78,6 +78,7 @@ class SlideController extends AdminCheckAuth
                 \think\loader::model('Slide')->where([
                     'id'=>$param['id']
                 ])->strict(false)->field(true)->update($param);
+                \think\Cache::clear('VAE_SALIDE');
                 return vae_assign();
             }
         }
@@ -95,6 +96,7 @@ class SlideController extends AdminCheckAuth
         }
         if (Db::name('Slide')->delete($id) !== false) {
             return vae_assign(1,"删除成功！");
+            \think\Cache::clear('VAE_SALIDE');
         } else {
             return vae_assign(0,"删除失败！");
         }
@@ -136,6 +138,7 @@ class SlideController extends AdminCheckAuth
                 return vae_assign(0,$result);
             } else {
                 \think\loader::model('SlideInfo')->strict(false)->field(true)->insert($param);
+                \think\Cache::clear('VAE_SALIDE_INFO');
                 return vae_assign();
             }
         }
@@ -163,6 +166,7 @@ class SlideController extends AdminCheckAuth
                 \think\loader::model('SlideInfo')->where([
                     'id' => $param['id']
                 ])->strict(false)->field(true)->update($param);
+                \think\Cache::clear('VAE_SALIDE_INFO');
                 return vae_assign();
             }
         }
@@ -174,6 +178,7 @@ class SlideController extends AdminCheckAuth
         $id    = vae_get_param("id");
         if (Db::name('SlideInfo')->delete($id) !== false) {
             return vae_assign(1,"删除成功！");
+            \think\Cache::clear('VAE_SALIDE_INFO');
         } else {
             return vae_assign(0,"删除失败！");
         }

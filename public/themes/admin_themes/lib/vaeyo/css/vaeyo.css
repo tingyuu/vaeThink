@@ -119,6 +119,9 @@
     display: none;
 	border-radius: 50%;
 }
+.vaeyo-tab .layui-tab-title li{
+	background-color: #fff;
+}
 .vaeyo-tab .layui-tab-title li:hover{
 	color:#000;
 	background-color: #eff0f4;
@@ -206,4 +209,12 @@
 }
 .layui-nav.layui-layout-right .layui-nav-bar{
 	background-color:#fff;
+}
+.vaeyo-tab .layui-tab-bar{
+	height: 50px;
+	border-width: 0;
+	line-height:50px;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after{
+	border-bottom:0;
 }

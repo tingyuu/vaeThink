@@ -68,15 +68,20 @@ layui.define(['layer','element','form'], function(exports){
                 src:thatIframe.src 
             }
             tabs.push(thatObj);
+            var nums = 1;
             for (var i = tab.length - 1; i >= 0; i--) {
-                if(tab[i].id != 0 && tab[i].id != thatIframe.id){
+                if(tab[i].id !== 0 && tab[i].id != thatIframe.id){
                     var obj = {
                         id:tab[i].id,
                         name:tab[i].name,
                         src:tab[i].src 
                     }
                     tabs.push(obj);
+                    nums++;
                 }
+            }
+            if(nums==10){
+                layer.tips('点击这里可以关闭全部TAB',$('[vaeyo-home]',parent.document),{tips: 1});
             }
             layui.sessionData('vaeyoAdmin_tab', {
                 key: 'vaeyoTab'

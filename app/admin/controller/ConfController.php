@@ -19,13 +19,15 @@ class ConfController extends AdminCheckAuth
     {
         $conf = Config::get('webconfig');
         $webConf = [
-            'title' => empty($conf['title']) ? '' : $conf['title'],
-            'keywords' => empty($conf['keywords']) ? '' : $conf['keywords'],
-            'desc' => empty($conf['desc']) ? '' : $conf['desc'],
-            'logo' => empty($conf['logo']) ? '' : $conf['logo'],
-            'admin_title' => empty($conf['admin_title']) ? '' : $conf['admin_title'],
-            'icp' => empty($conf['icp']) ? '' : $conf['icp'],
-            'code' => empty($conf['code']) ? '' : $conf['code'],
+            'title'        => empty($conf['title']) ? '' : $conf['title'],
+            'keywords'     => empty($conf['keywords']) ? '' : $conf['keywords'],
+            'desc'         => empty($conf['desc']) ? '' : $conf['desc'],
+            'logo'         => empty($conf['logo']) ? '' : $conf['logo'],
+            'admin_title'  => empty($conf['admin_title']) ? '' : $conf['admin_title'],
+            'icp'          => empty($conf['icp']) ? '' : $conf['icp'],
+            'code'         => empty($conf['code']) ? '' : $conf['code'],
+            'domain'       => empty($conf['domain']) ? '' : $conf['domain'],
+            'port_cache_time' => empty($conf['port_cache_time']) ? '' : $conf['port_cache_time'],
         ];
         return view('',['webConf'=>$webConf]);
     }
@@ -39,7 +41,7 @@ class ConfController extends AdminCheckAuth
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                $conf = "<?php return ['admin_title'=>'{$param["admin_title"]}','title'=>'{$param["title"]}','keywords'=>'{$param["keywords"]}','logo'=>'{$param["logo"]}','desc'=>'{$param["desc"]}','icp'=>'{$param["icp"]}','code'=>'{$param["code"]}'];";
+                $conf = "<?php return ['admin_title'=>'{$param["admin_title"]}','title'=>'{$param["title"]}','keywords'=>'{$param["keywords"]}','logo'=>'{$param["logo"]}','desc'=>'{$param["desc"]}','icp'=>'{$param["icp"]}','code'=>'{$param["code"]}','domain'=>'{$param["domain"]}','port_cache_time'=>'{$param["port_cache_time"]}'];";
                 file_put_contents(VAE_ROOT . "data/conf/extra/webconfig.php",$conf);
                 return vae_assign();
             }
@@ -51,12 +53,12 @@ class ConfController extends AdminCheckAuth
     {
         $conf = Config::get('emailconfig');
         $emailConf = [
-            'smtp' => empty($conf['smtp']) ? '' : $conf['smtp'],
+            'smtp'     => empty($conf['smtp']) ? '' : $conf['smtp'],
             'username' => empty($conf['username']) ? '' : $conf['username'],
             'password' => empty($conf['password']) ? '' : $conf['password'],
-            'port' => empty($conf['port']) ? '' : $conf['port'],
-            'email' => empty($conf['email']) ? '' : $conf['email'],
-            'from' => empty($conf['from']) ? '' : $conf['from'],
+            'port'     => empty($conf['port']) ? '' : $conf['port'],
+            'email'    => empty($conf['email']) ? '' : $conf['email'],
+            'from'     => empty($conf['from']) ? '' : $conf['from'],
             'template' => empty($conf['template']) ? '' : $conf['template'],
         ];
         return view('',['emailConf'=>$emailConf]);

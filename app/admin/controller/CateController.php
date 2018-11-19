@@ -39,7 +39,7 @@ class CateController extends AdminCheckAuth
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                \think\loader::model('ArticleCate')->strict(false)->field(true)->insert(vae_get_param());
+                \think\loader::model('ArticleCate')->cache('VAE_ARTICLE_CATE')->strict(false)->field(true)->insert(vae_get_param());
                 return vae_assign();
             }
     	}
@@ -56,7 +56,7 @@ class CateController extends AdminCheckAuth
             } else {
             	$data[$param['field']] = $param['value'];
             	$data['id'] = $param['id'];
-                \think\loader::model('ArticleCate')->strict(false)->field(true)->update($data);
+                \think\loader::model('ArticleCate')->cache('VAE_ARTICLE_CATE')->strict(false)->field(true)->update($data);
                 return vae_assign();
             }
         }
@@ -74,7 +74,7 @@ class CateController extends AdminCheckAuth
         if ($content_count > 0) {
             return vae_assign(0,"该分类下还有文章，无法删除！");
         }
-        if (\think\Db::name('ArticleCate')->delete($id) !== false) {
+        if (\think\Db::name('ArticleCate')->cache('VAE_ARTICLE_CATE')->delete($id) !== false) {
             return vae_assign(1,"删除分类成功！");
         } else {
             return vae_assign(0,"删除失败！");

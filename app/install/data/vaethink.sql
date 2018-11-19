@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 本地服务器
-Source Server Version : 50547
+Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : vaethink
 
 Target Server Type    : MYSQL
-Target Server Version : 50547
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-10-18 14:43:16
+Date: 2018-11-19 14:55:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68,83,84,85,86,87,88,89,90,91,92,93,94,95,96', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1539488985');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1542368846');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -95,7 +95,7 @@ CREATE TABLE `vae_admin_menu` (
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
 
 -- ----------------------------
 -- Records of vae_admin_menu
@@ -136,7 +136,7 @@ CREATE TABLE `vae_admin_rule` (
   `update_time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
@@ -237,6 +237,7 @@ INSERT INTO `vae_admin_rule` VALUES ('93', '91', 'nav/addNavInfo', '添加导航
 INSERT INTO `vae_admin_rule` VALUES ('94', '93', 'nav/addNavInfoSubmit', '保存添加的导航', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('95', '91', 'nav/editNavInfoSubmit', '保存修改的导航', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('96', '91', 'nav/deleteNavInfo', '删除导航', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('97', '63', 'plugin/setConfig', '配置插件', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`
@@ -283,28 +284,6 @@ CREATE TABLE `vae_article_cate` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `vae_comment`
--- ----------------------------
-DROP TABLE IF EXISTS `vae_comment`;
-CREATE TABLE `vae_comment` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL,
-  `type` int(2) NOT NULL DEFAULT '1' COMMENT '1文章2页面',
-  `content_id` int(11) unsigned NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1禁止显示',
-  `comment` text NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
-  `delete_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `type` (`user_id`,`type`,`content_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评论';
-
--- ----------------------------
--- Records of vae_comment
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `vae_hook`
 -- ----------------------------
 DROP TABLE IF EXISTS `vae_hook`;
@@ -317,7 +296,7 @@ CREATE TABLE `vae_hook` (
   `module` varchar(15) NOT NULL DEFAULT '' COMMENT '模块名，模块专属钩子',
   `desc` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='钩子表';
 
 -- ----------------------------
 -- Records of vae_hook
@@ -336,6 +315,9 @@ INSERT INTO `vae_hook` VALUES ('11', '2', '1', '后台首页', 'admin_main', 'ad
 INSERT INTO `vae_hook` VALUES ('12', '2', '1', '后台登录页面', 'admin_login', 'admin', '后台登录页面初始化');
 INSERT INTO `vae_hook` VALUES ('13', '1', '0', '文件上传前', 'upload_begin', 'vae', '文件上传完成前');
 INSERT INTO `vae_hook` VALUES ('14', '1', '0', '文件上传后', 'upload_end', 'vae', '文件上传完成后');
+INSERT INTO `vae_hook` VALUES ('15', '2', '0', 'port模块数据输出前', 'port_return', 'port', 'port模块数据输出前');
+INSERT INTO `vae_hook` VALUES ('16', '2', '0', 'port模块接收参数前', 'port_param', 'vae', 'port模块接收参数前');
+INSERT INTO `vae_hook` VALUES ('17', '2', '0', 'port模块开始前', 'port_begin', 'port', 'port模块开始前');
 
 -- ----------------------------
 -- Table structure for `vae_hook_plugin`
@@ -393,27 +375,6 @@ CREATE TABLE `vae_nav_info` (
 
 -- ----------------------------
 -- Records of vae_nav_info
--- ----------------------------
-
--- ----------------------------
--- Table structure for `vae_page`
--- ----------------------------
-DROP TABLE IF EXISTS `vae_page`;
-CREATE TABLE `vae_page` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `keywords` varchar(1000) DEFAULT NULL,
-  `desc` varchar(1000) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1下架',
-  `content` text NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
-  `delete_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='页面';
-
--- ----------------------------
--- Records of vae_page
 -- ----------------------------
 
 -- ----------------------------
@@ -496,32 +457,4 @@ CREATE TABLE `vae_slide_info` (
 
 -- ----------------------------
 -- Records of vae_slide_info
--- ----------------------------
-
--- ----------------------------
--- Table structure for `vae_user`
--- ----------------------------
-DROP TABLE IF EXISTS `vae_user`;
-CREATE TABLE `vae_user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nickName` varchar(200) DEFAULT NULL COMMENT '昵称',
-  `avatarUrl` varchar(250) DEFAULT NULL COMMENT '头像',
-  `gender` int(1) DEFAULT NULL COMMENT '性别',
-  `openid` varchar(200) NOT NULL COMMENT '微信openid',
-  `token` varchar(200) NOT NULL COMMENT '登录验证token',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
-  `last_login_time` int(11) NOT NULL COMMENT '最后登录时间',
-  `last_login_ip` varchar(50) NOT NULL COMMENT '最后登录ip',
-  `login_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '登录次数',
-  `status` int(1) unsigned NOT NULL COMMENT '状态0正常-1禁止登录',
-  `name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
-  `phone` bigint(11) DEFAULT NULL COMMENT '电话',
-  `address` varchar(500) DEFAULT NULL,
-  `id_num` varchar(18) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of vae_user
 -- ----------------------------

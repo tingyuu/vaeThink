@@ -330,8 +330,51 @@ function vae_set_hook_one($hook, &$params = null, $extra = null)
     return \think\Hook::listen($hook, $params, $extra, true);
 }
 
-//读取导航列表
+//读取导航列表,用于后台
 function vae_get_nav($nav_id){
     $nav = \think\Db::name('NavInfo')->where('nav_id',$nav_id)->order('order asc')->select();
     return $nav;
+}
+
+//读取导航列表，用于前台
+function vae_get_navs($name){
+    if(!cache('VAE_NAV'.$name)) {
+        $nav_id = \think\Db::name('Nav')->where(['name'=>$name,'status'=>1])->value('id');
+        if(empty($nav_id)){
+            return '';
+        }
+        \think\Cache::tag('VAE_NAV')->set('VAE_NAV'.$name,\think\Db::name('NavInfo')->where(['nav_id'=>$nav_id,'status'=>1])->select());
+    }
+    $navs = cache('VAE_NAV'.$name);
+    
+    return $navs;
+}
+
+
+/**
+ * 获取URL,计算参数
+ * @param $url
+ * @param array $param
+ */
+function vae_get_route_url($params = [], $url = '')
+{
+    $request = \think\Request::instance();
+    $get = $request->param();
+    foreach ($get as $urlparam => $value) {
+        if (strpos($urlparam, $request->action())) {
+            unset($get[$urlparam]);
+        } else {
+            $get[$urlparam] = urldecode($value);
+        }
+    }
+
+    if (is_array($params)) {
+        $get = array_merge($get, $params);
+    }
+    if (empty($url)) {
+        return url($request->action(), $get);
+    } else {
+        return url($url, $get);
+    }
+
 }
