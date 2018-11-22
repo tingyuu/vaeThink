@@ -139,7 +139,7 @@ class ApiController extends AdminCheckLogin
     }
 
     //修改密码
-    public function editPassword()
+    public function editpassword()
     {
         return view('admin/edit_password',[
             'admin'=>vae_get_login_admin()
@@ -147,21 +147,21 @@ class ApiController extends AdminCheckLogin
     }
 
     //保存密码修改
-    public function editPasswordSubmit()
+    public function editpasswordSubmit()
     {
         if($this->request->isPost()){
             $param = vae_get_param();
-            $result = $this->validate($param, 'app\admin\validate\Admin.editPassword');
+            $result = $this->validate($param, 'app\admin\validate\Admin.editpwd');
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
                 $admin = vae_get_login_admin();
-                if(vae_set_password($param['old_password'],$admin['salt']) !== $admin['password']) {
+                if(vae_set_password($param['old_pwd'],$admin['salt']) !== $admin['pwd']) {
                     return vae_assign(0,'旧密码不正确!');
                 }
                 unset($param['username']);
                 $param['salt']     = vae_set_salt(20);
-                $param['password'] = vae_set_password($param['password'],$param['salt']);
+                $param['pwd'] = vae_set_password($param['pwd'],$param['salt']);
                 \think\loader::model('Admin')->where([
                     'id'=>$admin['id']
                 ])->strict(false)->field(true)->update($param);

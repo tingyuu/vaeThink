@@ -120,7 +120,7 @@ class IndexController extends ControllerBase
                 $update_time = time();
 
                 $caeate_admin_sql = "INSERT INTO ".$data['DB_PREFIX']."admin ".
-                "(username,password, nickname,thumb,salt,create_time,update_time) "
+                "(username,pwd, nickname,thumb,salt,create_time,update_time) "
                 ."VALUES "
                 ."('$username','$password','$nickname','$thumb','$salt','$create_time','$update_time')";
                 if(!$link->query($caeate_admin_sql)) {

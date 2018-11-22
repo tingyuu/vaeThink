@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-11-22 10:59:47
+Date: 2018-11-22 12:47:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,17 +21,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `vae_admin`;
 CREATE TABLE `vae_admin` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `salt` varchar(50) NOT NULL,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `pwd` varchar(255) NOT NULL DEFAULT '',
+  `salt` varchar(50) NOT NULL DEFAULT '',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1禁止登陆',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   `last_login_time` int(11) NOT NULL DEFAULT '0',
   `login_num` int(11) NOT NULL DEFAULT '0',
-  `last_login_ip` varchar(100) NOT NULL,
-  `phone` bigint(11) DEFAULT NULL,
-  `nickname` varchar(255) DEFAULT NULL,
+  `last_login_ip` varchar(100) NOT NULL DEFAULT '',
+  `phone` bigint(11) DEFAULT '0',
+  `nickname` varchar(255) DEFAULT '',
   `desc` text COMMENT '备注',
   `thumb` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -48,10 +48,10 @@ CREATE TABLE `vae_admin` (
 DROP TABLE IF EXISTS `vae_admin_group`;
 CREATE TABLE `vae_admin_group` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `status` int(1) NOT NULL DEFAULT '1',
-  `rules` varchar(10000) DEFAULT NULL COMMENT '用户组拥有的规则id， 多个规则","隔开',
-  `menus` varchar(10000) DEFAULT NULL,
+  `rules` varchar(10000) DEFAULT '' COMMENT '用户组拥有的规则id， 多个规则","隔开',
+  `menus` varchar(10000) DEFAULT '',
   `desc` text COMMENT '备注',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
@@ -88,9 +88,9 @@ DROP TABLE IF EXISTS `vae_admin_menu`;
 CREATE TABLE `vae_admin_menu` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(50) NOT NULL,
-  `src` varchar(225) DEFAULT NULL,
-  `param` varchar(255) DEFAULT NULL,
+  `title` varchar(50) NOT NULL DEFAULT '',
+  `src` varchar(225) DEFAULT '',
+  `param` varchar(255) DEFAULT '',
   `order` int(11) NOT NULL DEFAULT '1' COMMENT '越大越靠前',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
@@ -128,8 +128,8 @@ DROP TABLE IF EXISTS `vae_admin_rule`;
 CREATE TABLE `vae_admin_rule` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL COMMENT '规则',
-  `title` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '规则',
+  `title` varchar(255) NOT NULL DEFAULT '',
   `type` int(1) NOT NULL DEFAULT '1',
   `condition` char(100) DEFAULT NULL COMMENT '附加规则',
   `create_time` int(11) NOT NULL DEFAULT '0',
@@ -245,11 +245,11 @@ INSERT INTO `vae_admin_rule` VALUES ('97', '63', 'plugin/setConfig', '配置插�
 DROP TABLE IF EXISTS `vae_article`;
 CREATE TABLE `vae_article` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `keywords` varchar(1000) DEFAULT NULL,
-  `desc` varchar(1000) DEFAULT NULL,
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `keywords` varchar(1000) DEFAULT '',
+  `desc` varchar(1000) DEFAULT '',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1下架',
-  `thumb` varchar(1000) NOT NULL,
+  `thumb` varchar(1000) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `read` int(11) NOT NULL DEFAULT '0' COMMENT '阅读量',
   `article_cate_id` int(11) NOT NULL DEFAULT '0',
@@ -270,9 +270,9 @@ DROP TABLE IF EXISTS `vae_article_cate`;
 CREATE TABLE `vae_article_cate` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(50) NOT NULL,
-  `keywords` varchar(1000) DEFAULT NULL,
-  `desc` varchar(1000) DEFAULT NULL,
+  `title` varchar(50) NOT NULL DEFAULT '',
+  `keywords` varchar(1000) DEFAULT '',
+  `desc` varchar(1000) DEFAULT '',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -342,8 +342,8 @@ CREATE TABLE `vae_hook_plugin` (
 DROP TABLE IF EXISTS `vae_nav`;
 CREATE TABLE `vae_nav` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL COMMENT '标识',
+  `title` varchar(50) NOT NULL DEFAULT '',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '标识',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `desc` varchar(255) DEFAULT NULL,
   `create_time` int(11) NOT NULL DEFAULT '0',
@@ -363,7 +363,7 @@ CREATE TABLE `vae_nav_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
   `nav_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(225) DEFAULT NULL,
+  `title` varchar(225) DEFAULT '',
   `src` varchar(100) DEFAULT NULL,
   `param` varchar(100) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
@@ -405,8 +405,8 @@ CREATE TABLE `vae_plugin` (
 DROP TABLE IF EXISTS `vae_route`;
 CREATE TABLE `vae_route` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `full_url` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `full_url` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1启用-1禁用',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
@@ -423,8 +423,8 @@ CREATE TABLE `vae_route` (
 DROP TABLE IF EXISTS `vae_slide`;
 CREATE TABLE `vae_slide` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL COMMENT '标识',
+  `title` varchar(50) NOT NULL DEFAULT '',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '标识',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `desc` varchar(255) DEFAULT NULL,
   `create_time` int(11) NOT NULL DEFAULT '0',
@@ -446,7 +446,7 @@ CREATE TABLE `vae_slide_info` (
   `slide_id` int(11) unsigned NOT NULL DEFAULT '0',
   `title` varchar(225) DEFAULT NULL,
   `desc` varchar(255) DEFAULT NULL,
-  `img` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL DEFAULT '',
   `src` varchar(100) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `order` int(11) NOT NULL DEFAULT '0',

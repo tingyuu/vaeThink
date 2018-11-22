@@ -46,8 +46,8 @@ class PublicerController extends ControllerBase
                 if(empty($admin)) {
                     return vae_assign(0,'用户名或密码错误');
                 }
-                $param['password'] = vae_set_password($param['password'],$admin['salt']);
-                if($admin['password'] !== $param['password']) {
+                $param['pwd'] = vae_set_password($param['password'],$admin['salt']);
+                if($admin['pwd'] !== $param['pwd']) {
                     return vae_assign(0,'用户名或密码错误');
                 }
                 if($admin['status'] == -1){

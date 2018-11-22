@@ -58,7 +58,7 @@ class AdminController extends AdminCheckAuth
                 return vae_assign(0,$result);
             } else {
             	$param['salt'] = vae_set_salt(20);
-            	$param['password'] = vae_set_password($param['password'],$param['salt']);
+            	$param['pwd'] = vae_set_password($param['pwd'],$param['salt']);
 				// 启动事务
 				Db::startTrans();
 				try{
@@ -101,15 +101,15 @@ class AdminController extends AdminCheckAuth
             if ($result !== true) {
                 return vae_assign(0,$result);
             } else {
-                if(!empty($param['password'])) {
+                if(!empty($param['pwd'])) {
                     //重置密码
-                    if(empty($param['password_confirm']) or $param['password_confirm'] !== $param['password']) {
+                    if(empty($param['pwd_confirm']) or $param['pwd_confirm'] !== $param['pwd']) {
                         return vae_assign(0,'两次密码不一致');
                     }
                     $param['salt'] = vae_set_salt(20);
-                    $param['password'] = vae_set_password($param['password'],$param['salt']);
+                    $param['pwd'] = vae_set_password($param['pwd'],$param['salt']);
                 } else {
-                    unset($param['password']);
+                    unset($param['pwd']);
                     unset($param['salt']);
                 }
                 

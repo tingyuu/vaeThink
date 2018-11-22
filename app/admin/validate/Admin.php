@@ -16,20 +16,20 @@ class Admin extends Validate
 {
     protected $rule = [
         'username'       => 'require|unique:admin',
-        'password'       => 'require|confirm',
+        'pwd'       => 'require|confirm',
         'phone'          => 'require',
         'nickname'       => 'require',
         'thumb'          => 'require',
         'group_id'       => 'require',
         'id'             => 'require',
         'status'         => 'require|checkStatus:-1,1',
-        'old_password'   => 'require|different:password',
+        'old_pwd'   => 'require|different:pwd',
     ];
 
     protected $message = [
         'username.require'          => '用户名不能为空',
-        'password.require'          => '密码不能为空',
-        'password.confirm'          => '两次密码不一致',
+        'pwd.require'          => '密码不能为空',
+        'pwd.confirm'          => '两次密码不一致',
         'username.unique'           => '同样的记录已经存在!',
         'phone.require'             => '手机不能为空',
         'nickname.require'          => '昵称不能为空',
@@ -38,15 +38,15 @@ class Admin extends Validate
         'id.require'                => '缺少更新条件',
         'status.require'            => '状态为必选',
         'status.checkStatus'        => '系统所有者不能被禁用!',
-        'old_password.require'      => '请提供旧密码',
-        'old_password.different'    => '新密码不能和旧密码一样',
+        'old_pwd.require'      => '请提供旧密码',
+        'old_pwd.different'    => '新密码不能和旧密码一样',
     ];
 
     protected $scene = [
-        'add'          => ['phone', 'nickname', 'thumb', 'group_id', 'password', 'username', 'status'],
+        'add'          => ['phone', 'nickname', 'thumb', 'group_id', 'pwd', 'username', 'status'],
         'edit'         => ['phone', 'nickname', 'thumb', 'group_id', 'id', 'username.unique', 'status'],
         'editPersonal' => ['phone', 'nickname', 'thumb'],
-        'editPassword' => ['old_password', 'password'],
+        'editpwd' => ['old_pwd', 'pwd'],
     ];
 
     // 自定义验证规则
