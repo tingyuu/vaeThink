@@ -3,5 +3,4 @@
 runtime
 data/install.lock
 data/conf/database.php
-data/conf/extra/*
 public/upload/*/*
