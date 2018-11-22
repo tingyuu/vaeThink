@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-11-19 14:55:32
+Date: 2018-11-22 10:59:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,9 +25,9 @@ CREATE TABLE `vae_admin` (
   `password` varchar(255) NOT NULL,
   `salt` varchar(50) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1正常-1禁止登陆',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
-  `last_login_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  `last_login_time` int(11) NOT NULL DEFAULT '0',
   `login_num` int(11) NOT NULL DEFAULT '0',
   `last_login_ip` varchar(100) NOT NULL,
   `phone` bigint(11) DEFAULT NULL,
@@ -53,8 +53,8 @@ CREATE TABLE `vae_admin_group` (
   `rules` varchar(10000) DEFAULT NULL COMMENT '用户组拥有的规则id， 多个规则","隔开',
   `menus` varchar(10000) DEFAULT NULL,
   `desc` text COMMENT '备注',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='权限分组';
@@ -71,8 +71,8 @@ DROP TABLE IF EXISTS `vae_admin_group_access`;
 CREATE TABLE `vae_admin_group_access` (
   `uid` mediumint(11) unsigned DEFAULT NULL,
   `group_id` mediumint(11) DEFAULT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `uid_group_id` (`uid`,`group_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限分组和管理员的关联表';
 
@@ -92,8 +92,8 @@ CREATE TABLE `vae_admin_menu` (
   `src` varchar(225) DEFAULT NULL,
   `param` varchar(255) DEFAULT NULL,
   `order` int(11) NOT NULL DEFAULT '1' COMMENT '越大越靠前',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
 
@@ -131,9 +131,9 @@ CREATE TABLE `vae_admin_rule` (
   `name` varchar(255) NOT NULL COMMENT '规则',
   `title` varchar(255) NOT NULL,
   `type` int(1) NOT NULL DEFAULT '1',
-  `condition` char(100) NOT NULL COMMENT '附加规则',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `condition` char(100) DEFAULT NULL COMMENT '附加规则',
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL COMMENT '0',
   PRIMARY KEY (`id`),
   KEY `name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COMMENT='权限节点';
@@ -253,8 +253,8 @@ CREATE TABLE `vae_article` (
   `content` text NOT NULL,
   `read` int(11) NOT NULL DEFAULT '0' COMMENT '阅读量',
   `article_cate_id` int(11) NOT NULL DEFAULT '0',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容';
@@ -273,8 +273,8 @@ CREATE TABLE `vae_article_cate` (
   `title` varchar(50) NOT NULL,
   `keywords` varchar(1000) DEFAULT NULL,
   `desc` varchar(1000) DEFAULT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`,`pid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容分类';
@@ -342,12 +342,12 @@ CREATE TABLE `vae_hook_plugin` (
 DROP TABLE IF EXISTS `vae_nav`;
 CREATE TABLE `vae_nav` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL DEFAULT '标题',
+  `title` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT '标识',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `desc` varchar(255) DEFAULT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航';
 
@@ -362,14 +362,14 @@ DROP TABLE IF EXISTS `vae_nav_info`;
 CREATE TABLE `vae_nav_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
-  `nav_id` int(11) unsigned NOT NULL,
+  `nav_id` int(11) unsigned NOT NULL DEFAULT '0',
   `title` varchar(225) DEFAULT NULL,
   `src` varchar(100) DEFAULT NULL,
   `param` varchar(100) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `order` int(11) NOT NULL DEFAULT '0',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航详情';
 
@@ -391,7 +391,7 @@ CREATE TABLE `vae_plugin` (
   `interface` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否有后台管理,0:没有;1:有',
   `config` text COMMENT '插件配置',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '插件安装时间',
-  `update_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='插件表';
 
@@ -408,8 +408,8 @@ CREATE TABLE `vae_route` (
   `full_url` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1启用-1禁用',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='路由设置';
 
@@ -423,12 +423,12 @@ CREATE TABLE `vae_route` (
 DROP TABLE IF EXISTS `vae_slide`;
 CREATE TABLE `vae_slide` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL DEFAULT '标题',
+  `title` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT '标识',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `desc` varchar(255) DEFAULT NULL,
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='幻灯片';
 
@@ -443,15 +443,15 @@ INSERT INTO `vae_slide` VALUES ('1', '首页轮播', 'VAE_INDEX_SLIDE', '1', '�
 DROP TABLE IF EXISTS `vae_slide_info`;
 CREATE TABLE `vae_slide_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `slide_id` int(11) unsigned NOT NULL,
+  `slide_id` int(11) unsigned NOT NULL DEFAULT '0',
   `title` varchar(225) DEFAULT NULL,
   `desc` varchar(255) DEFAULT NULL,
   `img` varchar(255) NOT NULL,
   `src` varchar(100) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '1可用-1禁用',
   `order` int(11) NOT NULL DEFAULT '0',
-  `create_time` int(11) NOT NULL,
-  `update_time` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='幻灯片详情';
 
