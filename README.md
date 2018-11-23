@@ -24,6 +24,8 @@ vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的�
 
 1.如果安装过程中出现“创建管理员信息失败”的系统提示，请按照这里的方案解决[解决方案](https://think.vaethink.com/info/5.html)
 
+2.官方交流群：[221470096](https://jq.qq.com/?_wv=1027&k=5YclBbe)
+
 ## 目录结构
 
 安装完成的目录结构应当如下：
