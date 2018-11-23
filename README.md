@@ -8,6 +8,8 @@ vaeThink 1.0
 
 vaeThink基于ThinkPHP5和Layui开发，在保持快速开发和大道至简的核心理念不变的同时，对一般项目所必需的功能进行了基础开发和封装，帮助用户在开始一个新的PHP项目时能够快速完成基础功能的搭建，少一些前戏，多一些高潮。vaeThink保留了ThinkPHP和Layui的所有特征，对于熟悉TP5和Layui的开发者尤为方便，即使没使用过TP5和Layui在开发文档的帮助下也能快速使用vaeThink!
 
+![Image text](https://www.vaethink.com/res/static/images/vaethink.jpg)
+
 > vaeThink的运行环境要求PHP5.4(>5.4)以上。
 
 详细开发文档参考 [vaeThink完全开发手册](http://www.vaethink.com/doc)
