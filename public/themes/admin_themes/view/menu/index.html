@@ -17,7 +17,8 @@
 
 <div class="vae-content" style="height: 100%">
     <div>
-        <a class="layui-btn layui-btn-primary layui-btn-sm" vaeyo_tab vae-id="1000" vae-title="添加菜单" vae-src="/admin/menu/add">添加菜单</a>
+        <!-- <a class="layui-btn layui-btn-primary layui-btn-sm" vaeyo_tab vae-id="1000" vae-title="添加菜单" vae-src="/admin/menu/add">添加菜单</a> -->
+        <a class="layui-btn layui-btn-primary layui-btn-sm" href="/admin/menu/add">添加菜单</a>
         <!-- <a class="layui-btn layui-btn-primary layui-btn-sm"  onclick="openorclose();">隐藏或打开</a> -->
         <!-- <a class="layui-btn layui-btn-primary layui-btn-sm"  onclick="getCheckData();">获取选中行数据</a> -->
     </div>
@@ -58,7 +59,8 @@ layui.config({
             ,{width:150,title: '', align:'center'
                 ,templet: function(d){
                 var html='';
-                var addBtn='<a class="layui-btn layui-btn-primary layui-btn-xs" vaeyo_tab vae-id="1000" vae-title="添加菜单" vae-src="/admin/menu/add/pid/'+d.id+'">添加</a>';
+                // var addBtn='<a class="layui-btn layui-btn-primary layui-btn-xs" vaeyo_tab vae-id="1000" vae-title="添加菜单" vae-src="/admin/menu/add/pid/'+d.id+'">添加</a>';
+                var addBtn='<a class="layui-btn layui-btn-primary layui-btn-xs" href="/admin/menu/add/pid/'+d.id+'">添加</a>';
                 var delBtn='<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>';
                 return addBtn+delBtn;
               }

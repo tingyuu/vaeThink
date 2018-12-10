@@ -67,8 +67,8 @@ layui.config({
       data:data.field,
       success:function(e){
         if(e.code==1){
-          layer.confirm('保存成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
-            vae.closeThisTab();
+          layer.confirm('保存成功,返回列表吗?', {icon: 3, title:'提示'}, function(index){
+            vae.backThisTab();
             layer.close(index);
           });
         }else{

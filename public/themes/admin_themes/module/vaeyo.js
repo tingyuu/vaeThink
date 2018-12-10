@@ -131,15 +131,10 @@ layui.define(['layer','element','form'], function(exports){
              if(r!=null)return  unescape(r[2]); return null;
         },
         closeThisTab: function(){
-            var self = this;
-            var thetab = layui.sessionData('vaeyoAdmin_tab');
-            console.log(thetab)
-            if(thetab.vaeyoTab &&　thetab.vaeyoTab.length > 1){
-              // var fromid=$('#'+thetab.vaeyoTab[0].id,parent.document).attr('fromid');
-              // var fromsrc=$('#'+thetab.vaeyoTab[0].id,parent.document).attr('fromsrc');
-              $('#'+thetab.vaeyoTab[0].fromid,parent.document).attr('src',thetab.vaeyoTab[0].fromsrc);
-            }
             $('.vaeyo-tab .layui-tab-title .layui-this i',parent.document).click();
+        },
+        backThisTab: function(){
+            history.back(-1);
         },
         bundledTab: function(){
             var self = this;
