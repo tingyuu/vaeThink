@@ -82,16 +82,6 @@ layui.config({
         })
         layer.close(index);
       });
-    } else if(obj.event === 'edit'){
-      layer.prompt({
-        formType: 2
-        ,value: data.email
-      }, function(value, index){
-        obj.update({
-          email: value
-        });
-        layer.close(index);
-      });
     }
   });
 
@@ -100,6 +90,7 @@ layui.config({
     console.log(data.field.keywords)
     if(data.field.keywords) {
       tableIns.reload({where:{keywords:data.field.keywords}});
+      vae.bundledTab();
     }
     return false;
   });

@@ -126,7 +126,7 @@ layui.use(['element','jquery','layer','form'], function(){
     }, 30+Math.random()*100);
 
     $.ajax({
-      url:"/install/index/createData",
+      url:"{:url('install/index/createData')}",
       type:"post",
       data:data.field,
       beforeSend: function () {   

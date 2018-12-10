@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-11-22 12:47:57
+Date: 2018-12-10 09:30:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,11 +36,12 @@ CREATE TABLE `vae_admin` (
   `thumb` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`id`,`username`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员';
 
 -- ----------------------------
 -- Records of vae_admin
 -- ----------------------------
+INSERT INTO `vae_admin` VALUES ('1', 'admin', '9cd73f66883ad7c2234e73e995b6c685', 'vd6jh3qSP9MlegmQwuYy', '1', '1543209791', '1543209791', '1544404662', '14', '127.0.0.1', '0', 'Admin', '', '/themes/admin_themes/lib/vaeyo/img/thumb.png');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group`
@@ -62,7 +63,7 @@ CREATE TABLE `vae_admin_group` (
 -- ----------------------------
 -- Records of vae_admin_group
 -- ----------------------------
-INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1542368846');
+INSERT INTO `vae_admin_group` VALUES ('1', '系统所有者', '1', '1,2,57,58,59,60,3,19,20,21,22,23,24,25,26,27,28,29,30,31,32,7,8,9,10,11,12,13,14,15,16,17,18,50,51,52,53,54,55,56,4,5,39,40,41,42,43,44,45,46,47,48,49,33,34,35,36,37,38,69,70,71,72,73,74,75,76,77,78,79,80,81,82,6,61,62,63,64,65,66,67,68,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99', '1,2,3,4,5,6,14,15,16,17,7,10,11,12,13,24,22,23,18,19,20,21,24', '系统所有者，系统自动分配所有可操作权限及菜单。', '0', '1543210141');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group_access`
@@ -79,7 +80,7 @@ CREATE TABLE `vae_admin_group_access` (
 -- ----------------------------
 -- Records of vae_admin_group_access
 -- ----------------------------
-INSERT INTO `vae_admin_group_access` VALUES ('1', '1', '1538960617', '1538960617');
+INSERT INTO `vae_admin_group_access` VALUES ('1', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_menu`
@@ -95,7 +96,7 @@ CREATE TABLE `vae_admin_menu` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='后台菜单';
 
 -- ----------------------------
 -- Records of vae_admin_menu
@@ -120,6 +121,7 @@ INSERT INTO `vae_admin_menu` VALUES ('19', '18', '内置钩子', 'admin/hook/ind
 INSERT INTO `vae_admin_menu` VALUES ('20', '18', '插件管理', 'admin/plugin/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('22', '7', '轮播', 'admin/slide/index', '', '1', '0', '0');
 INSERT INTO `vae_admin_menu` VALUES ('23', '7', '导航', 'admin/nav/index', '', '1', '0', '0');
+INSERT INTO `vae_admin_menu` VALUES ('24', '15', '短信配置', 'admin/conf/dayuConf', '', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_admin_rule`
@@ -136,7 +138,7 @@ CREATE TABLE `vae_admin_rule` (
   `update_time` int(11) NOT NULL COMMENT '0',
   PRIMARY KEY (`id`),
   KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COMMENT='权限节点';
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='权限节点';
 
 -- ----------------------------
 -- Records of vae_admin_rule
@@ -238,6 +240,8 @@ INSERT INTO `vae_admin_rule` VALUES ('94', '93', 'nav/addNavInfoSubmit', '保存
 INSERT INTO `vae_admin_rule` VALUES ('95', '91', 'nav/editNavInfoSubmit', '保存修改的导航', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('96', '91', 'nav/deleteNavInfo', '删除导航', '1', '', '0', '0');
 INSERT INTO `vae_admin_rule` VALUES ('97', '63', 'plugin/setConfig', '配置插件', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('98', '2', 'conf/dayuConf', '短信配置', '1', '', '0', '0');
+INSERT INTO `vae_admin_rule` VALUES ('99', '98', 'conf/dayuConfSubmit', '保存短信配置', '1', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `vae_article`

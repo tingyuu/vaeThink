@@ -210,17 +210,17 @@ function vae_upload($module,$use){
         return $res;
     }
     //上传开始前的钩子
-    vae_set_hook('upload_begin');
+    vae_set_hook('upload_begin',$file);
     $info = $file->rule('sha1')->move(VAE_ROOT . 'public' . DS . 'upload' . DS . $module . DS . $use);
     if($info) {
         //文件上传成功后的钩子
-        vae_set_hook('upload_end');
+        vae_set_hook('upload_end',$file);
         $res['code'] = 1;
         $res['data'] = DS . 'upload' . DS . $module . DS . $use . DS . $info->getSaveName();
         return $res;
     } else {
         // 上传失败获取错误信息
-        return show(0,'上传失败：'.$file->getError());
+        return vae_assign(0,'上传失败：'.$file->getError());
     }
 }
 
@@ -377,4 +377,51 @@ function vae_get_route_url($params = [], $url = '')
         return url($url, $get);
     }
 
+}
+
+//发短信
+function vae_send_sms($phone,$param,$code,$type="normal")
+{
+    // 配置信息
+    include VAE_LTR."dayu/top/TopClient.php";
+    include VAE_LTR."dayu/top/TopLogger.php";
+    include VAE_LTR."dayu/top/request/AlibabaAliqinFcSmsNumSendRequest.php";
+    include VAE_LTR."dayu/top/ResultSet.php";
+    include VAE_LTR."dayu/top/RequestCheckUtil.php";
+    
+    $c = new \TopClient();
+    $conf = config('dayuconfig');
+    $c ->appkey = $conf['appkey'];
+    $c ->secretKey = $conf['secretkey'];
+
+    $req = new \AlibabaAliqinFcSmsNumSendRequest();
+    //公共回传参数，在“消息返回”中会透传回该参数。非必须
+    $req ->setExtend("");
+    //短信类型，传入值请填写normal
+    $req ->setSmsType($type);
+    //短信签名，传入的短信签名必须是在阿里大于“管理中心-验证码/短信通知/推广短信-配置短信签名”中的可用签名。
+    $req ->setSmsFreeSignName($conf['FreeSignName']);
+    //短信模板变量，传参规则{"key":"value"}，key的名字须和申请模板中的变量名一致，多个变量之间以逗号隔开。
+    $req ->setSmsParam($param);
+    //短信接收号码。支持单个或多个手机号码，传入号码为11位手机号码，不能加0或+86。群发短信需传入多个号码，以英文逗号分隔，一次调用最多传入200个号码。
+    $req ->setRecNum($phone);
+    //短信模板ID，传入的模板必须是在阿里大于“管理中心-短信模板管理”中的可用模板。
+    $req ->setSmsTemplateCode($code);
+    //发送
+    $resp = $c ->execute($req);
+}
+
+//读取轮播图，用于前台
+function vae_get_slide($name)
+{
+    if(!cache('VAE_SLIDE'.$name)) {
+        $slide_id = \think\Db::name('slide')->where(['name'=>$name,'status'=>1])->value('id');
+        if(empty($nav_id)){
+            return '';
+        }
+        \think\Cache::tag('VAE_SLIDE')->set('VAE_SLIDE'.$name,\think\Db::name('SlideInfo')->where(['slide_id'=>$slide_id,'status'=>1])->select());
+    }
+    $slides = cache('VAE_SLIDE'.$name);
+    
+    return $slides;
 }

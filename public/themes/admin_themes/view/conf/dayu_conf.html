@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vaeThink</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__ADMIN__/lib/layui/css/layui.css"  media="all">
+</head>
+<body class="vae-body">
+
+<form class="layui-form vae-content">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">APPKEY</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="appkey" lay-verify="required" autocomplete="off" placeholder="请输入阿里大鱼的appkey" class="layui-input" value="{$dayuConf.appkey}">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">SECRETKEY</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="secretkey" lay-verify="required" autocomplete="off" placeholder="请输入阿里大鱼的secretey" class="layui-input" value="{$dayuConf.secretkey}">
+    </div>
+  </div> 
+  <div class="layui-form-item">
+    <label class="layui-form-label">签名</label>
+    <div class="layui-input-block" style="max-width: 500px;">
+      <input type="text" name="FreeSignName" lay-verify="required" autocomplete="off" placeholder="请输入有效的阿里大鱼的签名" class="layui-input" value="{$dayuConf.FreeSignName}">
+    </div>
+  </div> 
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="vaeform">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+          
+<script src="__ADMIN__/lib/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.config({
+    base: '/themes/admin_themes/module/'
+}).use(['upload','form','vaeyo'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,$ = layui.$
+  ,vae = layui.vaeyo;
+  
+  //监听提交
+  form.on('submit(vaeform)', function(data){
+    $.ajax({
+      url:"/admin/conf/dayuConfSubmit",
+      type:'post',
+      data:data.field,
+      success:function(e){
+        if(e.code==1){
+          layer.confirm('保存成功,关闭本页面吗?', {icon: 3, title:'提示'}, function(index){
+            vae.closeThisTab();
+            layer.close(index);
+          });
+        }else{
+          layer.msg(e.msg);
+        }
+      }
+    })
+    return false;
+  });
+  
+});
+</script>
+</body>
+</html>

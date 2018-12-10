@@ -9,9 +9,9 @@
 // | Author: 听雨 < 389625819@qq.com >
 // +----------------------------------------------------------------------
 namespace vae\controller;
-use vae\controller\ControllerBase;
+use vae\controller\AdminCheckLogin;
 
-class PluginControllerBase extends ControllerBase
+class PluginControllerBase extends AdminCheckLogin
 {
     protected function _initialize()
     {

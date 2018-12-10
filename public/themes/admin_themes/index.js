@@ -43,11 +43,19 @@ layui.config({
 	});
 
 	$("[vaeyo_tab]").on('click', function(e){
+		var thetab = layui.sessionData('vaeyoAdmin_tab');
+	    if(thetab.vaeyoTab &&　thetab.vaeyoTab.length > 0){
+	    	var fromid = thetab.vaeyoTab[0].id,fromsrc = thetab.vaeyoTab[0].src;
+	    } else {
+	    	var fromid = null,fromsrc = null;
+	    }
 		vaeyo.addTab({
 			elem:"vaeyo-tab",
 			title:$(this).attr('vae-title'),
 			content:$(this).attr('vae-src'),
-			id:$(this).attr('vae-id')
+			id:$(this).attr('vae-id'),
+			fromid:fromid,
+			fromsrc:fromsrc
 		})
 		vaeyo.recordTab();
 	});
@@ -79,16 +87,15 @@ layui.config({
 	$("[vaeyo-home]").on('click', function(){
 		var thetabs = layui.sessionData('vaeyoAdmin_tab');
 		if(thetabs.vaeyoTab &&　thetabs.vaeyoTab.length > 1){
-			console.log(thetabs.vaeyoTab)
-	    	for (var i = thetabs.vaeyoTab.length; i > 0; i--) {
+	    	for (var i = thetabs.vaeyoTab.length; i > 1; i--) {
 	    		if(thetabs.vaeyoTab[i-1].id != 0){
 	    			element.tabDelete('vaeyo-tab', thetabs.vaeyoTab[i-1].id);
 	    		}
 	    	}
 	    }
 	    //$('.vaeyo-tab [lay-id="0"]').click();
-		$(".vaeyo-menulist-2").children("i").attr("class","layui-icon layui-icon-triangle-r");
-		$(".vaeyo-menulist-3:visible").slideUp("slow");
+		// $(".vaeyo-menulist-2").children("i").attr("class","layui-icon layui-icon-triangle-r");
+		// $(".vaeyo-menulist-3:visible").slideUp("slow");
 		return false;
 	})
 

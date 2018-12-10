@@ -18,7 +18,7 @@ class Plugin extends Model
 	public function getPlugin()
 	{
 		$dirArray[]=NULL;
-        if (false != ($handle = opendir ( './plugin/' ))) {
+        if (false != ($handle = opendir ( PLUGIN_PATH ))) {
             $i=0;
             while ( false !== ($file = readdir ( $handle )) ) {
                 //去掉"“.”、“..”以及带“.xxx”后缀的文件

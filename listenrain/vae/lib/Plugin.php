@@ -31,7 +31,7 @@ abstract class Plugin extends \think\Controller
             // 模板引擎类型 支持 php think 支持扩展
             'type'         => 'Think',
             // 模板路径
-            'view_path'    => "./plugin/".strtolower($explain['name'])."/",
+            'view_path'    => PLUGIN_PATH.strtolower($explain['name'])."/",
             // 模板后缀
             'view_suffix'  => 'html',
             // 模板文件名分隔符
@@ -51,7 +51,7 @@ abstract class Plugin extends \think\Controller
     protected function config($key='')
     {
         $explain = $this->explain;
-        $config = include "./plugin/".strtolower($explain['name'])."/".$explain['name'].'Config.php';
+        $config = include PLUGIN_PATH.strtolower($explain['name'])."/".$explain['name'].'Config.php';
         if(!empty($key)) {
             $config = $config[$key];
         }

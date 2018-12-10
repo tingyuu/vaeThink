@@ -79,4 +79,32 @@ class ConfController extends AdminCheckAuth
             }
         }
     }
+
+    //大鱼短信配置
+    public function dayuConf()
+    {
+        $conf = Config::get('dayuconfig');
+        $dayuConf = [
+            'appkey'     => empty($conf['appkey']) ? '' : $conf['appkey'],
+            'secretkey' => empty($conf['secretkey']) ? '' : $conf['secretkey'],
+            'FreeSignName' => empty($conf['FreeSignName']) ? '' : $conf['FreeSignName']
+        ];
+        return view('',['dayuConf'=>$dayuConf]);
+    }
+
+    //提交大鱼短信配置
+    public function dayuConfSubmit()
+    {
+        if($this->request->isPost()){
+            $param = vae_get_param();
+            $result = $this->validate($param, 'app\admin\validate\Conf.dayuConf');
+            if ($result !== true) {
+                return vae_assign(0,$result);
+            } else {
+                $conf = "<?php return ['appkey'=>'{$param["appkey"]}','secretkey'=>'{$param["secretkey"]}','FreeSignName'=>'{$param["FreeSignName"]}'];";
+                file_put_contents(VAE_ROOT . "data/conf/extra/dayuconfig.php",$conf);
+                return vae_assign();
+            }
+        }
+    }
 }

@@ -22,6 +22,9 @@ class Conf extends Validate
         'port'               => 'require',
         'email'              => 'require',
         'from'               => 'require',
+        'appkey'             => 'require',
+        'secretkey'          => 'require',
+        'FreeSignName'       => 'require',
     ];
 
     protected $message = [
@@ -33,10 +36,14 @@ class Conf extends Validate
         'port.require'               => '端口不能为空',
         'email.require'              => '发送者邮箱不能为空',
         'from.require'               => '要显示的发送者信息不能为空',
+        'appkey.require'             => 'appkey不能为空',
+        'secretkey.require'          => 'secretkey不能为空',
+        'FreeSignName.require'       => '签名不能为空',
     ];
 
     protected $scene = [
         'webConf' => ['title', 'admin_title'],
         'emailConf' => ['smtp', 'username', 'password', 'port', 'email', 'from'],
+        'dayuConf' => ['appkey', 'secretkey', 'FreeSignName'],
     ];
 }

@@ -85,6 +85,7 @@ layui.config({
     console.log(data.field.keywords)
     if(data.field.keywords) {
       tableIns.reload({where:{keywords:data.field.keywords}});
+      vae.bundledTab();
     }
     return false;
   });

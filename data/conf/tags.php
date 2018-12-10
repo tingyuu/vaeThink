@@ -16,7 +16,9 @@ return [
         'vae\\behavior\\AppInitHook',
     ],
     // 应用开始
-    'app_begin'    => [],
+    'app_begin'    => [
+        'vae\\behavior\\AppInitRute',
+    ],
     // 模块初始化
     'module_init'  => [
         'vae\\behavior\\ModuleInitHook',
