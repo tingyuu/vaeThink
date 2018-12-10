@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-12-10 09:30:10
+Date: 2018-12-10 11:39:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,12 +36,11 @@ CREATE TABLE `vae_admin` (
   `thumb` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`id`,`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员';
 
 -- ----------------------------
 -- Records of vae_admin
 -- ----------------------------
-INSERT INTO `vae_admin` VALUES ('1', 'admin', '9cd73f66883ad7c2234e73e995b6c685', 'vd6jh3qSP9MlegmQwuYy', '1', '1543209791', '1543209791', '1544404662', '14', '127.0.0.1', '0', 'Admin', '', '/themes/admin_themes/lib/vaeyo/img/thumb.png');
 
 -- ----------------------------
 -- Table structure for `vae_admin_group`
