@@ -1,3 +1,5 @@
+[推荐：自动生成接口文档的API调试工具PostHub](http://www.posthub.cn)
+
 vaeThink 1.0
 ===============
 
